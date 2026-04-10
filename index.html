@@ -1,0 +1,2248 @@
+<!DOCTYPE html><html lang="zh-TW"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>集團治理框架 v12</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;font-size:13px;color:#1a1a1a;padding:10px;background:#fff}
+.tabs{display:flex;gap:3px;flex-wrap:wrap;border-bottom:2px solid #ddd}
+button.t{padding:5px 9px;border-radius:5px 5px 0 0;border:1px solid #ccc;background:#f4f4f4;color:#666;cursor:pointer;font-size:10px;font-weight:500;border-bottom:none;margin-bottom:-2px;white-space:nowrap;font-family:inherit}
+button.t:hover{background:#e8e8e8}
+button.t.on{background:#1E2761;border-color:#1E2761;color:#fff;border-bottom:2px solid #1E2761}
+.page{display:none;padding:14px 0 2rem}.page.on{display:block}
+.pt{font-size:15px;font-weight:600;color:#1E2761;margin-bottom:3px}
+.ps{font-size:11px;color:#666;margin-bottom:12px;line-height:1.6;font-style:italic}
+.sl{font-size:10px;font-weight:600;letter-spacing:.04em;color:#999;margin:14px 0 7px;border-top:1px solid #eee;padding-top:10px;text-transform:uppercase}
+.cx{border-left:3px solid #534AB7;background:#EEEDFE;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;color:#3C3489;line-height:1.7;margin:8px 0}
+.wx{border-left:3px solid #E24B4A;background:#FCEBEB;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;color:#791F1F;line-height:1.7;margin:8px 0}
+.nx{border-left:3px solid #0F6E56;background:#E1F5EE;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;color:#085041;line-height:1.7;margin:8px 0}
+.ax{border-left:3px solid #BA7517;background:#FAEEDA;border-radius:0 6px 6px 0;padding:8px 12px;font-size:11px;color:#633806;line-height:1.7;margin:8px 0}
+.tb{width:100%;border-collapse:collapse;font-size:11px;margin:7px 0}
+.tb th{padding:6px 8px;font-weight:600;background:#1E2761;color:#fff;text-align:left;vertical-align:top}
+.tb td{padding:6px 8px;color:#555;border-bottom:1px solid #eee;vertical-align:top;line-height:1.6}
+.tb tr:nth-child(even) td{background:#fafafa}
+.rh{font-weight:600;color:#1E2761;background:#E8EBF7!important;white-space:nowrap}
+.tag{display:inline-block;font-size:10px;padding:1px 6px;border-radius:3px;font-weight:600;margin:1px}
+.tr2{background:#FCEBEB;color:#791F1F}.tg2{background:#E1F5EE;color:#085041}.ta2{background:#FAEEDA;color:#633806}
+.tp2{background:#EEEDFE;color:#3C3489}.tn2{background:#E8EBF7;color:#1E2761}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:7px 0}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin:7px 0}
+.cd{border:1px solid #eee;border-radius:8px;padding:10px;background:#fafafa}
+.cdh{font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.cdb{font-size:11px;color:#555;line-height:1.6}
+.cdb li,.srb li,.fwb li,.hr-body li{margin-left:14px;margin-bottom:2px}
+.steps{display:flex;flex-direction:column}
+.step{display:flex}
+.sl2{display:flex;flex-direction:column;align-items:center;width:36px;flex-shrink:0}
+.sd{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0}
+.sln{width:2px;flex:1;min-height:12px}
+.sr{flex:1;padding:0 0 15px 10px}
+.srt{font-size:12px;font-weight:600;color:#1a1a1a;margin-bottom:3px;margin-top:3px}
+.srb{font-size:11px;color:#555;line-height:1.7}
+.fw{border-radius:8px;margin-bottom:6px;overflow:hidden}
+.fwh{padding:9px 13px;display:flex;align-items:flex-start;gap:10px}
+.fwn{width:26px;height:26px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.fwb{padding:8px 13px 10px 49px;font-size:11px;line-height:1.7;border-top:1px solid rgba(255,255,255,.2)}
+.mf{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0;align-items:center}
+.mb{flex:1;min-width:90px;border-radius:7px;padding:7px 9px;cursor:pointer;color:white;border:none}
+.mb:hover{opacity:.85}
+.mbn{font-size:9px;font-weight:600;opacity:.75}
+.mbt{font-size:11px;font-weight:600;margin:2px 0}
+.mbs{font-size:9px;opacity:.8;line-height:1.4}
+.ma{color:#aaa;font-size:16px;display:flex;align-items:center}
+.md{border:1px solid #eee;border-radius:8px;padding:12px;margin-top:8px;display:none}
+.md.on{display:block}
+.md h4{font-size:12px;font-weight:600;color:#1E2761;margin-bottom:6px}
+.md p,.md li{font-size:11px;color:#555;line-height:1.7}
+.md ul{margin-left:14px;margin-top:4px}
+.cap{border:1px solid #eee;border-radius:8px;overflow:hidden;margin-bottom:7px}
+.caphd{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#fafafa;cursor:pointer;user-select:none}
+.capico{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#fff;flex-shrink:0}
+.capnm{flex:1;font-size:12px;font-weight:600;color:#1a1a1a}
+.capbd{display:none;border-top:1px solid #eee}
+.capbd.on{display:block}
+.crow{display:grid;grid-template-columns:1fr 90px 1fr 100px;border-bottom:1px solid #eee}
+.crow:last-child{border-bottom:none}
+.cc{padding:7px 10px;font-size:11px;color:#555;border-right:1px solid #eee;line-height:1.5}
+.cc:last-child{border-right:none}
+.cchd{grid-column:1/-1;padding:4px 10px;font-size:9px;font-weight:600;color:#888;background:#f8f8f8;border-bottom:1px solid #eee;text-transform:uppercase}
+.cn{font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:1px}
+.cs{font-size:10px;color:#999;line-height:1.4}
+.ph{display:inline-block;font-size:10px;padding:2px 7px;border-radius:3px;font-weight:600}
+.ph1{background:#FCEBEB;color:#791F1F}.ph2{background:#FAEEDA;color:#633806}.ph3{background:#E1F5EE;color:#085041}
+.phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:7px 0}
+.phc{border-radius:8px;overflow:hidden}
+.phhd{padding:9px 12px}
+.pht{font-weight:600;font-size:12px}.phs{font-size:10px;opacity:.85;margin-top:1px}
+.phbd{padding:9px 12px;background:#fafafa}
+.phi{font-size:10px;color:#555;line-height:1.7;display:flex;gap:4px;align-items:flex-start;margin-bottom:1px}
+.phd{width:4px;height:4px;border-radius:50%;margin-top:5px;flex-shrink:0}
+.dcards{display:flex;flex-direction:column;gap:10px;margin:8px 0}
+.dcard{border:1px solid #eee;border-radius:8px;overflow:hidden}
+.dcardh{padding:10px 13px;display:flex;align-items:center;gap:10px;background:#E8EBF7}
+.dnum{width:32px;height:32px;border-radius:50%;background:#1E2761;color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.dt{font-size:13px;font-weight:600;color:#1E2761}.ds{font-size:10px;color:#888;margin-top:1px}
+.dcardb{padding:10px 13px;background:#fafafa;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.dopt{border-radius:6px;padding:8px 10px;font-size:10px;line-height:1.6}
+.spc-hd{padding:6px 12px;border-radius:6px;font-size:11px;font-weight:600;margin-bottom:7px}
+.abil{border:1px solid #eee;border-radius:8px;overflow:hidden;margin-bottom:10px}
+.abil-h{padding:10px 14px;font-size:12px;font-weight:600;color:#fff}
+.abil-b{padding:10px 14px;background:#fafafa}
+.abil-section{margin-bottom:10px}
+.abil-section h4{font-size:11px;font-weight:600;color:#1E2761;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #eee}
+.abil-row{display:flex;gap:8px;margin-bottom:5px;align-items:flex-start}
+.abil-dot{width:6px;height:6px;border-radius:50%;margin-top:4px;flex-shrink:0}
+.abil-txt{font-size:11px;color:#555;line-height:1.5;flex:1}
+.abil-lvl{font-size:9px;padding:1px 5px;border-radius:3px;flex-shrink:0;white-space:nowrap;margin-top:2px}
+.docg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:7px 0}
+.docc{border-radius:8px;overflow:hidden}
+.docch{padding:8px 12px;font-size:11px;font-weight:600;color:#fff}
+.doccb{padding:9px 12px;font-size:10px;color:#555;line-height:1.8;background:#fafafa}
+.doccb li{margin-left:12px;margin-bottom:3px}
+.must{font-weight:600;color:#791F1F;font-size:10px;margin-bottom:4px}
+.rec{font-weight:600;color:#0F6E56;font-size:10px;margin-top:8px;margin-bottom:4px}
+.opt{font-weight:600;color:#888;font-size:10px;margin-top:8px;margin-bottom:4px}
+.hr-item{border:1px solid #eee;border-radius:8px;margin-bottom:8px;overflow:hidden}
+.hr-head{padding:9px 12px;display:flex;align-items:flex-start;gap:8px}
+.hr-body{padding:9px 12px;font-size:11px;color:#555;line-height:1.7;background:#fafafa}
+.sub-p{border-radius:8px;overflow:hidden;margin-bottom:8px}
+.sub-h{padding:9px 13px;font-size:12px;font-weight:600;color:#fff}
+.sub-b{padding:10px 13px;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#fafafa}
+.sub-b h4{font-size:11px;font-weight:600;color:#1a1a1a;margin-bottom:4px}
+.sub-b li{font-size:11px;color:#555;margin-left:14px;margin-bottom:2px;line-height:1.6}
+</style></head><body>
+<div class="tabs">
+  <button class="t on" onclick="sp(0)">⚡ 總經理版</button>
+  <button class="t" onclick="sp(1)">🔑 優先序矩陣</button>
+  <button class="t" onclick="sp(2)">全局觀</button>
+  <button class="t" onclick="sp(3)">第一階段產出範例</button>
+  <button class="t" onclick="sp(4)">🏢 三種子公司分析</button>
+  <button class="t" onclick="sp(5)">痛點診斷</button>
+  <button class="t" onclick="sp(6)">五大維度</button>
+  <button class="t" onclick="sp(7)">組織架構</button>
+  <button class="t" onclick="sp(8)">總部五大職能</button>
+  <button class="t" onclick="sp(9)">總部人員能力</button>
+  <button class="t" onclick="sp(10)">制度框架體系</button>
+  <button class="t" onclick="sp(11)">七大管控機制</button>
+  <button class="t" onclick="sp(12)">五大決策（含管控模式）</button>
+  <button class="t" onclick="sp(13)">HR人才專項（八大）</button>
+  <button class="t" onclick="sp(14)">其他專項連動</button>
+  <button class="t" onclick="sp(15)">文件產出清單</button>
+  <button class="t" onclick="sp(16)">回歸與循環</button>
+  <button class="t" onclick="sp(17)">18月路線圖</button>
+</div>
+<!-- P0 總經理版 -->
+<!-- P0 總經理版 -->
+<div class="page on" id="pg0">
+<div class="pt">總經理版：20分鐘說清楚的版本</div>
+<div class="ps">給第一次接觸集團治理框架的決策者使用。詳細的工作項目清單見頁簽「優先序矩陣」；整體框架結構見頁簽「全局觀」。</div>
+
+<div class="sl">一、背景：規模擴張，管控必須跟上</div>
+<div class="ax">集團海外業務已在運作，規模持續擴大，接下來可能還會有新增的海外子公司。規模到了某個程度，如果管控框架沒有跟上，管理成本和風險都會急速增加。<br><br>
+更具體的問題是：不管是職等設計、授權矩陣、月報機制，每一個專項都需要以集團定位為前提。定位沒有確立，每個專項都只能做到一半——等定位確立後，還要回頭修改。長期的結果是頭痛醫頭、腳痛醫腳，不是在建立系統，而是在不斷打補丁。<br><br>
+最近在推動 HR 職等與薪等設計時，這個問題變得具體——在集團定位沒有想清楚之前，職等設計沒有起點。這讓集團治理框架這件事，必須現在開始想清楚。</div>
+
+<div class="sl">二、不做的代價</div>
+<div class="cx">五個代價分兩個層次。前三個是「出事就很嚴重」的高風險；後兩個是「不出事但會積累」的中風險。</div>
+<div class="g2">
+<div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:8px"><div class="cdh" style="color:#791F1F">① 合規・訴訟・聲譽崩毀 <span class="tag tr2">高風險</span></div><div class="cdb">海外子公司一旦發生工安事故，在沒有清楚的責任歸屬和制度框架下，訴訟責任可能直接追到台灣母公司。存亡級的財務風險。</div></div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:8px"><div class="cdh" style="color:#791F1F">② 資訊黑箱與預警失能 <span class="tag tr2">高風險</span></div><div class="cdb">沒有統一的報告機制，子公司的財務狀況、人事變動、業務異常，總部都是被動得知。問題累積到爆炸才知道，幾乎沒有挽回空間。</div></div>
+<div class="cd" style="border-left:3px solid #E24B4A"><div class="cdh" style="color:#791F1F">③ 集團戰略斷層與執行偏離 <span class="tag tr2">高風險</span></div><div class="cdb">各子公司各自為政，技術標準走樣，不同市場的作法相互矛盾。集團花了資源擴張，但品牌一致性和客戶體驗無法保證。</div></div>
+</div>
+<div>
+<div class="cd" style="border-left:3px solid #BA7517;margin-bottom:8px"><div class="cdh" style="color:#633806">④ 總部角色錯位與決策僵化 <span class="tag ta2">中風險</span></div><div class="cdb">總部用管業務的邏輯管子公司，管太細效率低，放太鬆出事沒人負責。子公司什麼事都要請示，商機流失；什麼事都自己決定，風險失控。</div></div>
+<div class="cd" style="border-left:3px solid #BA7517"><div class="cdh" style="color:#633806">⑤ 管理成本增加・集團綜效無從發揮 <span class="tag ta2">中風險</span></div><div class="cdb">各主體各自採購、各自摸索、各自建系統，集團規模帶來的好處完全無法實現。美國子公司解決了一個施工難題，日本子公司還在重新摸索，知識無法複製。</div></div>
+</div>
+</div>
+
+<div class="sl">三、我們具體缺什麼（這是代價存在的原因）</div>
+<table class="tb"><thead><tr><th style="width:30%">具體缺失</th><th style="width:38%">說明</th><th style="width:32%">對應代價</th></tr></thead>
+<tbody>
+<tr><td class="rh">管控邊界沒有明確框架</td><td>各子公司哪些事可以自主決策、哪些事要向總部請示，目前沒有文件規範。出了事，責任歸屬也不清楚。</td><td><span class="tag tr2">①合規訴訟</span> <span class="tag ta2">④角色錯位</span></td></tr>
+<tr><td class="rh">沒有標準的資訊回報機制</td><td>沒有統一的月報格式和預警指標，總部對各子公司的狀況是被動掌握，不是主動監測。</td><td><span class="tag tr2">②資訊黑箱</span></td></tr>
+<tr><td class="rh">集團化管理的統籌角色尚未正式化</td><td>各項制度設計缺乏集團層面的整合依據，各做各的，無法形成體系。定位不清，每個專項都只能做到一半。</td><td><span class="tag tr2">③戰略斷層</span> <span class="tag ta2">⑤綜效無從發揮</span></td></tr>
+</tbody></table>
+
+<div class="sl">四、三種子公司，為什麼需要分開思考</div>
+<div class="cx">集團目前有兩種子公司，未來可能有第三種。三種與母公司的關係完全不同，適用的管控模式不同，職等的設計方式也不同。這是同一套框架無法統一套用的根本原因。</div>
+<table class="tb"><thead><tr>
+<th style="width:14%"></th>
+<th style="background:#1E2761;width:29%">A｜海外子公司（已有）</th>
+<th style="background:#534AB7;width:29%">B｜國內異業子公司（已有）</th>
+<th style="background:#555;width:28%">C｜投資標的子公司（未來可能）</th>
+</tr></thead><tbody>
+<tr><td class="rh">代表情境</td><td>協助半導體廠建廠工程的美日子公司</td><td>從母公司切割出去、主營業務較不同的子公司</td><td>與主業較不相關的財務投資</td></tr>
+<tr><td class="rh">與母公司的關係</td><td>技術與品牌由母公司輸出，子公司負責在地執行</td><td>業務互補，有業務往來，但技術方向不同</td><td>財務回報為主，母公司不介入業務</td></tr>
+<tr><td class="rh">建議管控模式</td>
+<td><span class="tag tg2">戰略管控型</span><br>總部管：技術標準、財務結果、高層人事、工安合規</td>
+<td><span class="tag tp2">戰略管控型（範圍較窄）</span><br>總部管：財務結果、重大投資、高層人事<br><span style="font-size:10px;color:#888">技術標準與工安管控不適用</span></td>
+<td><span class="tag tn2">財務管控型</span><br>只看財報，業務完全自主</td></tr>
+<tr><td class="rh">職等框架</td>
+<td>納入集團統一職等框架；以台灣總部職等為基準；薪酬帶寬依當地市場另行設定</td>
+<td>納入集團統一職等框架；薪酬帶寬與職涯路徑依業務性質分開設計</td>
+<td>不納入集團職等框架；子公司完全獨立設計</td></tr>
+</tbody></table>
+<div class="nx"><strong style="font-weight:600">「納入集團職等框架」的意思：</strong>這個子公司的每個職位，都能對應到集團統一定義的職等層次，讓集團可以用同一套語言比較、調動、評估不同主體的人員。職等定義統一，薪酬帶寬各地分開設定。C 類不納入，完全獨立。</div>
+
+<div class="sl">五、框架建立後，代價會在哪個階段開始被解決</div>
+<div class="cx">不是做完所有事情之後才有改善，每個階段完成，對應的代價就開始緩解。</div>
+<table class="tb"><thead><tr><th style="width:32%">哪個階段完成</th><th style="width:36%">具體解決的事</th><th style="width:32%">緩解哪個代價</th></tr></thead>
+<tbody>
+<tr><td class="rh">D1D2D3確認後，月報模板建立（0–3個月）</td><td>總部每月主動掌握各子公司財務、業務、工安狀況。異常觸發預警，不等問題爆炸才知道。</td><td><span class="tag tr2">②資訊黑箱</span></td></tr>
+<tr><td class="rh">第一層制度完成後（0–3個月）</td><td>合規底線明確化，責任歸屬清楚。工安事故通報機制建立，訴訟風險開始被主動管控。</td><td><span class="tag tr2">①合規訴訟</span></td></tr>
+<tr><td class="rh">授權矩陣定版後（3–6個月）</td><td>各子公司 GM 知道哪些事可以自決、哪些事要請示。總部與子公司的邊界清楚，不再互相推諉。</td><td><span class="tag ta2">④角色錯位</span></td></tr>
+<tr><td class="rh">職等框架與薪酬設計完成後（3–6個月）</td><td>派駐人員和在地關鍵人才有清楚的職涯路徑與競爭力薪酬，留才工具正式建立。</td><td><span class="tag tr2">③戰略斷層</span></td></tr>
+<tr><td class="rh">完整七大機制與第二層制度完成後（6–12個月）</td><td>集團戰略意志能持續傳達到各子公司。技術知識可以跨主體複製，採購可以集中議價，綜效開始實現。</td><td><span class="tag ta2">⑤綜效無從發揮</span></td></tr>
+</tbody></table>
+
+<div class="sl">六、現在需要確認的五件事</div>
+<div class="cx"><strong style="font-weight:600">D1、D2、D3 是現在就要拍板的三件事。</strong>這三件不確認，後面所有工作都沒有依據。D4、D5 是確認前三件後接著要確認的。</div>
+
+<div class="dcards">
+<div class="dcard">
+<div class="dcardh"><div class="dnum" style="background:#E24B4A">D1</div><div>
+<div class="dt">集團整體定位方向 <span class="tag tr2">現在拍板</span></div>
+<div class="ds">為什麼必須現在決定：D1 是所有決策的起點。D2 的選擇依賴 D1 的方向；台灣總部職等設計（HR③）的內涵依賴 D1 的定位。D1 不確認，D2 無法決策，整個框架沒有方向。</div>
+</div></div>
+<div style="padding:10px 13px;background:#fafafa">
+<table class="tb" style="margin:0"><thead><tr>
+<th style="width:18%">選項</th><th style="width:34%">定義與台灣案例</th><th style="width:48%">選了之後，後續影響是什麼</th>
+</tr></thead><tbody>
+<tr><td class="rh" style="background:#E1F5EE!important;color:#085041">★ 總部主導型<br><span style="font-size:10px;font-weight:normal">建議現階段</span></td>
+<td>母公司是技術、管理、品牌的核心，子公司是在地執行者，技術標準由總部統一把關。<br><span style="font-size:10px;color:#888">案例：台積電全球布局</span></td>
+<td>台灣總部職等是整個集團的設計基準；D2 傾向戰略管控型；需要建立完整的管控機制；技術標準的保護力最強。</td></tr>
+<tr><td class="rh">跨國整合型<br><span style="font-size:10px;font-weight:normal">中期演化方向</span></td>
+<td>技術標準和品牌由總部定，但在地市場策略讓子公司靈活回應。母子公司之間是雙向的知識流動。<br><span style="font-size:10px;color:#888">案例：台達電</span></td>
+<td>職等框架仍統一，但在地化空間更大；授權矩陣設計更複雜；需要母子公司都有一定的成熟度。</td></tr>
+<tr><td class="rh">區域聯盟型<br><span style="font-size:10px;font-weight:normal">長期可能的演化</span></td>
+<td>母公司退出技術和業務管理，轉型為資本配置者，各地子公司高度自主。<br><span style="font-size:10px;color:#888">案例：統一企業集團</span></td>
+<td>HR 各地獨立設計，無需統一框架；技術標準失去集團層面的把關；現階段不建議。</td></tr>
+</tbody></table>
+<div class="nx" style="margin-top:8px">三種方向之間有演化路徑，不是選了就永遠固定。現階段建議從總部主導型出發，隨著子公司成熟度提升，中期往跨國整合型演化。</div>
+
+<div class="sl" style="margin-top:12px">集團定位演化判斷矩陣</div>
+<div class="cx">以下四個維度達到「完全達標」後，才建議評估是否演化到下一個階段。不需要四個維度同時達標，但若有任何一個維度「未達標」，建議維持現有定位。</div>
+<table class="tb">
+<thead><tr>
+<th style="width:20%">判斷維度</th>
+<th style="width:26%">未達標<br><span style="font-weight:normal;font-size:10px">維持現有定位</span></th>
+<th style="width:27%">部分達標<br><span style="font-weight:normal;font-size:10px">可以開始準備演化</span></th>
+<th style="width:27%">完全達標<br><span style="font-weight:normal;font-size:10px">可以正式宣告演化</span></th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="rh">① 子公司財務與業務表現</td>
+<td style="color:#791F1F;font-size:11px">預算達成率低於80%；財務異常頻繁出現；客戶投訴未能有效處理</td>
+<td style="color:#633806;font-size:11px">連續1年達成預算；財務報告準時且無重大缺失；業務指標基本達標</td>
+<td style="color:#085041;font-size:11px">連續2年以上達成預算；財務健全；業務穩定成長；客戶滿意度良好</td>
+</tr>
+<tr>
+<td class="rh">② 子公司治理成熟度</td>
+<td style="color:#791F1F;font-size:11px">GM或核心團隊不穩定；稽核發現重大缺失；月報品質不穩定</td>
+<td style="color:#633806;font-size:11px">GM穩定滿1年；稽核缺失已改善；月報按時提交且品質穩定</td>
+<td style="color:#085041;font-size:11px">GM和核心團隊穩定超過2年；稽核連續無重大缺失；七大機制正常運作</td>
+</tr>
+<tr>
+<td class="rh">③ 總部管控能力</td>
+<td style="color:#791F1F;font-size:11px">總部對子公司狀況的掌握仍依賴人際關係；授權矩陣未完成；制度文件未完整</td>
+<td style="color:#633806;font-size:11px">授權矩陣完成；月報預警機制正常運作；第一二層制度完成</td>
+<td style="color:#085041;font-size:11px">三層制度完整；七大機制閉環；總部能即時看到各子公司數據；GMO正常運作</td>
+</tr>
+<tr>
+<td class="rh">④ 業務戰略需求</td>
+<td style="color:#791F1F;font-size:11px">技術標準仍需要總部高度把關；在地市場差異不明顯；子公司尚無獨立決策能力</td>
+<td style="color:#633806;font-size:11px">在地市場開始出現差異化需求；子公司GM展現獨立判斷能力；部分決策可以授權在地</td>
+<td style="color:#085041;font-size:11px">在地市場差異化明顯；子公司有成熟的在地管理團隊；總部輸出的技術標準已完全落地</td>
+</tr>
+</tbody>
+</table>
+<div class="g2" style="margin-top:8px">
+<div class="cd" style="border-left:3px solid #0F6E56">
+<div class="cdh" style="color:#085041">總部主導型 → 跨國整合型</div>
+<div class="cdb">四個維度全部「完全達標」後，總部可以開始把部分在地市場決策授權給子公司，從「單向輸出」轉型為「雙向知識流動」。授權矩陣需要重新調整，擴大子公司的自主範圍。</div>
+</div>
+<div class="cd" style="border-left:3px solid #888">
+<div class="cdh" style="color:#555">跨國整合型 → 區域聯盟型</div>
+<div class="cdb">通常發生在集團有明確的資本策略轉型時（例如準備上市、引入外部投資人、業務多元化到與原主業完全無關）。不是自然演化的結果，而是策略決策的結果。現階段無需考慮。</div>
+</div>
+</div>
+</div></div>
+
+<div class="dcard">
+<div class="dcardh"><div class="dnum" style="background:#E24B4A">D2</div><div>
+<div class="dt">各類子公司的管控模式 <span class="tag tr2">現在拍板</span></div>
+<div class="ds">為什麼必須現在決定：D2 依賴 D1 確認後才能決策。D2 確認後，才能啟動：HR①全球組織設計、月報模板格式設計、授權矩陣草擬、HR②全球職等框架、HR④職務職責定義。</div>
+</div></div>
+<div style="padding:10px 13px;background:#fafafa">
+<table class="tb" style="margin:0"><thead><tr>
+<th style="width:18%">子公司類型</th><th style="width:26%">建議管控模式</th><th style="width:56%">選了之後，後續影響是什麼</th>
+</tr></thead><tbody>
+<tr><td class="rh">A類 海外子公司</td>
+<td><span class="tag tg2">戰略管控型</span><br><span style="font-size:10px;color:#888">初期：運營管控型過渡</span></td>
+<td>HR①組織設計需要涵蓋派駐財務長和技術長；授權矩陣需要包含技術標準和工安相關項目；職等需要對應技術輸出責任。<br><span style="color:#791F1F;font-size:10px">選錯：選財務管控型→技術標準沒人把關，施工品質走樣，品牌受損。</span></td></tr>
+<tr><td class="rh">B類 國內異業子公司</td>
+<td><span class="tag tp2">戰略管控型（範圍較窄）</span></td>
+<td>B 類比 A 類少了兩個管控維度：技術標準管控（母公司沒有 B 類業務的技術標準可以輸出）、工安合規管控（B 類業務通常不具高工安風險）。財務、重大投資、高層人事三個維度，A 類和 B 類深度相同。<br><span style="color:#791F1F;font-size:10px">選錯：照 A 類深度做→浪費總部資源，B 類 GM 反彈。</span></td></tr>
+<tr><td class="rh">C類 投資標的子公司（未來）</td>
+<td><span class="tag tn2">財務管控型</span></td>
+<td>只需要財務報告和重大投資決策機制，不需要技術標準管控、工安管控、職等統一框架。<br><span style="color:#791F1F;font-size:10px">選錯：選戰略管控型→介入太深，被投資公司反彈，投資回報反而降低。</span></td></tr>
+</tbody></table>
+</div></div>
+
+<div class="dcard">
+<div class="dcardh"><div class="dnum" style="background:#E24B4A">D3</div><div>
+<div class="dt">集團管理辦公室（GMO）設立 <span class="tag tr2">現在拍板</span></div>
+<div class="ds">為什麼必須現在決定：D1D2 所有決策確認後，仍然需要有人統籌落地推進。沒有 GMO，所有決策停在紙上，業務工作會持續擠掉制度建設工作。</div>
+</div></div>
+<div style="padding:10px 13px;background:#fafafa">
+<div class="g2">
+<div class="cd" style="border-left:3px solid #534AB7"><div class="cdh">GMO 的核心工作是什麼</div><div class="cdb">建立制度框架——設計讓問題不會再發生的機制。這和「確保業務現在正常在跑」是兩種不同的思維模式，需要一個獨立的角色承擔。<br><br>如果讓同一個人同時負責業務運作和制度建設，業務的緊急性會長期壓過制度建設，框架永遠推不起來。</div></div>
+<div class="cd" style="border-left:3px solid #0F6E56"><div class="cdh">設立 GMO 需要確認三件事</div><div class="cdb"><ul>
+<li><strong>指定誰來負責</strong>——可以是現有總部高階主管兼任，不需要是新人</li>
+<li><strong>執行長直接授權書</strong>——沒有授權，推不動各部門和子公司配合</li>
+<li><strong>初始規模</strong>——建議從 1 人兼任起步，外部顧問補位；6 個月內評估是否擴充為 2–3 人專職</li>
+</ul></div></div>
+</div>
+</div></div>
+
+<div class="dcard" style="opacity:0.75">
+<div class="dcardh" style="background:#f0f0f0"><div class="dnum" style="background:#888">D4</div><div>
+<div class="dt">啟動優先序確認 <span class="tag" style="background:#eee;color:#888">後續確認</span></div>
+<div class="ds">D1D2D3 確認後接著討論。核心邏輯：所有工作都要做，但有依賴順序——必做完成後才能啟動應做。A 類海外子公司優先推進（工安風險最高，且是 HR 職等設計的主要依據）。</div>
+</div></div>
+<div style="padding:10px 13px;background:#fafafa;font-size:11px;color:#555;line-height:1.7">完整的工作項目清單和依賴順序見頁簽「優先序矩陣」。</div></div>
+
+<div class="dcard" style="opacity:0.75">
+<div class="dcardh" style="background:#f0f0f0"><div class="dnum" style="background:#888">D5</div><div>
+<div class="dt">集團定位的演化時程 <span class="tag" style="background:#eee;color:#888">後續確認</span></div>
+<div class="ds">D1 確認後接著討論。定義從總部主導型演化到跨國整合型的升級條件。</div>
+</div></div>
+<div style="padding:10px 13px;background:#fafafa;font-size:11px;color:#555;line-height:1.7">A 類子公司的升級條件建議：連續 2 年達成預算目標、GM 和核心團隊穩定、稽核無重大缺失、總部可即時看到各子公司數據。達到條件後，正式宣告從運營管控型升為戰略管控型，集團整體定位再評估是否往跨國整合型演化。</div></div>
+</div>
+
+<div class="sl">七、工作項目優先序</div>
+<div class="cx">D1D2D3 確認後，以下工作項目才能往正確方向推進。所有工作都要做，只是有先後順序。唯一可以在決策確認前立即啟動的，只有跨境勞動法合規清單（HR⑦），因為這是獨立的法律查核義務，與集團定位無關。</div>
+<div class="g3">
+<div class="cd" style="border-top:3px solid #E24B4A"><div class="cdh" style="color:#791F1F">必做（前提型）｜0–3個月</div><div class="cdb">
+<ul>
+<li><strong>跨境勞動法合規清單（HR⑦）</strong>——唯一可立即啟動。美日各地勞動法規、工作許可、社保繳納。獨立合規義務，現在就需要確認現況。緩解：<span class="tag tr2">①合規訴訟</span></li>
+<li><strong>D1D2D3 決策確認</strong>——所有後續工作的前提。D1→D2→D3 有先後順序。</li>
+<li><strong>集團治理框架文件（第一層制度）</strong>——D1D2D3 確認後啟動。合規底線、治理原則、行為準則。後續所有制度文件的依據。緩解：<span class="tag tr2">①合規訴訟</span></li>
+<li><strong>月報模板與預警指標清單</strong>——D2 確認後啟動（格式依管控模式而定）。A 類四個區塊、B 類兩個區塊、C 類季報。緩解：<span class="tag tr2">②資訊黑箱</span></li>
+<li><strong>全球組織設計（HR①）</strong>——D2 確認後啟動。組織架構圖、報告線（實線/虛線）、派駐安排原則。後面所有 HR 專項的組織基礎。</li>
+<li><strong>台灣總部職等設計（HR③）——此次任務的核心輸出</strong>——職位盤點在 D1 確認後啟動；完整的職等層次設計依賴 HR① 完成後。全集團職等設計的起點，具體職等數量待討論確認。</li>
+</ul></div></div>
+<div class="cd" style="border-top:3px solid #BA7517"><div class="cdh" style="color:#633806">應做（支撐型）｜3–6個月</div><div class="cdb">
+<ul>
+<li><strong>授權矩陣文件正式化</strong>——D2 確認後草擬，第一層制度完成後定版簽署。沒有文件，決策形同虛設，出事互相推諉。緩解：<span class="tag ta2">④角色錯位</span></li>
+<li><strong>各職能治理規則（第二層制度）</strong>——第一層制度完成後啟動。每個職能說清楚管什麼、怎麼管、管到哪裡。</li>
+<li><strong>第一次內部稽核</strong>——第一層制度完成後啟動。從「等問題爆炸」到「主動發現問題」的關鍵轉變。</li>
+<li><strong>GM 角色定位細節確認</strong>——D2 確認後。確認各子公司 GM 是派駐型還是本地型。薪酬結構設計（HR⑤）依賴這個決定。</li>
+<li><strong>全球職等框架（HR②）</strong>——HR③ 台灣職等設計完成後啟動。全集團統一框架，薪酬帶寬各地分開設定（框架一致、帶寬各異）。</li>
+<li><strong>職務職責定義（HR④）</strong>——HR② 完成後啟動。每個主要職位的核心職責、決策權限、能力要求。</li>
+<li><strong>薪酬結構與留才方案（HR⑤）</strong>——HR④ 完成且 GM 角色定位確認後啟動。短中長期薪酬設計，三種子公司分開設計帶寬。緩解：<span class="tag tr2">③戰略斷層</span></li>
+</ul></div></div>
+<div class="cd" style="border-top:3px solid #0F6E56"><div class="cdh" style="color:#085041">可後做（優化型）｜6個月後</div><div class="cdb">
+<ul>
+<li><strong>技術知識庫</strong>——完全獨立，視資源推進。不做只影響 A 類之間的技術複製效率。</li>
+<li><strong>制度落地與流程系統化</strong>——授權矩陣定版後，所有現有流程（台灣現有的財務、採購、HR等流程）需對照集團授權矩陣逐一檢視調整；新的跨主體作業流程（跨公司採購、派駐薪資、跨公司服務計費等）需從零建立。ERP、HR系統等工具的導入或調整，均以此為前提，需等第一二層制度完成後才能正確設定。</li>
+<li><strong>集中採購框架合約</strong>——完全獨立，視資源推進。緩解：<span class="tag ta2">⑤綜效無從發揮</span></li>
+<li><strong>各主體運營制度（第三層）</strong>——第二層制度完成後啟動。</li>
+<li><strong>職能建置與人才發展（HR⑥）</strong>——HR①②③④ 全部完成後啟動。培訓路徑、接班計畫。</li>
+<li><strong>雇主品牌（HR⑧）</strong>——薪酬結構與留才方案（HR⑤）完成後啟動。在地人才吸引策略。</li>
+</ul></div></div>
+</div>
+<div class="nx"><strong style="font-weight:600">最小可行版本：</strong>完成「必做」全部，再加上「應做」中的「授權矩陣定版＋全球職等框架（HR②）」。完成後，集團基本管控框架能運作，台灣總部職等設計（HR③，此次任務的核心輸出）有完整依據。</div>
+</div>
+<!-- P1 優先序矩陣 -->
+<div class="page" id="pg1">
+<div class="pt">優先序矩陣：必做・應做・可後做</div>
+<div class="ps">本頁是頁簽「總經理版」中工作優先序的完整展開版，適合執行層深度討論與推進規劃使用。</div>
+
+<div class="sl">閱讀說明</div>
+<div class="cx">
+<strong style="font-weight:600">分類依據是「依賴關係」，不是「重要性」。</strong>所有工作都要做，只是有先後順序。必做是後面所有工作的前提；應做是讓框架穩定的支撐；可後做是效率與長期競爭力的投資。<br><br>
+<strong style="font-weight:600">唯一可以在 D1D2D3 決策確認前立即啟動的工作：</strong>跨境勞動法合規清單（HR⑦）——這是獨立的法律查核義務，與集團定位和管控模式的選擇完全無關。<br><br>
+<strong style="font-weight:600">必做清單包含兩種類型：</strong><br>
+・<span class="tag tr2">決策事項</span>——需要執行長拍板，是所有執行工作的方向依據。D1→D2 有先後順序（D2 依賴 D1 確認後才能決策）。完整選項說明見「總經理版」頁簽。<br>
+・<span class="tag tn2">執行工作</span>——有人負責推進，有明確的產出文件。<br><br>
+<strong style="font-weight:600">HR 八大專項：</strong>①全球組織設計、②全球職等框架、③台灣總部職等設計、④職務職責定義、⑤薪酬結構與留才方案、⑥職能建置與人才發展、⑦跨境勞動法合規、⑧雇主品牌。本頁第一次出現時附完整名稱，之後用簡稱。
+</div>
+
+<div class="nx" style="margin-bottom:14px"><strong style="font-weight:600">最小可行版本：</strong>完成「必做」全部，再加上「應做」中的「授權矩陣定版＋全球職等框架（HR②）」。完成後：集團基本管控框架能運作、三種子公司定位清楚、台灣總部職等設計（HR③）有完整依據。</div>
+
+<!-- 必做 -->
+<div class="spc-hd" style="background:#FCEBEB;color:#791F1F">必做（前提型）：不完成，後續工作無法推進｜0–3個月</div>
+
+<div class="spc-hd" style="background:#E8EBF7;color:#1E2761;font-size:10px">必做・可立即啟動（無前置條件）</div>
+<table class="tb"><thead><tr>
+<th style="width:22%">工作項目</th><th style="width:26%">不做的後果</th><th style="width:26%">做了能解鎖什麼</th><th style="width:26%">三種子公司的差異</th>
+</tr></thead><tbody>
+<tr>
+<td class="rh">跨境勞動法合規清單（HR⑦）<br><span class="tag tr2">唯一可立即啟動</span></td>
+<td>各地勞動法規違規風險；派駐人員工作許可可能不合規；社保繳納錯誤可能面臨罰款或集體訴訟</td>
+<td>派駐安排合規基礎確立；薪酬結構與留才方案（HR⑤）的法律基礎確保正確</td>
+<td>A 類最複雜（涉及美日台跨國勞動法）；B 類相對簡單；C 類不適用</td>
+</tr>
+</tbody></table>
+
+<div class="spc-hd" style="background:#E8EBF7;color:#1E2761;font-size:10px;margin-top:8px">必做・決策事項（D1→D2 有先後順序；D3 可與 D1D2 同時確認）</div>
+<table class="tb"><thead><tr>
+<th style="width:22%">決策事項 <span class="tag tn2">決策</span></th><th style="width:26%">不決策的後果</th><th style="width:26%">決策後能解鎖什麼</th><th style="width:26%">三種子公司的差異</th>
+</tr></thead><tbody>
+<tr>
+<td class="rh">確認集團整體定位方向（D1）</td>
+<td>D2 無法決策（D2 依賴 D1 的方向）；台灣總部職等設計（HR③）的內涵方向不確定，做了也要重做</td>
+<td>D2 可以啟動；台灣總部職位盤點（HR③ 第一步）可以啟動；整個框架的設計哲學確定</td>
+<td>D1 決定三種子公司各自適用哪種管控模式的哲學基礎</td>
+</tr>
+<tr>
+<td class="rh">確認各子公司管控模式（D2）<br><span style="font-size:10px;color:#888">依賴 D1 確認後</span></td>
+<td>全球組織設計（HR①）沒有依據；月報模板格式無法確定；授權矩陣無法設計；全球職等框架（HR②）深度無法確定</td>
+<td>全球組織設計（HR①）可以啟動；月報模板格式可以設計；授權矩陣可以草擬；全球職等框架（HR②）和職務職責定義（HR④）正式啟動</td>
+<td><span class="tag tg2">A類＝戰略管控型</span><br><span class="tag tp2">B類＝戰略管控型（範圍較窄）</span><br><span class="tag tn2">C類＝財務管控型</span></td>
+</tr>
+<tr>
+<td class="rh">GMO 設立（D3）<br><span style="font-size:10px;color:#888">可與 D1D2 同時確認</span></td>
+<td>D1D2 所有決策沒有人執行落地，框架停留在紙上；制度建設被日常業務持續擠壓</td>
+<td>後續所有工作有人負責統籌推進；GMO 授權書內容（D1D2 確認後）可以寫完整</td>
+<td>無差異，是整個集團的統籌角色</td>
+</tr>
+</tbody></table>
+
+<div class="spc-hd" style="background:#E8EBF7;color:#1E2761;font-size:10px;margin-top:8px">必做・執行工作（D1D2D3 確認後依序啟動）</div>
+<table class="tb"><thead><tr>
+<th style="width:22%">工作項目 <span class="tag tn2">執行</span></th><th style="width:26%">不做的後果</th><th style="width:26%">做了能解鎖什麼</th><th style="width:26%">三種子公司的差異</th>
+</tr></thead><tbody>
+<tr>
+<td class="rh">集團治理框架文件（第一層制度）<br><span style="font-size:10px;color:#888">依賴 D1D2D3 確認後</span></td>
+<td>第二、三層制度缺乏依據；七大管控機制無規則可循；合規底線未明確化</td>
+<td>第二層制度（各職能治理規則）可以開始制定；七大管控機制有依據運作；授權矩陣有上位原則可以定版</td>
+<td>三種子公司均適用；C 類適用深度較淺（主要是財務底線與道德底線）</td>
+</tr>
+<tr>
+<td class="rh">月報模板與預警指標清單<br><span style="font-size:10px;color:#888">依賴 D2 確認後</span></td>
+<td>總部對各子公司狀況是被動掌握；問題累積到爆炸才知道；財務異常、工安事故、人事變動無法提前預警</td>
+<td>總部每月主動掌握各子公司狀況；預警機制能運作；資訊黑箱問題立即開始改善</td>
+<td>A 類：四個區塊（財務、業務、工安、人事）；B 類：財務與業務；C 類：只需季報（財務）</td>
+</tr>
+<tr>
+<td class="rh">全球組織設計（HR①）<br><span style="font-size:10px;color:#888">依賴 D2 確認後</span></td>
+<td>台灣總部職等設計（HR③）的職等層次無從設計；全球職等框架（HR②）缺乏組織架構依據；後續每個 HR 專項均需重做</td>
+<td>台灣總部職等設計（HR③）職等層次設計可以啟動；全球職等框架（HR②）可以正式啟動；三種子公司的報告線與派駐安排明確</td>
+<td>A 類派駐較多（財務長、技術長必須派駐）；B 類少量；C 類幾乎無派駐</td>
+</tr>
+<tr>
+<td class="rh">台灣總部職等設計（HR③）<br><span class="tag tr2">此次任務的核心輸出</span><br><span style="font-size:10px;color:#888">職位盤點：D1 確認後；職等設計：HR① 完成後</span></td>
+<td>全球職等框架（HR②）缺乏起點；A 類與 B 類子公司的職等無法與台灣對應；薪酬結構與留才方案（HR⑤）缺乏基準</td>
+<td>全球職等框架（HR②）有台灣基準；三種子公司的職等對應才能設計；整個 HR 設計正式啟動</td>
+<td>台灣總部職等是 A 類與 B 類的設計基準。C 類不需要對應台灣職等，完全獨立</td>
+</tr>
+</tbody></table>
+
+<!-- 應做 -->
+<div class="spc-hd" style="background:#FAEEDA;color:#633806;margin-top:18px">應做（支撐型）：不做框架能運作，但不穩定，遲早出問題｜3–6個月</div>
+<div class="ax" style="margin-bottom:10px"><strong style="font-weight:600">推進順序：</strong>GM 角色定位細節確認（D2 後）→ 授權矩陣草擬（D2 後）→ 第一層制度完成後授權矩陣定版 → 第二層制度（第一層後）→ 全球職等框架（HR②，HR③ 後）→ 職務職責定義（HR④，HR② 後）→ 薪酬結構與留才方案（HR⑤，HR④ 後＋GM 角色確認後）。</div>
+<table class="tb"><thead><tr>
+<th style="width:22%">工作項目</th><th style="width:26%">不做的後果</th><th style="width:26%">做了能解鎖什麼</th><th style="width:26%">三種子公司的差異</th>
+</tr></thead><tbody>
+<tr>
+<td class="rh">授權矩陣文件正式化<br><span style="font-size:10px;color:#888">草擬：D2 後；定版：第一層制度完成後</span></td>
+<td>D2 已決策但未落到文件，決策形同虛設；子公司與總部的邊界不清楚，出問題時互相推諉</td>
+<td>各子公司 GM 清楚自己的決策範圍；七大管控機制的議事決策機制有具體依據；責任歸屬明確</td>
+<td>A 類：最嚴格（含技術標準與工安相關授權項目）；B 類：中度；C 類：幾乎不需要</td>
+</tr>
+<tr>
+<td class="rh">各職能治理規則（第二層制度）<br><span style="font-size:10px;color:#888">依賴第一層制度完成後</span></td>
+<td>總部各職能管控範圍不清楚，出現重工（兩個人都在管同一件事）或缺位（沒有人管）；第三層制度無法制定</td>
+<td>第三層制度可以啟動；各職能職責邊界明確；重工和缺位問題消失</td>
+<td>A 類：完整適用；B 類：部分適用（技術標準管控不適用）；C 類：不適用</td>
+</tr>
+<tr>
+<td class="rh">第一次內部稽核<br><span style="font-size:10px;color:#888">依賴第一層制度完成後</span></td>
+<td>合規問題被動發現；工安缺失可能已累積成危險；問題發生時可能已無法挽回</td>
+<td>主動管理合規缺失；監督考察機制真正運作；第一份稽核報告作為後續改善的基準</td>
+<td>A 類：每年一次稽核＋工安巡查每季；B 類：每年一次稽核；C 類：依持股比例決定</td>
+</tr>
+<tr>
+<td class="rh">GM 角色定位細節確認<br><span style="font-size:10px;color:#888">依賴 D2 確認後</span></td>
+<td>薪酬結構與留才方案（HR⑤）缺乏依據——派駐型和本地型的薪酬結構完全不同，兩者不能套用同一個框架</td>
+<td>薪酬結構與留才方案（HR⑤）正式啟動；派駐安排的薪酬條款可以確定</td>
+<td>A 類：派駐型 或 本地GM＋派駐技術長；B 類：業務型 GM；C 類：董事席位</td>
+</tr>
+<tr>
+<td class="rh">全球職等框架（HR②）<br><span style="font-size:10px;color:#888">依賴台灣總部職等設計（HR③）完成後</span></td>
+<td>HR③ 完成了台灣職等，但三種子公司的職等對應關係仍不清楚；職務職責定義（HR④）和薪酬結構與留才方案（HR⑤）缺乏框架依據</td>
+<td>職務職責定義（HR④）和薪酬結構與留才方案（HR⑤）有框架；三種子公司職等對應關係清楚；薪酬帶寬框架可以建立</td>
+<td>A 類與 B 類都納入統一職等框架（框架一致、帶寬各異）；C 類完全獨立，不納入</td>
+</tr>
+<tr>
+<td class="rh">職務職責定義（HR④）<br><span style="font-size:10px;color:#888">依賴全球職等框架（HR②）完成後</span></td>
+<td>績效考核缺乏標準；授權矩陣缺乏職位層面的具體細節；薪酬設計沒有職位依據</td>
+<td>薪酬結構與留才方案（HR⑤）有 JD 依據；考核標準確立；授權矩陣細節可以對應到具體職位</td>
+<td>A 類 JD 包含技術標準與工安職責；B 類依業務性質設計；C 類不需要集團 JD</td>
+</tr>
+<tr>
+<td class="rh">薪酬結構與留才方案（HR⑤）<br><span style="font-size:10px;color:#888">依賴 HR④ 完成＋GM 角色定位確認後</span></td>
+<td>核心人才留不住（尤其 GM 與技術主管）；海外子公司在地招募競爭力不足；ERP 薪酬模組無法選型</td>
+<td>留才機制正式建立；ERP 薪酬模組可以評估導入；職能建置與人才發展（HR⑥）有薪酬框架作為基礎</td>
+<td>A 類有派駐加給（住房・子女教育・語言培訓）；B 類依業務性質設計；C 類薪酬不由集團管理。三種子公司薪酬帶寬完全不同，不能混合比較</td>
+</tr>
+</tbody></table>
+
+<!-- 可後做 -->
+<div class="spc-hd" style="background:#E1F5EE;color:#085041;margin-top:18px">可後做（優化型）：不做不影響主流程，只影響效率與長期競爭力｜6個月後視資源</div>
+<table class="tb"><thead><tr>
+<th style="width:22%">工作項目</th><th style="width:26%">不做的後果（主流程不受影響）</th><th style="width:26%">做了能提升什麼</th><th style="width:26%">三種子公司的差異</th>
+</tr></thead><tbody>
+<tr>
+<td class="rh">技術知識庫建立<br><span style="font-size:10px;color:#888">完全獨立，視資源推進</span></td>
+<td>A 類之間技術複製慢，每個子公司都在重新摸索；業務仍能正常執行</td>
+<td>成功案例跨主體共享；美國解決的施工難題，日本可以直接套用；集團技術學習能力建立</td>
+<td>主要對 A 類之間有意義；B 類與 C 類不適用</td>
+</tr>
+<tr>
+<td class="rh">集中採購框架合約<br><span style="font-size:10px;color:#888">完全獨立，視資源推進</span></td>
+<td>各主體各自採購，成本偏高；均能正常採購，業務不受影響</td>
+<td>採購成本下降；集團規模帶來議價能力；資源綜效開始實現</td>
+<td>主要對 A 類之間的共同採購品項有意義；B 類依業務性質；C 類不適用</td>
+</tr>
+<tr>
+<td class="rh">制度落地與流程系統化<br><span style="font-size:10px;color:#888">依賴授權矩陣定版＋第一二層制度完成後</span></td>
+<td>現有流程與集團授權矩陣脫節，各主體對「誰能決定什麼」沒有統一標準；新的跨主體作業流程缺乏依據，邊做邊改</td>
+<td>所有現有流程（財務請款、採購、合約簽署、HR等）有集團授權矩陣可以對照調整；新的跨主體流程可以從零正確建立；ERP、HR系統等工具的權限設定有依據</td>
+<td>A 類與 B 類均需要對照授權矩陣調整現有流程；C 類不適用</td>
+</tr>
+<tr>
+<td class="rh">各主體運營制度（第三層）<br><span style="font-size:10px;color:#888">依賴第二層制度完成後</span></td>
+<td>各主體日常操作缺乏統一標準；月報與授權矩陣已能提供基本管控，業務不受影響</td>
+<td>各主體操作標準化；新人上手更快；合規稽核更容易執行</td>
+<td>A 類與 B 類適用；C 類不適用</td>
+</tr>
+<tr>
+<td class="rh">職能建置與人才發展（HR⑥）<br><span style="font-size:10px;color:#888">依賴 HR①②③④ 全部完成後</span></td>
+<td>人才培育缺乏系統性；日常業務不受影響；這是長期競爭力投資</td>
+<td>技術人才成長路徑清楚；跨文化管理能力提升；接班計畫有基礎</td>
+<td>A 類：技術培訓路徑與跨文化培訓最重要；B 類：業務技能培訓；C 類：不適用</td>
+</tr>
+<tr>
+<td class="rh">接班計畫（GM 級・技術主管級）<br><span style="font-size:10px;color:#888">視資源推進，可獨立進行</span></td>
+<td>GM 突然離職時應對困難；屬低頻高衝擊事件，短期業務不受影響</td>
+<td>高潛力人才有培養計畫；GM 輪調風險降低；管理繼承性提升</td>
+<td>A 類與 B 類均需要；C 類不適用</td>
+</tr>
+<tr>
+<td class="rh">雇主品牌（HR⑧）<br><span style="font-size:10px;color:#888">依賴薪酬結構與留才方案（HR⑤）完成後</span></td>
+<td>在地招募競爭力較弱；薪酬設計完善後仍能招到人，只是效率較低</td>
+<td>在地人才招募效率提升；雇主品牌在當地建立；吸引被動求職者</td>
+<td>主要對 A 類（海外在地招募）有意義；B 類依招募難度；C 類不適用</td>
+</tr>
+</tbody></table>
+
+<div class="sl">時程對應</div>
+<div style="display:flex;flex-direction:column;gap:4px;margin:8px 0">
+<div style="display:grid;grid-template-columns:76px 1fr 1fr 1fr;gap:3px">
+<div style="font-size:10px;font-weight:600;padding:5px 6px;border-radius:4px;background:#FCEBEB;color:#791F1F;text-align:center;display:flex;align-items:center;justify-content:center">必做</div>
+<div style="border-radius:4px;padding:7px 10px;font-size:9px;background:#791F1F;color:white;line-height:1.6;grid-column:2/3">0–3個月：HR⑦立即啟動・D1→D2→D3決策確認・第一層制度・月報模板（D2後）<br>全球組織設計（HR①，D2後）・台灣總部職等設計（HR③，職位盤點D1後、職等設計HR①後）</div>
+<div style="background:transparent"></div><div style="background:transparent"></div>
+</div>
+<div style="display:grid;grid-template-columns:76px 1fr 1fr 1fr;gap:3px">
+<div style="font-size:10px;font-weight:600;padding:5px 6px;border-radius:4px;background:#FAEEDA;color:#633806;text-align:center;display:flex;align-items:center;justify-content:center">應做</div>
+<div style="background:transparent"></div>
+<div style="border-radius:4px;padding:7px 10px;font-size:9px;background:#854F0B;color:white;line-height:1.6">3–6個月：授權矩陣（草擬D2後→定版第一層後）・第二層制度・稽核・GM角色確認<br>全球職等框架（HR②，HR③後）・職務職責定義（HR④，HR②後）・薪酬結構與留才方案（HR⑤，HR④後＋GM確認後）</div>
+<div style="background:transparent"></div>
+</div>
+<div style="display:grid;grid-template-columns:76px 1fr 1fr 1fr;gap:3px">
+<div style="font-size:10px;font-weight:600;padding:5px 6px;border-radius:4px;background:#E1F5EE;color:#085041;text-align:center;display:flex;align-items:center;justify-content:center">可後做</div>
+<div style="background:transparent"></div><div style="background:transparent"></div>
+<div style="border-radius:4px;padding:7px 10px;font-size:9px;background:#0F6E56;color:white;line-height:1.6">6個月後，視資源：技術知識庫（完全獨立）・採購統籌（完全獨立）・制度落地與流程系統化（授權矩陣＋第一二層制度完成後）<br>第三層制度（第二層後）・職能建置與人才發展（HR⑥，HR①②③④後）・雇主品牌（HR⑧，HR⑤後）</div>
+</div>
+</div>
+<div class="nx"><strong style="font-weight:600">最小可行版本：</strong>完成「必做」全部，再加上「應做」中的「授權矩陣定版＋全球職等框架（HR②）」。完成後：集團基本管控框架能運作、三種子公司定位清楚、台灣總部職等設計（HR③）有完整依據。</div>
+</div>
+<!-- P2 全局觀 -->
+<div class="page" id="pg2">
+<div class="pt">全局觀：整體框架串接邏輯</div>
+<div class="ps">本頁適合已完成「總經理版」和「優先序矩陣」討論後，想要掌握整個框架全貌的人使用。第一張圖看邏輯流程（做什麼），第二張圖看工作項目之間的依賴關係（怎麼推進）。</div>
+
+<div class="sl">一、框架整體邏輯流程圖</div>
+<div style="overflow-x:auto;margin:10px 0">
+<svg viewBox="0 0 840 730" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" width="100%">
+<defs>
+  <marker id="ga" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="gaw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="gag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#0F6E56" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="gap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#534AB7" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="gar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#E24B4A" stroke-width="1.5" stroke-linecap="round"/></marker>
+</defs>
+
+<text x="420" y="22" font-size="14" font-weight="bold" fill="#1E2761" text-anchor="middle">集團治理框架全局觀：主線邏輯與觸發關係（v12）</text>
+<text x="420" y="38" font-size="10" fill="#888" text-anchor="middle">所有海外及國內子公司均為子公司型態（非分公司），三層制度完整適用</text>
+
+<rect x="15" y="46" width="810" height="40" rx="6" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1.5"/>
+<text x="420" y="62" font-size="11" font-weight="bold" fill="#791F1F" text-anchor="middle">【起點】不做集團治理框架的五個代價</text>
+<text x="420" y="78" font-size="10" fill="#A32D2D" text-anchor="middle">高風險：①合規訴訟崩毀　②資訊黑箱與預警失能　③集團戰略斷層　　中風險：④總部角色錯位　⑤管理成本增加・綜效無從發揮</text>
+<line x1="420" y1="86" x2="420" y2="98" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="100" width="810" height="32" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+<text x="420" y="115" font-size="11" font-weight="bold" fill="#633806" text-anchor="middle">具體缺什麼（這是代價存在的原因）</text>
+<text x="420" y="127" font-size="10" fill="#633806" text-anchor="middle">缺一：管控邊界沒有明確框架　　缺二：沒有標準的資訊回報機制　　缺三：集團化管理的統籌角色尚未正式化</text>
+<line x1="420" y1="132" x2="420" y2="144" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="146" width="810" height="32" rx="6" fill="#E8EBF7" stroke="#1E2761" stroke-width="1.5"/>
+<text x="420" y="161" font-size="11" font-weight="bold" fill="#1E2761" text-anchor="middle">三種子公司定位（均為子公司型態，非分公司）</text>
+<text x="420" y="173" font-size="10" fill="#1E2761" text-anchor="middle">A類｜海外子公司（已有）　　B類｜國內異業子公司（已有）　　C類｜投資標的子公司（未來可能）</text>
+<line x1="420" y1="178" x2="420" y2="190" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="192" width="810" height="28" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text x="420" y="207" font-size="11" font-weight="bold" fill="#3C3489" text-anchor="middle">治理邏輯：五大維度（有優先序）</text>
+<text x="420" y="216" font-size="10" fill="#534AB7" text-anchor="middle">01合規（地基）→ 02戰略對齊（樑柱）→ 03權責決策（門窗）→ 04資源綜效（裝潢）→ 05數據治理（儀表板）</text>
+<line x1="420" y1="220" x2="420" y2="232" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="234" width="810" height="28" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+<text x="420" y="249" font-size="11" font-weight="bold" fill="#633806" text-anchor="middle">管控模式選擇（三種子公司分別確認，不統一套用）</text>
+<text x="180" y="258" font-size="9" fill="#791F1F" text-anchor="middle">C類→財務管控型</text>
+<text x="420" y="258" font-size="9" fill="#085041" font-weight="bold" text-anchor="middle">★ A類→戰略管控型（初期：運營管控型過渡）</text>
+<text x="670" y="258" font-size="9" fill="#633806" text-anchor="middle">B類→戰略管控型（範圍較窄）</text>
+<line x1="420" y1="262" x2="420" y2="274" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="276" width="810" height="64" rx="6" fill="#E8EBF7" stroke="#1E2761" stroke-width="2"/>
+<text x="420" y="292" font-size="11" font-weight="bold" fill="#1E2761" text-anchor="middle">集團五大關鍵決策（D1→D2→D3 有先後順序；D4D5 後續確認）</text>
+<rect x="22" y="298" width="148" height="34" rx="4" fill="#1E2761"/>
+<text x="96" y="312" font-size="9" fill="white" text-anchor="middle" font-weight="bold">D1 集團整體定位方向</text>
+<text x="96" y="324" font-size="8" fill="#CADCFC" text-anchor="middle">現在拍板・所有決策的起點</text>
+<rect x="178" y="298" width="148" height="34" rx="4" fill="#1E2761"/>
+<text x="252" y="312" font-size="9" fill="white" text-anchor="middle" font-weight="bold">D2 各子公司管控模式</text>
+<text x="252" y="324" font-size="8" fill="#CADCFC" text-anchor="middle">依賴D1・觸發HR①月報授權矩陣</text>
+<rect x="334" y="298" width="148" height="34" rx="4" fill="#1E2761"/>
+<text x="408" y="312" font-size="9" fill="white" text-anchor="middle" font-weight="bold">D3 GMO設立</text>
+<text x="408" y="324" font-size="8" fill="#CADCFC" text-anchor="middle">現在拍板・統籌推進所有工作</text>
+<rect x="490" y="298" width="148" height="34" rx="4" fill="#555"/>
+<text x="564" y="312" font-size="9" fill="white" text-anchor="middle" font-weight="bold">D4 啟動優先序確認</text>
+<text x="564" y="324" font-size="8" fill="#ccc" text-anchor="middle">後續確認</text>
+<rect x="646" y="298" width="170" height="34" rx="4" fill="#555"/>
+<text x="731" y="312" font-size="9" fill="white" text-anchor="middle" font-weight="bold">D5 集團定位演化時程</text>
+<text x="731" y="324" font-size="8" fill="#ccc" text-anchor="middle">後續確認</text>
+<line x1="170" y1="315" x2="178" y2="315" stroke="white" stroke-width="1.5" marker-end="url(#gaw)"/>
+<line x1="326" y1="315" x2="334" y2="315" stroke="white" stroke-width="1.5" marker-end="url(#gaw)"/>
+<line x1="482" y1="315" x2="490" y2="315" stroke="white" stroke-width="1.5" marker-end="url(#gaw)"/>
+<line x1="638" y1="315" x2="646" y2="315" stroke="white" stroke-width="1.5" marker-end="url(#gaw)"/>
+
+<line x1="230" y1="340" x2="230" y2="356" stroke="#0F6E56" stroke-width="2" marker-end="url(#gag)"/>
+<line x1="610" y1="340" x2="610" y2="356" stroke="#534AB7" stroke-width="2" marker-end="url(#gap)"/>
+<text x="420" y="352" font-size="10" fill="#888" text-anchor="middle">同步推進兩條主線</text>
+
+<rect x="15" y="358" width="400" height="168" rx="6" fill="#E1F5EE" stroke="#0F6E56" stroke-width="2"/>
+<text x="215" y="377" font-size="11" font-weight="bold" fill="#085041" text-anchor="middle">建立制度與機制（骨架）</text>
+<text x="215" y="391" font-size="10" fill="#0F6E56" text-anchor="middle">三層制度文件體系（有上下依存關係）</text>
+<rect x="24" y="397" width="118" height="32" rx="4" fill="#1E2761"/>
+<text x="83" y="411" font-size="9" fill="white" text-anchor="middle" font-weight="bold">第一層</text>
+<text x="83" y="423" font-size="8" fill="#CADCFC" text-anchor="middle">D1D2D3後啟動</text>
+<rect x="150" y="397" width="118" height="32" rx="4" fill="#0F6E56"/>
+<text x="209" y="411" font-size="9" fill="white" text-anchor="middle" font-weight="bold">第二層</text>
+<text x="209" y="423" font-size="8" fill="#C8EFE4" text-anchor="middle">第一層完成後啟動</text>
+<rect x="276" y="397" width="130" height="32" rx="4" fill="#BA7517"/>
+<text x="341" y="411" font-size="9" fill="white" text-anchor="middle" font-weight="bold">第三層</text>
+<text x="341" y="423" font-size="8" fill="#FAEEDA" text-anchor="middle">第二層完成後啟動</text>
+<line x1="142" y1="413" x2="150" y2="413" stroke="#085041" stroke-width="1.5" marker-end="url(#gag)"/>
+<line x1="268" y1="413" x2="276" y2="413" stroke="#085041" stroke-width="1.5" marker-end="url(#gag)"/>
+<text x="215" y="445" font-size="10" fill="#085041" font-weight="bold" text-anchor="middle">↓ 三層制度完成 → ERP才能選型</text>
+<text x="215" y="459" font-size="10" fill="#085041" font-weight="bold" text-anchor="middle">＋ 七大管控機制閉環（各機制有輸出物）</text>
+<text x="215" y="473" font-size="9" fill="#0F6E56" text-anchor="middle">①議事決策→②指揮反饋→③請示報告→④溝通協調</text>
+<text x="215" y="485" font-size="9" fill="#0F6E56" text-anchor="middle">→⑤考核評價→⑥預警干預→⑦監督考察→回到①</text>
+<text x="215" y="499" font-size="9" fill="#085041" font-weight="bold" text-anchor="middle">★ 第一層制度完成，七大機制才有依據</text>
+<text x="215" y="512" font-size="8" fill="#666" text-anchor="middle">各機制均有對應輸出物，見七大管控機制頁簽</text>
+
+<rect x="425" y="358" width="400" height="168" rx="6" fill="#EEEDFE" stroke="#534AB7" stroke-width="2"/>
+<text x="625" y="377" font-size="11" font-weight="bold" fill="#3C3489" text-anchor="middle">HR八大核心專項（依賴順序嚴格，不能倒序）</text>
+<text x="625" y="391" font-size="10" fill="#534AB7" text-anchor="middle">前一個的輸出是後一個的設計前提</text>
+<rect x="434" y="397" width="118" height="30" rx="4" fill="#1D9E75"/>
+<text x="493" y="410" font-size="8" fill="white" text-anchor="middle" font-weight="bold">D1後・D2後啟動</text>
+<text x="493" y="421" font-size="9" fill="white" text-anchor="middle">③職等設計　⑦勞動法合規</text>
+<rect x="560" y="397" width="118" height="30" rx="4" fill="#1E2761"/>
+<text x="619" y="410" font-size="8" fill="white" text-anchor="middle" font-weight="bold">D2確認後啟動</text>
+<text x="619" y="421" font-size="9" fill="white" text-anchor="middle">①組織設計　②職等框架</text>
+<rect x="686" y="397" width="130" height="30" rx="4" fill="#854F0B"/>
+<text x="751" y="410" font-size="8" fill="white" text-anchor="middle" font-weight="bold">HR②④後・D3GM確認後</text>
+<text x="751" y="421" font-size="9" fill="white" text-anchor="middle">④職責定義　⑤薪酬留才</text>
+<line x1="552" y1="412" x2="560" y2="412" stroke="#3C3489" stroke-width="1.5" marker-end="url(#gap)"/>
+<line x1="678" y1="412" x2="686" y2="412" stroke="#3C3489" stroke-width="1.5" marker-end="url(#gap)"/>
+<text x="625" y="443" font-size="9" fill="#3C3489" text-anchor="middle">⑥職能建置與人才發展（HR①②③④全部完成後啟動）</text>
+<text x="625" y="457" font-size="9" fill="#3C3489" text-anchor="middle">⑦跨境勞動法合規（唯一可立即啟動，獨立合規義務）</text>
+<text x="625" y="471" font-size="9" fill="#3C3489" text-anchor="middle">⑧雇主品牌（HR⑤薪酬完成後才有內容可以宣傳）</text>
+<text x="625" y="485" font-size="9" fill="#3C3489" text-anchor="middle">職等框架一致（A・B類）；薪酬帶寬各地分開設定；C類完全獨立</text>
+<text x="625" y="499" font-size="8" fill="#666" text-anchor="middle">必做★★★ / 應做★★ / 可後做★（見優先序矩陣頁簽）</text>
+<text x="625" y="511" font-size="8" fill="#534AB7" text-anchor="middle">HR③台灣總部職等設計＝此次任務的核心輸出</text>
+
+<line x1="420" y1="526" x2="420" y2="542" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="544" width="810" height="56" rx="6" fill="#F5F3EE" stroke="#888" stroke-width="1.5"/>
+<text x="420" y="560" font-size="11" font-weight="bold" fill="#444" text-anchor="middle">各階段文件產出（★必做・◎應做・○可後做）</text>
+<rect x="24" y="568" width="250" height="24" rx="4" fill="#854F0B"/>
+<text x="149" y="581" font-size="9" fill="white" text-anchor="middle" font-weight="bold">必做 0–3個月：打地基</text>
+<text x="149" y="589" font-size="8" fill="#FAEEDA" text-anchor="middle">★第一層制度 ★月報模板 ★HR③⑦</text>
+<rect x="284" y="568" width="250" height="24" rx="4" fill="#1E2761"/>
+<text x="409" y="581" font-size="9" fill="white" text-anchor="middle" font-weight="bold">應做 3–6個月：建框架</text>
+<text x="409" y="589" font-size="8" fill="#CADCFC" text-anchor="middle">★授權矩陣 ★第二層制度 ★稽核 ★HR①②④⑤</text>
+<rect x="544" y="568" width="272" height="24" rx="4" fill="#0F6E56"/>
+<text x="680" y="581" font-size="9" fill="white" text-anchor="middle" font-weight="bold">可後做 6個月後：跑起來</text>
+<text x="680" y="589" font-size="8" fill="#C8EFE4" text-anchor="middle">★第三層制度 ★HR⑥ ◎ERP ○技術知識庫</text>
+
+<line x1="420" y1="600" x2="420" y2="616" stroke="#888" stroke-width="2" marker-end="url(#ga)"/>
+
+<rect x="15" y="618" width="810" height="36" rx="6" fill="#E8EBF7" stroke="#1E2761" stroke-width="2"/>
+<text x="420" y="634" font-size="11" font-weight="bold" fill="#1E2761" text-anchor="middle">最終輸出：集團治理體系完整建立</text>
+<text x="420" y="647" font-size="10" fill="#3C3489" text-anchor="middle">授權體系正式化・三層制度完整・七大機制閉環・HR八大專項完成・ERP導入・管控效果評估迭代優化</text>
+
+<path d="M 825 654 Q 835 440 835 92 Q 835 60 820 60" stroke="#E24B4A" stroke-width="1.5" fill="none" stroke-dasharray="6,4" marker-end="url(#gar)"/>
+<text x="843" y="380" font-size="9" fill="#E24B4A" transform="rotate(-90,843,380)">各階段完成→回饋緩解五大代價</text>
+
+<rect x="15" y="664" width="810" height="60" rx="6" fill="#FAFAFA" stroke="#eee" stroke-width="1"/>
+<text x="30" y="680" font-size="10" font-weight="bold" fill="#444">圖例說明</text>
+<rect x="30" y="687" width="12" height="10" rx="2" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1"/>
+<text x="48" y="697" font-size="9" fill="#555">起點/代價</text>
+<rect x="160" y="687" width="12" height="10" rx="2" fill="#E8EBF7" stroke="#1E2761" stroke-width="1.5"/>
+<text x="178" y="697" font-size="9" fill="#555">子公司定位/決策</text>
+<rect x="330" y="687" width="12" height="10" rx="2" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1.5"/>
+<text x="348" y="697" font-size="9" fill="#555">制度/機制建設</text>
+<rect x="490" y="687" width="12" height="10" rx="2" fill="#EEEDFE" stroke="#534AB7" stroke-width="1.5"/>
+<text x="508" y="697" font-size="9" fill="#555">HR八大專項</text>
+<rect x="640" y="687" width="12" height="10" rx="2" fill="#FAEEDA" stroke="#BA7517" stroke-width="1.5"/>
+<text x="658" y="697" font-size="9" fill="#555">管控模式/五大維度</text>
+<line x1="30" y1="714" x2="70" y2="714" stroke="#888" stroke-width="1.5" marker-end="url(#ga)"/>
+<text x="80" y="718" font-size="9" fill="#555">主線邏輯</text>
+<line x1="200" y1="714" x2="240" y2="714" stroke="#534AB7" stroke-width="1.5" stroke-dasharray="4,2" marker-end="url(#gap)"/>
+<text x="250" y="718" font-size="9" fill="#555">HR專項依賴</text>
+<line x1="370" y1="714" x2="410" y2="714" stroke="#0F6E56" stroke-width="1.5" marker-end="url(#gag)"/>
+<text x="420" y="718" font-size="9" fill="#555">制度層依賴</text>
+<line x1="540" y1="714" x2="580" y2="714" stroke="#E24B4A" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#gar)"/>
+<text x="590" y="718" font-size="9" fill="#555">回饋緩解代價</text>
+</svg>
+</div>
+
+<div class="sl">二、工作項目依賴關係圖</div>
+<div class="cx">閱讀說明：以下三種關係決定了圖中每條線的含義。</div>
+<div class="g3">
+<div class="cd" style="border-top:3px solid #1E2761"><div class="cdh">直接依賴 → 實心箭頭</div><div class="cdb">B 不能在 A 完成前開始。A 是 B 的前提，沒有 A 就沒有 B 的起點。推進時必須嚴格按照箭頭順序。</div></div>
+<div class="cd" style="border-top:3px solid #888"><div class="cdh">間接影響 → 虛線箭頭</div><div class="cdb">B 可以先開始，但 A 改了，B 需要局部調整。建議 A 有初稿後，B 再進入細節設計。</div></div>
+<div class="cd" style="border-top:3px solid #eee"><div class="cdh">完全獨立 → 無任何連線</div><div class="cdb">A 改了不會影響 B，可以完全平行推進，互不影響，可以分配給不同的人同時進行。</div></div>
+</div>
+<div style="overflow-x:auto;margin:10px 0">
+<svg viewBox="0 0 960 980" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" width="100%">
+<defs>
+  <marker id="da" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="dad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></marker>
+</defs>
+
+<!-- 標題 -->
+<text x="480" y="22" font-size="14" font-weight="bold" fill="#1E2761" text-anchor="middle">細節邏輯流程圖：HR專項・制度體系・五大決策的交叉依賴關係</text>
+<text x="480" y="38" font-size="10" fill="#888" text-anchor="middle">實線箭頭＝直接依賴（前者完成，後者才能啟動）　虛線箭頭＝間接影響（前者的設計影響後者的內容）</text>
+
+<!-- 色塊圖例 -->
+<rect x="20" y="48" width="920" height="28" rx="4" fill="#f8f8f8" stroke="#eee" stroke-width="0.5"/>
+<rect x="32" y="56" width="12" height="12" rx="2" fill="#1D9E75"/>
+<text font-family="Arial,sans-serif" font-size="9" fill="#555" x="50" y="65">立即啟動（無前置條件）</text>
+<rect x="200" y="56" width="12" height="12" rx="2" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" font-size="9" fill="#555" x="218" y="65">必做・依賴D1或D2確認後</text>
+<rect x="400" y="56" width="12" height="12" rx="2" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" font-size="9" fill="#555" x="418" y="65">應做・依賴前面工作完成後</text>
+<rect x="610" y="56" width="12" height="12" rx="2" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" font-size="9" fill="#555" x="628" y="65">可後做・依賴多個前置完成</text>
+<rect x="800" y="56" width="12" height="12" rx="2" fill="#888"/>
+<text font-family="Arial,sans-serif" font-size="9" fill="#555" x="818" y="65">後續確認</text>
+
+<!-- 欄位標題 -->
+<text font-family="Arial,sans-serif" x="100" y="100" font-size="11" font-weight="bold" fill="#1E2761" text-anchor="middle">五大決策</text>
+<text font-family="Arial,sans-serif" x="100" y="112" font-size="9" fill="#888" text-anchor="middle">D1→D2 有先後順序</text>
+<text font-family="Arial,sans-serif" x="330" y="100" font-size="11" font-weight="bold" fill="#534AB7" text-anchor="middle">HR八大核心專項</text>
+<text font-family="Arial,sans-serif" x="330" y="112" font-size="9" fill="#888" text-anchor="middle">嚴格依賴順序</text>
+<text font-family="Arial,sans-serif" x="600" y="100" font-size="11" font-weight="bold" fill="#0F6E56" text-anchor="middle">三層制度體系</text>
+<text font-family="Arial,sans-serif" x="600" y="112" font-size="9" fill="#888" text-anchor="middle">上層是下層的依據</text>
+<text font-family="Arial,sans-serif" x="840" y="100" font-size="11" font-weight="bold" fill="#791F1F" text-anchor="middle">管控工具</text>
+<text font-family="Arial,sans-serif" x="840" y="112" font-size="9" fill="#888" text-anchor="middle">依賴前面的制度與決策</text>
+
+<!-- ══════════════════════════════════
+     五大決策欄
+══════════════════════════════════ -->
+
+<!-- D1 現在拍板（必做紅色） -->
+<rect x="30" y="124" width="140" height="40" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="100" y="140" font-size="10" fill="white" text-anchor="middle" font-weight="bold">D1 集團整體定位方向</text>
+<text font-family="Arial,sans-serif" x="100" y="156" font-size="8" fill="#FCDCDC" text-anchor="middle">現在拍板・所有決策的起點</text>
+
+<!-- D1→D2 實線 -->
+<line x1="100" y1="164" x2="100" y2="178" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- D2 現在拍板（必做紅色） -->
+<rect x="30" y="178" width="140" height="40" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="100" y="194" font-size="10" fill="white" text-anchor="middle" font-weight="bold">D2 各子公司管控模式</text>
+<text font-family="Arial,sans-serif" x="100" y="208" font-size="8" fill="#FCDCDC" text-anchor="middle">依賴D1・現在拍板</text>
+
+<!-- D3 現在拍板（必做紅色） -->
+<rect x="30" y="234" width="140" height="40" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="100" y="250" font-size="10" fill="white" text-anchor="middle" font-weight="bold">D3 GMO設立</text>
+<text font-family="Arial,sans-serif" x="100" y="264" font-size="8" fill="#FCDCDC" text-anchor="middle">現在拍板・可與D1D2同時</text>
+
+<!-- GM角色定位確認（應做橙色，D2後） -->
+<rect x="30" y="294" width="140" height="40" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="100" y="310" font-size="10" fill="white" text-anchor="middle" font-weight="bold">GM角色定位確認</text>
+<text font-family="Arial,sans-serif" x="100" y="322" font-size="8" fill="#FAEEDA" text-anchor="middle">D2確認後・派駐或本地型</text>
+
+<!-- D4 後續確認（灰色） -->
+<rect x="30" y="354" width="140" height="40" rx="5" fill="#888"/>
+<text font-family="Arial,sans-serif" x="100" y="370" font-size="10" fill="white" text-anchor="middle" font-weight="bold">D4 啟動優先序確認</text>
+<text font-family="Arial,sans-serif" x="100" y="382" font-size="8" fill="#eee" text-anchor="middle">後續確認</text>
+
+<!-- D5 後續確認（灰色） -->
+<rect x="30" y="408" width="140" height="40" rx="5" fill="#888"/>
+<text font-family="Arial,sans-serif" x="100" y="424" font-size="10" fill="white" text-anchor="middle" font-weight="bold">D5 集團定位演化時程</text>
+<text font-family="Arial,sans-serif" x="100" y="436" font-size="8" fill="#eee" text-anchor="middle">後續確認</text>
+
+<!-- D2→GM角色定位確認 實線 -->
+<line x1="100" y1="218" x2="100" y2="294" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- ══════════════════════════════════
+     HR八大專項欄
+══════════════════════════════════ -->
+
+<!-- HR⑦ 立即啟動（綠色） -->
+<rect x="250" y="124" width="160" height="50" rx="5" fill="#1D9E75"/>
+<text font-family="Arial,sans-serif" x="330" y="143" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR⑦ 跨境勞動法合規</text>
+<text font-family="Arial,sans-serif" x="330" y="156" font-size="8" fill="#C8EFE4" text-anchor="middle">★ 唯一立即啟動（獨立合規義務）</text>
+<text font-family="Arial,sans-serif" x="330" y="168" font-size="8" fill="#C8EFE4" text-anchor="middle">美日台勞動法規・工作許可・社保</text>
+
+<!-- HR③ 職位盤點D1後，職等設計HR①後（綠色，兩步驟） -->
+<rect x="250" y="186" width="160" height="60" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="330" y="205" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR③ 台灣總部職等設計</text>
+<text font-family="Arial,sans-serif" x="330" y="218" font-size="8" fill="#FCDCDC" text-anchor="middle">★ 此次任務核心輸出</text>
+<text font-family="Arial,sans-serif" x="330" y="230" font-size="8" fill="#FCDCDC" text-anchor="middle">職位盤點：D1後啟動</text>
+<text font-family="Arial,sans-serif" x="330" y="240" font-size="8" fill="#FCDCDC" text-anchor="middle">職等設計：HR①完成後</text>
+
+<!-- HR① D2後啟動（必做紅色） -->
+<rect x="250" y="260" width="160" height="50" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="330" y="279" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR① 全球組織設計</text>
+<text font-family="Arial,sans-serif" x="330" y="292" font-size="8" fill="#FCDCDC" text-anchor="middle">★ D2確認後啟動</text>
+<text font-family="Arial,sans-serif" x="330" y="304" font-size="8" fill="#FCDCDC" text-anchor="middle">組織架構圖・報告線・派駐安排</text>
+
+<!-- HR② HR③後啟動（應做橙色） -->
+<rect x="250" y="324" width="160" height="50" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="330" y="343" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR② 全球職等框架</text>
+<text font-family="Arial,sans-serif" x="330" y="356" font-size="8" fill="#FAEEDA" text-anchor="middle">★ HR③完成後啟動</text>
+<text font-family="Arial,sans-serif" x="330" y="368" font-size="8" fill="#FAEEDA" text-anchor="middle">全集團統一框架・薪酬帶寬各異</text>
+
+<!-- HR④ HR②後啟動（應做橙色） -->
+<rect x="250" y="388" width="160" height="50" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="330" y="407" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR④ 職務職責定義（JD）</text>
+<text font-family="Arial,sans-serif" x="330" y="420" font-size="8" fill="#FAEEDA" text-anchor="middle">★ HR②完成後啟動</text>
+<text font-family="Arial,sans-serif" x="330" y="432" font-size="8" fill="#FAEEDA" text-anchor="middle">JD文件・能力要求・決策權限</text>
+
+<!-- HR⑤ HR④後＋GM角色確認後（應做橙色） -->
+<rect x="250" y="452" width="160" height="50" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="330" y="471" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR⑤ 薪酬結構與留才方案</text>
+<text font-family="Arial,sans-serif" x="330" y="484" font-size="8" fill="#FAEEDA" text-anchor="middle">★ HR④後＋GM角色確認後</text>
+<text font-family="Arial,sans-serif" x="330" y="496" font-size="8" fill="#FAEEDA" text-anchor="middle">短中長期薪酬・派駐加給・留才</text>
+
+<!-- HR⑥ HR①②③④全部完成後（可後做紫色） -->
+<rect x="250" y="516" width="160" height="50" rx="5" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="330" y="535" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR⑥ 職能建置與人才發展</text>
+<text font-family="Arial,sans-serif" x="330" y="548" font-size="8" fill="#C5BCFF" text-anchor="middle">★ HR①②③④全部完成後</text>
+<text font-family="Arial,sans-serif" x="330" y="560" font-size="8" fill="#C5BCFF" text-anchor="middle">培訓路徑・接班計畫・知識庫</text>
+
+<!-- HR⑧ HR⑤後（可後做紫色） -->
+<rect x="250" y="580" width="160" height="40" rx="5" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="330" y="597" font-size="10" fill="white" text-anchor="middle" font-weight="bold">HR⑧ 雇主品牌</text>
+<text font-family="Arial,sans-serif" x="330" y="610" font-size="8" fill="#C5BCFF" text-anchor="middle">★ HR⑤完成後啟動</text>
+
+<!-- HR內部依賴實線 -->
+<!-- HR①→HR③職等設計 -->
+<line x1="330" y1="310" x2="330" y2="324" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+<!-- HR③→HR② -->
+<line x1="330" y1="388" x2="330" y2="388" stroke="#444" stroke-width="0"/>
+<!-- 注意：HR③完成→HR②，HR③在y=186-246，HR②在y=324，需要路由 -->
+<path d="M410 246 Q440 285 410 324" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+<!-- HR②→HR④ -->
+<line x1="330" y1="374" x2="330" y2="388" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+<!-- HR④→HR⑤ -->
+<line x1="330" y1="438" x2="330" y2="452" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+<!-- HR①②③④→HR⑥（從HR④底部引出代表最後一個完成） -->
+<path d="M250 541 Q220 541 220 541 Q220 480 220 480 Q220 350 250 350" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+<!-- HR⑤→HR⑧ -->
+<line x1="330" y1="502" x2="330" y2="580" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- ══════════════════════════════════
+     三層制度欄
+══════════════════════════════════ -->
+
+<!-- 第一層 D1D2確認後（必做紅色） -->
+<rect x="520" y="124" width="160" height="66" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="600" y="144" font-size="10" fill="white" text-anchor="middle" font-weight="bold">第一層</text>
+<text font-family="Arial,sans-serif" x="600" y="158" font-size="9" fill="white" text-anchor="middle">集團治理框架文件</text>
+<text font-family="Arial,sans-serif" x="600" y="172" font-size="8" fill="#FCDCDC" text-anchor="middle">★ D1D2確認後啟動</text>
+<text font-family="Arial,sans-serif" x="600" y="183" font-size="8" fill="#FCDCDC" text-anchor="middle">治理原則・合規底線・行為準則</text>
+
+<!-- 第一層→第二層 實線 -->
+<line x1="600" y1="190" x2="600" y2="214" stroke="#444" stroke-width="2" marker-end="url(#da)"/>
+
+<!-- 第二層 第一層後（應做橙色） -->
+<rect x="520" y="214" width="160" height="76" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="600" y="234" font-size="10" fill="white" text-anchor="middle" font-weight="bold">第二層</text>
+<text font-family="Arial,sans-serif" x="600" y="248" font-size="9" fill="white" text-anchor="middle">各職能治理規則</text>
+<text font-family="Arial,sans-serif" x="600" y="262" font-size="8" fill="#FAEEDA" text-anchor="middle">★ 第一層完成後啟動</text>
+<text font-family="Arial,sans-serif" x="600" y="274" font-size="8" fill="#FAEEDA" text-anchor="middle">HR・財務・IT・工安・採購</text>
+<text font-family="Arial,sans-serif" x="600" y="284" font-size="8" fill="#FAEEDA" text-anchor="middle">每個職能「管什麼・怎麼管」</text>
+
+<!-- 第二層→第三層 實線 -->
+<line x1="600" y1="290" x2="600" y2="314" stroke="#444" stroke-width="2" marker-end="url(#da)"/>
+
+<!-- 第三層 第二層後（可後做紫色） -->
+<rect x="520" y="314" width="160" height="76" rx="5" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="600" y="334" font-size="10" fill="white" text-anchor="middle" font-weight="bold">第三層</text>
+<text font-family="Arial,sans-serif" x="600" y="348" font-size="9" fill="white" text-anchor="middle">各主體運營制度</text>
+<text font-family="Arial,sans-serif" x="600" y="362" font-size="8" fill="#C5BCFF" text-anchor="middle">★ 第二層完成後啟動</text>
+<text font-family="Arial,sans-serif" x="600" y="374" font-size="8" fill="#C5BCFF" text-anchor="middle">各子公司具體操作細則</text>
+<text font-family="Arial,sans-serif" x="600" y="384" font-size="8" fill="#C5BCFF" text-anchor="middle">必須符合第一二層原則</text>
+
+<!-- ══════════════════════════════════
+     管控工具欄
+══════════════════════════════════ -->
+
+<!-- 授權矩陣 草擬D2後・定版第一層後（應做橙色） -->
+<rect x="760" y="124" width="170" height="60" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="845" y="144" font-size="10" fill="white" text-anchor="middle" font-weight="bold">授權矩陣文件正式化</text>
+<text font-family="Arial,sans-serif" x="845" y="157" font-size="8" fill="#FAEEDA" text-anchor="middle">草擬：D2確認後</text>
+<text font-family="Arial,sans-serif" x="845" y="169" font-size="8" fill="#FAEEDA" text-anchor="middle">定版：第一層制度完成後</text>
+<text font-family="Arial,sans-serif" x="845" y="178" font-size="8" fill="#FAEEDA" text-anchor="middle">「誰能決定什麼」書面化</text>
+
+<!-- 月報模板 D2後（必做紅色） -->
+<rect x="760" y="200" width="170" height="50" rx="5" fill="#E24B4A"/>
+<text font-family="Arial,sans-serif" x="845" y="219" font-size="10" fill="white" text-anchor="middle" font-weight="bold">月報模板＋預警指標</text>
+<text font-family="Arial,sans-serif" x="845" y="232" font-size="8" fill="#FCDCDC" text-anchor="middle">★ D2確認後啟動</text>
+<text font-family="Arial,sans-serif" x="845" y="244" font-size="8" fill="#FCDCDC" text-anchor="middle">格式依三種子公司管控模式</text>
+
+<!-- 七大管控機制 第一層後（應做橙色） -->
+<rect x="760" y="268" width="170" height="66" rx="5" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="845" y="288" font-size="10" fill="white" text-anchor="middle" font-weight="bold">七大管控機制</text>
+<text font-family="Arial,sans-serif" x="845" y="301" font-size="8" fill="#FAEEDA" text-anchor="middle">★ 第一層制度完成後啟動</text>
+<text font-family="Arial,sans-serif" x="845" y="313" font-size="8" fill="#FAEEDA" text-anchor="middle">①議事→②指揮→③請示→④協調</text>
+<text font-family="Arial,sans-serif" x="845" y="325" font-size="8" fill="#FAEEDA" text-anchor="middle">→⑤考核→⑥預警→⑦稽核→回①</text>
+
+<!-- 制度落地與流程系統化（可後做紫色） -->
+<rect x="760" y="352" width="170" height="76" rx="5" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="845" y="371" font-size="10" fill="white" text-anchor="middle" font-weight="bold">制度落地與流程系統化</text>
+<text font-family="Arial,sans-serif" x="845" y="384" font-size="8" fill="#C5BCFF" text-anchor="middle">★ 授權矩陣定版後</text>
+<text font-family="Arial,sans-serif" x="845" y="396" font-size="8" fill="#C5BCFF" text-anchor="middle">現有流程對照授權矩陣調整</text>
+<text font-family="Arial,sans-serif" x="845" y="408" font-size="8" fill="#C5BCFF" text-anchor="middle">新跨主體流程從零建立</text>
+<text font-family="Arial,sans-serif" x="845" y="420" font-size="8" fill="#C5BCFF" text-anchor="middle">ERP・HR系統等工具以此為前提</text>
+
+<!-- ══════════════════════════════════
+     直接依賴連線（實線）
+══════════════════════════════════ -->
+
+<!-- D1→HR③職位盤點 -->
+<path d="M170 144 Q210 144 210 211 Q210 216 250 216" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- D2→HR① -->
+<path d="M170 198 Q210 198 210 285 Q210 285 250 285" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- D2→月報模板 -->
+<path d="M170 205 Q720 205 760 225" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- D2→授權矩陣草擬 -->
+<path d="M170 195 Q720 155 760 155" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- D1D2→第一層制度（從D2引出代表D1D2都確認） -->
+<path d="M170 208 Q480 208 520 157" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- 第一層→授權矩陣定版 -->
+<path d="M680" y1="157" x2="760" y2="157" fill="none" stroke="#444" stroke-width="0"/>
+<line x1="680" y1="157" x2="760" y2="157" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- 第一層→七大管控機制 -->
+<line x1="680" y1="175" x2="760" y2="295" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- GM角色確認→HR⑤ -->
+<path d="M170 314 Q210 314 210 477 Q210 477 250 477" fill="none" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- 授權矩陣定版→制度落地流程系統化 -->
+<line x1="845" y1="184" x2="845" y2="352" stroke="#444" stroke-width="1.5" marker-end="url(#da)"/>
+
+<!-- ══════════════════════════════════
+     間接影響連線（虛線）
+══════════════════════════════════ -->
+
+<!-- D2→HR②（管控模式影響職等框架深度） -->
+<path d="M170 202 Q210 340 250 349" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#dad)"/>
+
+<!-- HR①→第一層制度（組織設計影響治理原則） -->
+<path d="M410 285 Q465 220 520 175" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#dad)"/>
+
+<!-- HR②→第二層制度（職等框架影響HR職能治理規則） -->
+<path d="M410 349 Q465 280 520 260" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#dad)"/>
+
+<!-- HR④→授權矩陣（JD決策權限需和授權矩陣對應） -->
+<path d="M410 413 Q585 413 760 175" fill="none" stroke="#999" stroke-width="1" stroke-dasharray="5,3" marker-end="url(#dad)"/>
+
+<!-- ══════════════════════════════════
+     底部說明區塊
+══════════════════════════════════ -->
+<rect x="20" y="650" width="920" height="120" rx="7" fill="#FAFAFA" stroke="#eee" stroke-width="1"/>
+<text font-family="Arial,sans-serif" x="40" y="672" font-size="11" font-weight="bold" fill="#1E2761">關鍵依賴關係整理</text>
+
+<text font-family="Arial,sans-serif" x="40" y="694" font-size="10" font-weight="bold" fill="#1D9E75">【立即啟動，無需等待任何決策】</text>
+<text font-family="Arial,sans-serif" x="40" y="708" font-size="9" fill="#555">• HR⑦ 跨境勞動法合規（唯一可立即啟動，獨立合規義務，與集團定位無關）</text>
+
+<text font-family="Arial,sans-serif" x="40" y="728" font-size="10" font-weight="bold" fill="#E24B4A">【必做・依賴D1或D2確認後啟動】</text>
+<text font-family="Arial,sans-serif" x="40" y="742" font-size="9" fill="#555">• D1確認後：D2可以決策；HR③職位盤點可以啟動；第一層制度（D1D2確認後）可以啟動</text>
+<text font-family="Arial,sans-serif" x="40" y="755" font-size="9" fill="#555">• D2確認後：HR①全球組織設計、月報模板、授權矩陣草擬、GM角色定位確認</text>
+
+<text font-family="Arial,sans-serif" x="480" y="694" font-size="10" font-weight="bold" fill="#BA7517">【應做・依賴前面工作完成後】</text>
+<text font-family="Arial,sans-serif" x="480" y="708" font-size="9" fill="#555">• HR①完成後：HR③職等設計（完整版）可以啟動</text>
+<text font-family="Arial,sans-serif" x="480" y="721" font-size="9" fill="#555">• HR③完成後：HR②全球職等框架可以啟動</text>
+<text font-family="Arial,sans-serif" x="480" y="734" font-size="9" fill="#555">• HR②完成後：HR④職務職責定義可以啟動</text>
+<text font-family="Arial,sans-serif" x="480" y="747" font-size="9" fill="#555">• HR④完成＋GM角色確認後：HR⑤薪酬結構與留才方案可以啟動</text>
+<text font-family="Arial,sans-serif" x="480" y="760" font-size="9" fill="#555">• 第一層完成後：第二層制度、七大管控機制、授權矩陣定版</text>
+
+<rect x="20" y="780" width="920" height="80" rx="7" fill="#F5F3EE" stroke="#eee" stroke-width="1"/>
+<text font-family="Arial,sans-serif" x="40" y="800" font-size="10" font-weight="bold" fill="#534AB7">【可後做・依賴多個前置完成】</text>
+<text font-family="Arial,sans-serif" x="40" y="814" font-size="9" fill="#555">• HR①②③④全部完成後：HR⑥職能建置與人才發展</text>
+<text font-family="Arial,sans-serif" x="40" y="827" font-size="9" fill="#555">• HR⑤完成後：HR⑧雇主品牌</text>
+<text font-family="Arial,sans-serif" x="40" y="840" font-size="9" fill="#555">• 第二層完成後：第三層制度</text>
+<text font-family="Arial,sans-serif" x="480" y="814" font-size="9" fill="#555">• 授權矩陣定版後：制度落地與流程系統化（現有流程調整・新跨主體流程建立・ERP等系統導入）</text>
+<text font-family="Arial,sans-serif" x="480" y="827" font-size="9" fill="#555">• 技術知識庫・集中採購框架合約：完全獨立，視資源推進</text>
+</svg>
+</div>
+
+<div class="sl">三、各步驟在框架中的位置說明</div>
+<table class="tb"><thead><tr>
+<th style="width:10%">步驟</th><th style="width:18%">議題</th><th style="width:30%">為什麼在這個位置</th><th style="width:28%">三種子公司的差異影響</th><th style="width:14%">對應頁簽</th>
+</tr></thead><tbody>
+<tr><td class="rh">背景</td><td><span class="tag ta2">規模擴張</span></td><td>說明為什麼現在要做這件事，建立討論的共同基礎</td><td>—</td><td>總經理版</td></tr>
+<tr><td class="rh">第一步</td><td><span class="tag tr2">不做的代價</span></td><td>五個具體風險，前三個高風險（出事就很嚴重），後兩個中風險（不出事但會積累）</td><td>A 類工安風險最高；C 類幾乎不適用</td><td>總經理版・痛點診斷</td></tr>
+<tr><td class="rh">第二步</td><td><span class="tag tr2">具體缺什麼</span></td><td>對應五個代價，說明集團自身具體缺少什麼，讓代價存在</td><td>—</td><td>總經理版</td></tr>
+<tr><td class="rh">前置確認</td><td><span class="tag ta2">三種子公司定位</span></td><td>確認三種子公司（A類海外、B類國內異業、C類投資標的）均為子公司型態，各自與母公司的關係完全不同——這是同一套框架無法統一套用的根本原因</td><td>★ 所有子公司均為子公司型態（非分公司）</td><td>總經理版・三種子公司分析</td></tr>
+<tr><td class="rh">第三步</td><td><span class="tag tp2">五大維度</span></td><td>治理框架的五個核心面向，有優先序，缺一不可</td><td>合規維度對 A 類工安管控最重要</td><td>五大維度</td></tr>
+<tr><td class="rh">第四步</td><td><span class="tag ta2">管控模式選擇</span></td><td>D1確認後，D2才能決策；三種子公司用不同的管控模式，不統一套用</td><td>A 類＝戰略管控型；B 類＝戰略管控型（範圍較窄）；C 類＝財務管控型</td><td>五大決策（含管控模式）</td></tr>
+<tr><td class="rh">第五步</td><td><span class="tag tn2">組織架構</span></td><td>D2確認後，HR①全球組織設計才能啟動，建立對應的組織層次與報告線</td><td>A 類派駐最多，C 類幾乎無派駐</td><td>組織架構</td></tr>
+<tr><td class="rh">第六步</td><td><span class="tag tg2">總部職能＋人員能力</span></td><td>明確總部各職能的職責、能力標準，以及人員是否具備總部思維</td><td>技術標準管控和工安管控對 A 類最重要；B 類較低；C 類不適用</td><td>總部五大職能・總部人員能力</td></tr>
+<tr><td class="rh">第七步</td><td><span class="tag" style="background:#E6F1FB;color:#0C447C">制度＋機制</span></td><td>D1D2D3確認後啟動第一層制度；第一層完成後七大管控機制才有依據；三層制度完成後ERP才能選型</td><td>A 類：完整適用七大機制；B 類：核心機制適用；C 類：只需①②機制</td><td>制度框架體系・七大管控機制</td></tr>
+<tr><td class="rh">第八步</td><td><span class="tag ta2">HR 八大＋其他專項</span></td><td>HR⑦立即啟動；其餘HR專項依賴D1D2D3確認後依序推進；有嚴格的依賴順序，不能倒序</td><td>職等框架一致（A、B 類）；薪酬帶寬、職涯路徑、派駐安排三種子公司分開設計</td><td>HR 人才專項（八大）・其他專項連動</td></tr>
+<tr><td class="rh">第九步</td><td><span class="tag tg2">落地執行</span></td><td>依優先序推進，有時程、有負責人、文件產出以節點觸發確認</td><td>—</td><td>文件產出清單・18 月路線圖</td></tr>
+<tr><td class="rh">回饋循環</td><td><span class="tag tr2">回歸緩解代價</span></td><td>各階段完成後，追蹤對應哪些代價的緩解程度，形成持續優化的循環</td><td>A 類循環最頻繁；C 類循環最少</td><td>回歸與循環</td></tr>
+</tbody></table>
+</div>
+
+<!-- P3 第一階段產出範例 -->
+<div class="page" id="pg3">
+<div class="pt">第一階段產出範例</div>
+<div class="ps">以下為集團治理框架第一階段（0–3個月必做節點）的主要文件產出範例，供參考討論使用。所有範例均以 A 類海外子公司（美日）為主，B 類差異處另行標注。實際執行時需依集團具體情況調整內容。</div>
+
+<!-- ══════════════════════════════════
+     一、集團決策矩陣表
+══════════════════════════════════ -->
+<div class="sl">一、集團決策矩陣表（授權矩陣）</div>
+<div class="cx">決策矩陣定義「哪類事項、哪個金額或層級、由哪個層次決策」。A 類和 B 類子公司的授權深度不同——A 類多了技術標準和工安兩個管控維度。符號說明：★ 決策者・○ 需要諮詢・▲ 需要知會・— 不適用</div>
+<div style="overflow-x:auto;margin:8px 0">
+<table class="tb">
+<thead><tr>
+<th style="width:18%">事項類別</th>
+<th style="width:18%">具體事項</th>
+<th style="width:11%">子公司GM<br>自主決策</th>
+<th style="width:11%">集團GMO<br>需要諮詢</th>
+<th style="width:11%">集團執行長<br>需要核准</th>
+<th style="width:11%">董事會<br>需要核准</th>
+<th style="width:10%">A類</th>
+<th style="width:10%">B類</th>
+</tr></thead>
+<tbody>
+<tr><td class="rh" rowspan="4">財務類</td>
+<td>日常營運支出</td><td style="text-align:center">≤ NT$500萬</td><td style="text-align:center">—</td><td style="text-align:center">NT$500萬–3,000萬</td><td style="text-align:center">&gt; NT$3,000萬</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>資本支出（設備、裝修）</td><td style="text-align:center">≤ NT$200萬</td><td style="text-align:center">○</td><td style="text-align:center">NT$200萬–1,000萬</td><td style="text-align:center">&gt; NT$1,000萬</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>對外借款或擔保</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">★ 所有金額</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>開設新銀行帳戶</td><td style="text-align:center">—</td><td style="text-align:center">—</td><td style="text-align:center">★ 需核准</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td class="rh" rowspan="3">業務類</td>
+<td>單一合約簽署</td><td style="text-align:center">≤ NT$1,000萬</td><td style="text-align:center">○</td><td style="text-align:center">NT$1,000萬–5,000萬</td><td style="text-align:center">&gt; NT$5,000萬</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>進入新客戶或新市場</td><td style="text-align:center">—</td><td style="text-align:center">○</td><td style="text-align:center">★ 需核准</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>報價底線調整</td><td style="text-align:center">±5%以內</td><td style="text-align:center">○</td><td style="text-align:center">&gt; ±5%</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td class="rh" rowspan="3">人事類</td>
+<td>GM任免</td><td style="text-align:center">—</td><td style="text-align:center">○</td><td style="text-align:center">★ 需核准</td><td style="text-align:center">▲</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>主管級（部門主管以上）任免</td><td style="text-align:center">★ 自主決定</td><td style="text-align:center">▲</td><td style="text-align:center">—</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td>薪酬調整（超出帶寬）</td><td style="text-align:center">帶寬內自主</td><td style="text-align:center">○</td><td style="text-align:center">★ 超出帶寬需核准</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag tp2">適用</span></td></tr>
+<tr><td class="rh" rowspan="2">技術與工安類<br><span style="font-size:10px;font-weight:normal;color:#888">A類專屬</span></td>
+<td>調整技術標準或施工規範</td><td style="text-align:center">—</td><td style="text-align:center">○</td><td style="text-align:center">★ 需核准</td><td style="text-align:center">—</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag" style="background:#eee;color:#888">不適用</span></td></tr>
+<tr><td>工安事故通報與處置</td><td style="text-align:center">立即通報GMO</td><td style="text-align:center">★ 48小時內介入</td><td style="text-align:center">★ 重大事故需核准</td><td style="text-align:center">▲</td>
+<td style="text-align:center"><span class="tag tg2">適用</span></td><td style="text-align:center"><span class="tag" style="background:#eee;color:#888">依業務性質</span></td></tr>
+</tbody>
+</table>
+</div>
+<div class="nx">以上金額為示範參考值，實際執行時需依集團規模、各子公司業務量和風險承受度調整。A 類和 B 類的差異主要在技術標準和工安兩個維度，其餘維度原則上相同。</div>
+
+<!-- ══════════════════════════════════
+     二、月報模板與預警指標
+══════════════════════════════════ -->
+<div class="sl" style="margin-top:18px">二、月報模板與預警指標清單</div>
+<div class="cx">A 類月報包含四個區塊，B 類月報只包含財務和業務兩個區塊。每個區塊有固定的填報項目，預警指標觸發時需在 48 小時內通報 GMO，不等月報。</div>
+
+<div class="g2">
+<div>
+<div class="spc-hd" style="background:#1E2761;color:white;margin-bottom:6px">月報模板（A類海外子公司）</div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:6px">
+<div class="cdh" style="color:#791F1F">區塊1：財務摘要（A類・B類均需）</div>
+<div class="cdb" style="font-size:10px">
+・本月營收：實際 vs 預算（差異說明）<br>
+・本月毛利率：實際 vs 預算<br>
+・本月現金流量：期初餘額・收入・支出・期末餘額<br>
+・應收帳款逾期狀況（超過60天的金額和客戶名稱）<br>
+・本月重大財務事件說明<br>
+・下月財務預測
+</div></div>
+<div class="cd" style="border-left:3px solid #534AB7;margin-bottom:6px">
+<div class="cdh" style="color:#3C3489">區塊2：業務摘要（A類・B類均需）</div>
+<div class="cdb" style="font-size:10px">
+・本月新簽合約金額和件數<br>
+・進行中專案狀態（進度、客戶滿意度、風險說明）<br>
+・本月完工專案總結<br>
+・重要客戶動態（潛在流失風險、新業務機會）<br>
+・下月業務預測和重點事項
+</div></div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:6px">
+<div class="cdh" style="color:#791F1F">區塊3：工安摘要（A類專屬）</div>
+<div class="cdb" style="font-size:10px">
+・本月工安事故件數和等級（零事故/輕傷/重傷/死亡）<br>
+・近期安全巡查結果摘要<br>
+・工安改善計畫執行狀況<br>
+・下月工安重點事項
+</div></div>
+<div class="cd" style="border-left:3px solid #0F6E56">
+<div class="cdh" style="color:#085041">區塊4：人事摘要（A類專屬）</div>
+<div class="cdb" style="font-size:10px">
+・本月人員異動（到職/離職/派駐調動）<br>
+・關鍵職位空缺狀況<br>
+・派駐人員工作許可和簽證到期提醒（3個月內到期者）<br>
+・人員留才風險（有離職意願的關鍵人員）
+</div></div>
+</div>
+<div>
+<div class="spc-hd" style="background:#E24B4A;color:white;margin-bottom:6px">預警指標清單（觸發即48小時內通報GMO）</div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:6px">
+<div class="cdh" style="color:#791F1F">財務預警（A類・B類均適用）</div>
+<div class="cdb" style="font-size:10px">
+・單月毛利率低於目標值 5% 以上<br>
+・月度營收低於預算 20% 以上<br>
+・現金餘額低於3個月營運所需<br>
+・單一客戶應收帳款逾期超過90天且金額超過NT$500萬<br>
+・發現未經授權的資金移轉或帳戶開設
+</div></div>
+<div class="cd" style="border-left:3px solid #534AB7;margin-bottom:6px">
+<div class="cdh" style="color:#3C3489">業務預警（A類・B類均適用）</div>
+<div class="cdb" style="font-size:10px">
+・A 級客戶（年度合約金額前3名）有合約終止風險<br>
+・單一專案延期超過1個月且客戶有索賠意向<br>
+・季度新簽合約金額低於預算50%以上
+</div></div>
+<div class="cd" style="border-left:3px solid #E24B4A;margin-bottom:6px">
+<div class="cdh" style="color:#791F1F">工安預警（A類專屬，任何等級立即通報）</div>
+<div class="cdb" style="font-size:10px">
+・任何造成人員受傷的工安事故（無論等級）<br>
+・收到政府主管機關（OSHA等）的正式調查通知<br>
+・施工現場出現重大設備故障或潛在危險情況
+</div></div>
+<div class="cd" style="border-left:3px solid #0F6E56">
+<div class="cdh" style="color:#085041">人事預警（A類・B類均適用）</div>
+<div class="cdb" style="font-size:10px">
+・GM 或直屬主管提出辭職意向<br>
+・關鍵技術人員（3人以上）在同一個月內提出離職<br>
+・派駐人員工作許可到期未完成續簽
+</div></div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════
+     三、跨境勞動法合規清單
+══════════════════════════════════ -->
+<div class="sl" style="margin-top:18px">三、跨境勞動法合規清單</div>
+<div class="cx">以下清單涵蓋台灣、美國、日本三地的主要勞動法規查核項目。「現況」欄位為執行時填入。建議每年更新一次，派駐人員異動時立即更新相關項目。</div>
+<div style="overflow-x:auto;margin:8px 0">
+<table class="tb">
+<thead><tr>
+<th style="width:14%">地區</th>
+<th style="width:22%">查核項目</th>
+<th style="width:30%">法規依據與說明</th>
+<th style="width:18%">風險等級</th>
+<th style="width:16%">現況（執行時填入）</th>
+</tr></thead>
+<tbody>
+<tr><td class="rh" rowspan="5">台灣<br>（母公司）</td>
+<td>派駐人員海外薪資與台灣薪資的稅務申報</td>
+<td>所得稅法：派駐海外人員仍可能有台灣稅務申報義務，視居留天數而定</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>勞工退休金（勞退）繳納義務</td>
+<td>勞工退休金條例：台灣籍員工派駐海外，勞退繳納義務不自動終止</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>派駐合約與台灣勞動契約的關係</td>
+<td>勞動基準法：派駐合約需明確說明與原台灣勞動契約的關係，避免法律空窗</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>全民健保海外派駐期間的處理</td>
+<td>全民健康保險法：派駐海外超過2年可申請停保，但需在期限內處理</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>職業災害保險（海外派駐期間）</td>
+<td>職業安全衛生法：建議為派駐人員投保海外職業災害保險</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td class="rh" rowspan="5">美國<br>（A類）</td>
+<td>工作許可和簽證類型確認</td>
+<td>移民局（USCIS）：派駐人員需持有合法工作許可（L-1、H-1B等），需確認簽證類型和到期日</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>工安合規（OSHA法規）</td>
+<td>職業安全衛生法（OSHA）：建築業需遵守OSHA 1926標準，違規最高罰款每項USD $15,625</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>社會安全稅和醫療保險（FICA）</td>
+<td>聯邦稅法：雇主需為員工繳納社安稅7.65%，有台美社會安全協定可避免雙重繳納</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>加班費計算（FLSA）</td>
+<td>公平勞動標準法（FLSA）：週工時超過40小時需支付1.5倍加班費，各州另有規定</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>雇用文件合規（I-9表格）</td>
+<td>移民改革法：所有員工（含本地招募）需在到職3天內完成I-9身份核實</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td class="rh" rowspan="5">日本<br>（A類）</td>
+<td>就勞資格（工作許可）確認</td>
+<td>入管法：派駐人員需持有「企業内転勤」或「技術・人文知識・国際業務」等就勞資格</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>社會保險加入義務</td>
+<td>健康保険法・厚生年金保険法：在日本工作的員工（含外籍）需加入社會保險，有台日社保協定</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>勞動契約和就業規則</td>
+<td>労働契約法・労働基準法：10人以上事業所需制定就業規則並向勞動基準監督署申報</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>時間外勞動（加班）管理</td>
+<td>労働基準法36條：需與員工或工會簽訂36協定，才能合法要求加班，每月上限45小時</td>
+<td><span class="tag ta2">中</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+<tr><td>建設業許可和技術者資格</td>
+<td>建設業法：在日本從事建設工程需持有建設業許可，現場需配置一定資格的技術者</td>
+<td><span class="tag tr2">高</span></td>
+<td style="color:#888;font-size:10px">□ 已確認 □ 需確認 □ 有缺失</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ══════════════════════════════════
+     四、全球組織設計
+══════════════════════════════════ -->
+<div class="sl" style="margin-top:18px">四、全球組織設計示意</div>
+<div class="cx">下圖呈現集團組織架構的基本框架，包含台灣總部、A 類海外子公司、B 類國內異業子公司的報告線設計。實線＝直接管理線（績效考核和去留由上方決定）；虛線＝職能管控線（專業標準由上方制定和監督）。</div>
+
+<div style="overflow-x:auto;margin:10px 0">
+<svg viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg" font-family="Arial,sans-serif" width="100%">
+<defs>
+  <marker id="oa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#444" stroke-width="1.5" stroke-linecap="round"/></marker>
+  <marker id="od" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M1 2L9 5L1 8" fill="none" stroke="#999" stroke-width="1.5" stroke-linecap="round"/></marker>
+</defs>
+
+<!-- 圖例 -->
+<line x1="20" y1="14" x2="60" y2="14" stroke="#444" stroke-width="1.5" marker-end="url(#oa)"/>
+<text font-family="Arial,sans-serif" x="68" y="18" font-size="9" fill="#555">實線：直接管理線（績效考核、去留決定權）</text>
+<line x1="340" y1="14" x2="380" y2="14" stroke="#999" stroke-width="1" stroke-dasharray="4,2" marker-end="url(#od)"/>
+<text font-family="Arial,sans-serif" x="388" y="18" font-size="9" fill="#555">虛線：職能管控線（專業標準制定與監督）</text>
+
+<!-- 台灣總部 -->
+<rect x="240" y="28" width="200" height="44" rx="6" fill="#1E2761"/>
+<text font-family="Arial,sans-serif" x="340" y="46" font-size="11" fill="white" text-anchor="middle" font-weight="bold">台灣總部</text>
+<text font-family="Arial,sans-serif" x="340" y="62" font-size="9" fill="#CADCFC" text-anchor="middle">集團執行長・GMO・五大職能</text>
+
+<!-- 總部五大職能 -->
+<rect x="20" y="100" width="100" height="36" rx="4" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="70" y="115" font-size="9" fill="white" text-anchor="middle" font-weight="bold">財務監控</text>
+<text font-family="Arial,sans-serif" x="70" y="127" font-size="8" fill="#C5BCFF" text-anchor="middle">合規・稽核</text>
+
+<rect x="130" y="100" width="100" height="36" rx="4" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="180" y="115" font-size="9" fill="white" text-anchor="middle" font-weight="bold">人力資源</text>
+<text font-family="Arial,sans-serif" x="180" y="127" font-size="8" fill="#C5BCFF" text-anchor="middle">職等・薪酬</text>
+
+<rect x="240" y="100" width="100" height="36" rx="4" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="290" y="115" font-size="9" fill="white" text-anchor="middle" font-weight="bold">技術標準</text>
+<text font-family="Arial,sans-serif" x="290" y="127" font-size="8" fill="#C5BCFF" text-anchor="middle">工安合規</text>
+
+<rect x="350" y="100" width="100" height="36" rx="4" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="400" y="115" font-size="9" fill="white" text-anchor="middle" font-weight="bold">戰略管理</text>
+<text font-family="Arial,sans-serif" x="400" y="127" font-size="8" fill="#C5BCFF" text-anchor="middle">投資・人事</text>
+
+<rect x="460" y="100" width="100" height="36" rx="4" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="510" y="115" font-size="9" fill="white" text-anchor="middle" font-weight="bold">經營協調</text>
+<text font-family="Arial,sans-serif" x="510" y="127" font-size="8" fill="#C5BCFF" text-anchor="middle">採購・知識庫</text>
+
+<!-- 總部到職能虛線 -->
+<line x1="280" y1="72" x2="70" y2="100" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#od)"/>
+<line x1="300" y1="72" x2="180" y2="100" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#od)"/>
+<line x1="330" y1="72" x2="290" y2="100" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#od)"/>
+<line x1="360" y1="72" x2="400" y2="100" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#od)"/>
+<line x1="390" y1="72" x2="510" y2="100" stroke="#999" stroke-width="0.8" stroke-dasharray="3,2" marker-end="url(#od)"/>
+
+<!-- A類海外子公司 -->
+<rect x="40" y="200" width="260" height="44" rx="6" fill="#1D9E75"/>
+<text font-family="Arial,sans-serif" x="170" y="218" font-size="11" fill="white" text-anchor="middle" font-weight="bold">A類｜海外子公司（美日）</text>
+<text font-family="Arial,sans-serif" x="170" y="234" font-size="9" fill="#C8EFE4" text-anchor="middle">本地GM（或本地GM＋派駐技術長）</text>
+
+<!-- B類國內異業子公司 -->
+<rect x="380" y="200" width="260" height="44" rx="6" fill="#534AB7"/>
+<text font-family="Arial,sans-serif" x="510" y="218" font-size="11" fill="white" text-anchor="middle" font-weight="bold">B類｜國內異業子公司</text>
+<text font-family="Arial,sans-serif" x="510" y="234" font-size="9" fill="#C5BCFF" text-anchor="middle">業務型GM</text>
+
+<!-- 總部到子公司實線 -->
+<line x1="300" y1="72" x2="170" y2="200" stroke="#444" stroke-width="1.5" marker-end="url(#oa)"/>
+<line x1="380" y1="72" x2="510" y2="200" stroke="#444" stroke-width="1.5" marker-end="url(#oa)"/>
+
+<!-- A類內部職位 -->
+<rect x="40" y="270" width="110" height="40" rx="4" fill="#0F6E56"/>
+<text font-family="Arial,sans-serif" x="95" y="286" font-size="9" fill="white" text-anchor="middle" font-weight="bold">派駐財務長</text>
+<text font-family="Arial,sans-serif" x="95" y="299" font-size="8" fill="#C8EFE4" text-anchor="middle">實→GM 虛→集團財務</text>
+
+<rect x="160" y="270" width="110" height="40" rx="4" fill="#0F6E56"/>
+<text font-family="Arial,sans-serif" x="215" y="286" font-size="9" fill="white" text-anchor="middle" font-weight="bold">派駐技術長</text>
+<text font-family="Arial,sans-serif" x="215" y="299" font-size="8" fill="#C8EFE4" text-anchor="middle">實→GM 虛→集團技術</text>
+
+<!-- 派駐標籤 -->
+<rect x="44" y="262" width="32" height="12" rx="2" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="60" y="271" font-size="7" fill="white" text-anchor="middle">派駐</text>
+<rect x="164" y="262" width="32" height="12" rx="2" fill="#BA7517"/>
+<text font-family="Arial,sans-serif" x="180" y="271" font-size="7" fill="white" text-anchor="middle">派駐</text>
+
+<!-- A類到派駐職位實線 -->
+<line x1="95" y1="244" x2="95" y2="270" stroke="#444" stroke-width="1.2" marker-end="url(#oa)"/>
+<line x1="215" y1="244" x2="215" y2="270" stroke="#444" stroke-width="1.2" marker-end="url(#oa)"/>
+
+<!-- 派駐財務長虛線到集團財務 -->
+<path d="M95 270 Q95 150 70 136" fill="none" stroke="#999" stroke-width="0.8" stroke-dasharray="4,2" marker-end="url(#od)"/>
+<!-- 派駐技術長虛線到集團技術標準 -->
+<path d="M215 270 Q215 150 290 136" fill="none" stroke="#999" stroke-width="0.8" stroke-dasharray="4,2" marker-end="url(#od)"/>
+
+<!-- B類說明 -->
+<rect x="380" y="270" width="260" height="40" rx="4" fill="#3C3489"/>
+<text font-family="Arial,sans-serif" x="510" y="287" font-size="9" fill="white" text-anchor="middle">技術標準管控・工安管控不適用</text>
+<text font-family="Arial,sans-serif" x="510" y="300" font-size="8" fill="#C5BCFF" text-anchor="middle">財務・重大投資・高層人事由總部管控</text>
+
+<!-- 說明文字 -->
+<text font-family="Arial,sans-serif" x="340" y="345" font-size="9" fill="#888" text-anchor="middle">日本特殊考量：師徒制文化下，建議採用「本地GM ＋ 派駐技術長」的組合</text>
+<text font-family="Arial,sans-serif" x="340" y="360" font-size="9" fill="#888" text-anchor="middle">本地GM負責文化融入與客戶關係；派駐技術長負責技術標準傳承</text>
+
+<!-- 報告線說明 -->
+<rect x="20" y="378" width="640" height="88" rx="6" fill="#f8f8f8" stroke="#eee" stroke-width="0.5"/>
+<text font-family="Arial,sans-serif" x="340" y="396" font-size="10" font-weight="bold" fill="#1E2761" text-anchor="middle">報告線說明（以派駐財務長為例）</text>
+<text font-family="Arial,sans-serif" x="40" y="414" font-size="9" fill="#555">實線上方（子公司GM）：決定日常工作內容・績效考核結果・薪酬調整</text>
+<text font-family="Arial,sans-serif" x="40" y="428" font-size="9" fill="#555">虛線上方（集團財務職能）：制定財務標準・決定哪些事項需要上報・確保財務合規</text>
+<text font-family="Arial,sans-serif" x="40" y="442" font-size="9" fill="#791F1F">衝突處理原則：當GM指示的財務操作不符合集團標準時，派駐財務長優先遵守集團標準並通報GMO</text>
+<text font-family="Arial,sans-serif" x="40" y="456" font-size="9" fill="#555">派駐加給項目：住房補貼・子女教育補貼・語言培訓補助・輪調交接期重疊薪資</text>
+</svg>
+</div>
+
+<!-- ══════════════════════════════════
+     五、派駐安排原則矩陣表
+══════════════════════════════════ -->
+<div class="sl" style="margin-top:18px">五、派駐安排原則矩陣表</div>
+<div class="cx">A 類和 B 類子公司的派駐安排原則對照。派駐安排需在聘用合約中明確寫清楚雙重報告的責任邊界，避免日後爭議。</div>
+<div style="overflow-x:auto;margin:8px 0">
+<table class="tb">
+<thead><tr>
+<th style="width:18%">安排維度</th>
+<th style="background:#1D9E75;width:27%">派駐型<br>（由台灣總部派出）</th>
+<th style="background:#1E2761;width:27%">本地型<br>（在地招募）</th>
+<th style="background:#854F0B;width:28%">雙軌型（日本首選）<br>本地GM＋派駐技術長</th>
+</tr></thead>
+<tbody>
+<tr><td class="rh">適用情境</td>
+<td>A類初期設立；需要快速傳遞技術標準；總部信任度優先</td>
+<td>子公司已穩定運作；在地市場關係最重要；本地文化適應要求高（如日本）</td>
+<td>日本子公司；需要兼顧在地文化融入和技術標準傳承</td></tr>
+<tr><td class="rh">薪酬結構</td>
+<td>台灣本薪＋海外派駐加給<br>（住房・子女教育・語言培訓）<br>派駐加給通常為本薪30–50%</td>
+<td>依當地市場薪酬水準設定<br>不含派駐加給<br>需符合當地最低薪資規定</td>
+<td>本地GM：依當地市場薪酬<br>派駐技術長：台灣本薪＋派駐加給<br>兩人薪酬分開設計</td></tr>
+<tr><td class="rh">報告線</td>
+<td>實線→集團執行長<br>在子公司日常工作由GM指揮<br>（如有，否則直接向集團報告）</td>
+<td>實線→集團執行長<br>在地決策有較大自主空間</td>
+<td>本地GM：實線→集團執行長<br>派駐技術長：實線→本地GM；虛線→集團技術職能</td></tr>
+<tr><td class="rh">輪調週期</td>
+<td>建議2–3年輪調一次<br>前任和繼任需有3個月重疊期<br>回台後需有明確的職位安排</td>
+<td>無輪調設計<br>視業務需要可調整為派駐型</td>
+<td>本地GM：無輪調（本地人才）<br>派駐技術長：2–3年輪調一次</td></tr>
+<tr><td class="rh">適用職位<br>（A類）</td>
+<td>財務長（必須派駐）<br>技術長（必須派駐）<br>初期GM（過渡階段）</td>
+<td>業務拓展主管<br>工安負責人<br>行政與人事負責人</td>
+<td>GM：本地招募<br>技術長：台灣派駐<br>財務長：視規模決定</td></tr>
+<tr><td class="rh">適用職位<br>（B類）</td>
+<td>高層人事（GM、財務長）視協議決定</td>
+<td>業務主管及以下職位</td>
+<td>通常不適用B類（業務性質不同）</td></tr>
+<tr><td class="rh">主要風險</td>
+<td>語言文化障礙；輪調造成管理斷層；在地客戶關係弱</td>
+<td>技術標準傳承風險；對集團文化認同度較低；總部掌控力較弱</td>
+<td>兩人職責邊界模糊時容易產生內部矛盾；需要清楚的JD設計</td></tr>
+</tbody>
+</table>
+</div>
+<div class="nx">所有派駐安排需在聘用合約中明確寫清楚：雙重報告的具體職責範圍、衝突時的處理原則、輪調時間表、派駐加給的計算方式和調整機制。</div>
+
+</div>
+
+<div class="page" id="pg4">
+<div class="pt">🏢 三種子公司：底層是否一樣？如何分開思考？</div>
+<div class="ps">底層架構一致，但管控深度完全不同。可以用「同一棟建築的不同樓層」理解——地基（合規底線、財務監控）三種子公司都要有，但蓋多高、配置什麼，依業務相關度決定。</div>
+<div class="sl">一、底層架構：三種子公司共同需要的管控基礎</div>
+<div class="nx">以下這些管控，不論哪種子公司類型，集團均需建立。這是「知道子公司在發生什麼事」的最低要求。</div>
+<div class="g3">
+<div class="cd" style="border-top:3px solid #E24B4A"><div class="cdh" style="color:#791F1F">合規底線（三種子公司均要）</div><div class="cdb"><ul>
+<li><strong>財務紅線：</strong>子公司不得自行對外借款、不得未經核准開戶、不得對外擔保</li>
+<li><strong>道德紅線：</strong>反行賄、利益衝突揭露、關係人交易透明</li>
+<li><strong>法律紅線：</strong>各地基本法律合規（C類投資標的亦需要）</li>
+</ul></div></div>
+<div class="cd" style="border-top:3px solid #BA7517"><div class="cdh" style="color:#633806">財務監控（三種子公司均要，深度不同）</div><div class="cdb"><ul>
+<li><strong>A類：</strong>月報（財務、業務、工安、人事四個區塊）、財務預警指標、季度追蹤</li>
+<li><strong>B類：</strong>月報（財務、業務兩個區塊）、財務預警指標</li>
+<li><strong>C類：</strong>季報（財務回報）、重大事件通報</li>
+</ul></div></div>
+<div class="cd" style="border-top:3px solid #534AB7"><div class="cdh" style="color:#3C3489">重大投資決策（三種子公司均要，門檻不同）</div><div class="cdb"><ul>
+<li><strong>A類：</strong>門檻最低（業務最相關，重要案子需總部把關）</li>
+<li><strong>B類：</strong>中等門檻（業務相關度中等，重大方向需要總部）</li>
+<li><strong>C類：</strong>門檻最高（財務管控型，只有非常大的投資才需要報批）</li>
+</ul></div></div>
+</div>
+<div class="sl">二、A類和B類同為戰略管控型，「範圍較窄」的具體邏輯</div>
+<div class="cx"><strong style="font-weight:600">判斷邏輯：</strong>某個管控維度是否適用於某種子公司，取決於「母公司在這個維度上是否有東西可以輸出或把關」。A類與B類同樣用戰略管控型，但A類多了「技術標準管控」與「工安合規管控」這兩個維度，理由如下：</div>
+<table class="tb">
+<thead><tr>
+<th style="width:22%">管控維度</th>
+<th style="background:#1E2761;width:26%">A類海外子公司</th>
+<th style="background:#534AB7;width:26%">B類國內異業子公司</th>
+<th style="width:26%">B類範圍較窄的具體原因</th>
+</tr></thead><tbody>
+<tr><td class="rh">技術標準管控</td>
+<td><span class="tag tg2">需要，且是核心</span><br>母公司有明確的建廠工程技術標準可以輸出；技術走樣直接影響客戶體驗與集團品牌</td>
+<td><span class="tag" style="background:#eee;color:#888">不適用</span></td>
+<td>B類的業務性質與母公司不同，母公司沒有對應的技術標準可以輸出，因此無從管控，也不需要管控</td></tr>
+<tr><td class="rh">工安合規管控</td>
+<td><span class="tag tg2">需要，且是核心</span><br>建廠工程工安風險高；美國OSHA法規嚴格；工安事故可能追溯至母公司</td>
+<td><span class="tag ta2">依業務性質評估</span><br>若B類業務有工安風險則需要；若屬辦公型業務則不需要</td>
+<td>工安管控是否必要，取決於業務性質，不是子公司類型本身。B類因業務性質通常不具高工安風險，故預設不適用</td></tr>
+<tr><td class="rh">財務結果管控</td>
+<td><span class="tag tg2">需要</span><br>完整月報、財務預警、稽核</td>
+<td><span class="tag tg2">需要</span><br>完整月報、財務預警、稽核</td>
+<td>此維度A類與B類深度相同，均需要</td></tr>
+<tr><td class="rh">重大投資決策</td>
+<td><span class="tag tg2">需要</span></td><td><span class="tag tg2">需要</span></td>
+<td>此維度A類與B類深度相同，均需要</td></tr>
+<tr><td class="rh">高層人事任免</td>
+<td><span class="tag tg2">需要</span><br>GM與關鍵技術主管任免由總部主導</td>
+<td><span class="tag tg2">需要</span><br>GM任免需總部同意；其他職位B類較自主</td>
+<td>均需要，但B類中「技術主管」這個類別不適用（因業務性質不同）</td></tr>
+<tr><td class="rh">七大管控機制</td>
+<td>完整適用全部七項</td>
+<td>核心五項：①議事決策、②指揮反饋、③請示報告、⑤考核評價、⑦監督考察</td>
+<td>④溝通協調（A類之間跨地區技術協作）與⑥預警干預（工安預警）對B類的適用性較低，可簡化</td></tr>
+</tbody></table>
+<div class="sl">三、集團終態方向可以多個嗎？</div>
+<div class="ax"><strong style="font-weight:600">答：可以，但需要分層設定</strong><br><br>
+<strong>集團層面（選一，影響整體框架設計方向）：</strong><br>
+集團整體只有一個定位方向。建議選「台灣總部主導全球工程集團」，即台灣總部持有核心技術與管理能力，各子公司依自身定位執行業務。這個定位決定了台灣總部職等是否作為集團的設計基準。<br><br>
+<strong>子公司層面（可各自獨立設定）：</strong><br>
+各子公司可以有自己的終態目標，且不影響集團整體定位。例如：<br>
+・B類異業子公司若有獨立IPO計畫，可以在治理框架中為B類單獨設計對應IPO標準的子公司治理架構（如：B類的第三層制度需符合上市公司治理要求）<br>
+・C類投資標的的終態由被投資公司自己決定，集團不介入<br><br>
+<strong>注意：</strong>子公司終態方向是「這個子公司自己的發展目標」，集團整體定位是「台灣總部與各子公司之間的關係結構」，兩者是不同層次的問題，不會互相衝突。
+</div>
+<div class="sl">四、三種子公司的HR設計差異對照</div>
+<table class="tb">
+<thead><tr>
+<th style="width:20%">HR設計維度</th>
+<th style="background:#1E2761;width:27%">A類海外子公司</th>
+<th style="background:#534AB7;width:27%">B類國內異業子公司</th>
+<th style="background:#555;width:26%">C類投資標的（未來）</th>
+</tr></thead><tbody>
+<tr><td class="rh">職等框架</td><td>納入集團統一職等框架；職等定義以台灣總部為基準</td><td>納入集團統一職等框架；職等定義以台灣總部為基準</td><td>不納入集團統一職等框架；子公司獨立設計</td></tr>
+<tr><td class="rh">薪酬帶寬</td><td>以台灣總部為基準，依美日市場調查另行設定帶寬；派駐加給另計（住房、子女教育、語言培訓）</td><td>依各自業務性質的市場薪酬設計；不直接對應台灣總部帶寬</td><td>完全獨立設計；集團不介入</td></tr>
+<tr><td class="rh">職涯路徑</td><td>技術專業路徑與管理路徑雙軌；強調跨地區調動能力與海外派駐經驗</td><td>依各自業務性質設計；可視需要設計跨子公司的輪調機制</td><td>完全獨立；集團不介入職涯設計</td></tr>
+<tr><td class="rh">派駐安排</td><td>關鍵職位（財務、技術主管）由母公司派駐；業務執行職位在地招募</td><td>高層人事由母公司派駐或雙方協議；其他職位在地招募</td><td>母公司在董事會有席位；日常人員不派駐</td></tr>
+<tr><td class="rh">跨境勞動法</td><td>最複雜，涉及美日台跨國勞動法；工作許可、社保繳納均需確認</td><td>相對簡單（國內）；依業務需要確認</td><td>不適用</td></tr>
+</tbody></table>
+<div class="g2" style="margin-top:10px">
+<div class="cd"><div class="cdh">Q：職等框架一定要A類、B類統一嗎？</div><div class="cdb">
+A類與B類建議使用統一的職等框架，理由是：<ul>
+<li>集團可以跨主體比較同等職級的人員（同一職等在A類與B類子公司有相同的職責定義）</li>
+<li>人員跨主體調動時有清楚的對應關係</li>
+<li>績效評估標準可以跨主體比較</li>
+</ul>
+但薪酬帶寬不需要統一。A類海外子公司的薪酬帶寬依當地市場，B類依其業務性質的市場，兩者不同，也不需要相同。「框架一致、帶寬各異」是比較合理的設計方式。<br>C類投資標的因業務完全無關，建議不納入集團框架，由子公司獨立設計。
+</div></div>
+<div class="cd"><div class="cdh">Q：C類投資標的（未來可能有）需要提前規劃什麼？</div><div class="cdb">
+即使目前沒有C類投資標的，在建立集團治理框架時，建議預留以下接口：<ul>
+<li><strong>財務監控模板：</strong>設計一個極簡版的財務報告格式，未來C類可以直接使用</li>
+<li><strong>重大投資決策流程：</strong>集團多大的投資需要哪個層級批准，此流程對C類也適用</li>
+<li><strong>董事席位設計：</strong>確認集團在C類投資標的中打算持有什麼程度的董事席位</li>
+<li><strong>職等框架：</strong>職等框架設計時，不強制要求C類納入，保留其獨立設計的空間</li>
+</ul>
+C類投資標的建議在設立前就先確認管控模式，避免設立後補做，代價更高。
+</div></div>
+</div>
+</div>
+<!-- P4 痛點診斷 -->
+<div class="page" id="pg5">
+<div class="pt">痛點診斷：不做集團治理框架的五個代價</div>
+<div class="ps">與「總經理版」頁簽中的「不做的代價」內容一致，此頁提供更詳細的說明，包含三種子公司的差異影響與各代價的緩解時間點。</div>
+<div class="cx">五個代價分兩個層次：前三個是「出事就很嚴重」的高風險，業務順利的時候看不出來，但一旦發生就是存亡級的衝擊；後兩個是「不出事但會積累」的中風險，會讓集團的管理成本越來越高，綜效越來越難實現。</div>
+<div class="g2">
+<div class="cd" style="border-top:3px solid #E24B4A"><div class="cdh"><span class="tag tr2">高風險</span> ① 合規・訴訟・聲譽崩毀</div><div class="cdb">
+海外子公司一旦發生工安事故，在沒有清楚的責任歸屬和制度框架下，訴訟責任可能直接追到台灣母公司。這不是法律細節，而是存亡級的財務風險。<br>
+<span class="tag tg2" style="margin-top:4px;display:inline-block">A 類：最高風險（美國OSHA法規嚴格）</span>
+<span class="tag tp2">B 類：依業務性質評估</span>
+<span class="tag" style="background:#eee;color:#888">C 類：財務合規底線</span><br>
+<span class="tag ta2" style="margin-top:2px;display:inline-block">緩解時間點：第一層制度與工安合規清單完成後（0–3個月）</span>
+</div></div>
+
+<div class="cd" style="border-top:3px solid #E24B4A"><div class="cdh"><span class="tag tr2">高風險</span> ② 資訊黑箱與預警失能</div><div class="cdb">
+沒有統一的報告機制，子公司的財務狀況、人事變動、業務異常，總部都是被動得知。問題累積到爆炸才知道，幾乎沒有挽回空間。<br>
+<span class="tag tg2" style="margin-top:4px;display:inline-block">三種子公司均適用</span><br>
+<span class="tag ta2" style="margin-top:2px;display:inline-block">緩解時間點：月報模板與預警指標建立後（0–3個月）立即開始改善</span>
+</div></div>
+
+<div class="cd" style="border-top:3px solid #E24B4A"><div class="cdh"><span class="tag tr2">高風險</span> ③ 集團戰略斷層與執行偏離</div><div class="cdb">
+各子公司各自為政，技術標準走樣，不同市場的作法相互矛盾。集團花了資源擴張，但品牌一致性和客戶體驗無法保證。<br>
+<span class="tag tg2" style="margin-top:4px;display:inline-block">A 類最嚴重：技術標準走樣直接影響客戶體驗與集團品牌</span>
+<span class="tag tp2">B 類：業務標準化需求較低</span><br>
+<span class="tag ta2" style="margin-top:2px;display:inline-block">緩解時間點：全球職等框架（HR②）與職務職責定義（HR④）完成後（3–6個月）</span>
+</div></div>
+
+<div class="cd" style="border-top:3px solid #BA7517"><div class="cdh"><span class="tag ta2">中風險</span> ④ 總部角色錯位與決策僵化</div><div class="cdb">
+總部用管業務的邏輯管子公司，管太細效率低，放太鬆出事沒人負責。子公司什麼事都要請示，商機流失；什麼事都自己決定，風險失控。<br>
+<span class="tag tg2" style="margin-top:4px;display:inline-block">三種子公司均適用（深度不同）</span><br>
+<span class="tag ta2" style="margin-top:2px;display:inline-block">緩解時間點：授權矩陣文件正式化後（3–6個月）</span>
+</div></div>
+
+<div class="cd" style="border-top:3px solid #BA7517"><div class="cdh"><span class="tag ta2">中風險</span> ⑤ 管理成本增加・集團綜效無從發揮</div><div class="cdb">
+各主體各自採購、各自摸索、各自建系統，集團規模帶來的好處完全無法實現。美國子公司解決了一個施工難題，日本子公司還在重新摸索，知識無法複製。<br>
+<span class="tag tg2" style="margin-top:4px;display:inline-block">主要對 A 類之間：技術知識複製、採購議價</span>
+<span class="tag tp2">B 類：依業務性質評估</span>
+<span class="tag" style="background:#eee;color:#888">C 類：幾乎不適用</span><br>
+<span class="tag ta2" style="margin-top:2px;display:inline-block">緩解時間點：七大管控機制完整運作後（6–12個月）</span>
+</div></div>
+</div>
+</div>
+<div class="page" id="pg6">
+<div class="pt">治理邏輯：五大維度有優先序，不是並列</div>
+<div class="ps">地基先於樑柱，樑柱先於門窗。合規是地基、戰略是樑柱、權責是門窗、資源是裝潢、數據是儀表板。</div>
+<div class="steps">
+<div class="step"><div class="sl2"><div class="sd" style="background:#FCEBEB;color:#791F1F">01</div><div class="sln" style="background:#E24B4A;opacity:.2"></div></div>
+<div class="sr"><div class="srt">合規與頂層治理 <span class="tag tr2">地基・生存前提</span></div>
+<div class="srb">確保集團不因任一子公司的錯誤而承擔連帶責任。三條合規紅線：<ul>
+<li>① 法律紅線：各國工安法規（美國OSHA）、勞工法、建設業許可、環保規定</li>
+<li>② 財務紅線：子公司不得自行對外借款、不得未經核准開戶、不得對外擔保</li>
+<li>③ 道德紅線：反行賄（美國FCPA）、利益衝突揭露、關係人交易透明</li>
+</ul>
+三種子公司的合規重點不同：A類工安合規最重要；B類依業務性質；C類重點在財務透明度。</div></div></div>
+<div class="step"><div class="sl2"><div class="sd" style="background:#EEEDFE;color:#3C3489">02</div><div class="sln" style="background:#534AB7;opacity:.2"></div></div>
+<div class="sr"><div class="srt">戰略對齊 <span class="tag tp2">樑柱・方向一致</span></div>
+<div class="srb">確保各子公司的執行方向與集團總部的目標一致。五個框架層次（缺一不可）：<ul>
+<li>① 戰略框架：集團願景、年度目標、各子公司的分工責任（三種子公司分工不同）</li>
+<li>② 績效框架：全集團統一KPI定義方式（A類強調技術標準和工安；B類強調業務財務；C類只看財務回報）</li>
+<li>③ 行為框架（企業文化）：制度未涵蓋的情況，由文化決定</li>
+<li>④ 溝通框架：月報格式統一、例行會議機制、資訊共享規則</li>
+<li>⑤ 制度框架：將前四個框架固定成文件，人員異動後制度仍然存在</li>
+</ul></div></div></div>
+<div class="step"><div class="sl2"><div class="sd" style="background:#E6F1FB;color:#0C447C">03</div><div class="sln" style="background:#185FA5;opacity:.2"></div></div>
+<div class="sr"><div class="srt">權責決策 <span class="tag" style="background:#E6F1FB;color:#0C447C">門窗・決策效率</span></div>
+<div class="srb">明確「誰能決定什麼、誰要負責」，讓各子公司不需要每件事都請示總部。核心工具：<ul>
+<li>① 授權矩陣：依財務金額、業務類型、人事層級設定各層的決策權限（三種子公司的授權深度不同）</li>
+<li>② RACI框架：R（負責執行）、A（最終核准）、C（需要諮詢）、I（需要知會）</li>
+<li>③ 授權文件正式化：各子公司GM確認簽署，雙方對決策邊界達成共識</li>
+</ul></div></div></div>
+<div class="step"><div class="sl2"><div class="sd" style="background:#E1F5EE;color:#085041">04</div><div class="sln" style="background:#1D9E75;opacity:.2"></div></div>
+<div class="sr"><div class="srt">資源綜效 <span class="tag tg2">裝潢・效率最佳化</span></div>
+<div class="srb">讓集團規模產生「一加一大於二」的效益。四種可共享資源：<ul>
+<li>① 技術知識：每個完工專案產出標準化工程總結報告，存入集團知識庫（主要對A類）</li>
+<li>② 財務資金：建立集團資金池，閒置資金統一調度（三種子公司依情況參與）</li>
+<li>③ 採購議價：合併多個主體的採購量，統一談框架合約（主要對A類之間）</li>
+<li>④ 人才調度：建立集團人才資料庫，技術專家可跨主體支援（主要對A類）</li>
+</ul></div></div></div>
+<div class="step"><div class="sl2"><div class="sd" style="background:#FAEEDA;color:#633806">05</div><div class="sln" style="background:transparent"></div></div>
+<div class="sr"><div class="srt">數據治理（含ERP） <span class="tag ta2">儀表板・即時掌握</span></div>
+<div class="srb">讓總部能即時掌握各子公司的狀況。四個工具層次（有啟動順序）：<ul>
+<li>① 月報機制：統一月報模板，每月固定繳交（立即啟動；三種子公司格式不同）</li>
+<li>② 預警指標：5–8個關鍵指標，觸發即通報，不等月報（立即啟動；三種子公司指標不同）</li>
+<li>③ 財務系統整合：統一會計科目（6–12個月）</li>
+<li>④ ERP導入：三層制度完成後才能選型（ERP是把制度系統化，制度未完成前導入等同空殼）</li>
+</ul></div></div></div>
+</div>
+</div>
+<!-- P6 組織架構 -->
+<div class="page" id="pg7">
+<div class="pt">組織架構與報告線設計（三種子公司的組織設計差異）</div>
+<div class="ps">三種子公司的組織架構設計原則相同，但管控深度與派駐安排不同。</div>
+<div class="cx">報告線的本質：「此人的工作結果由誰評估，誰有權決定其去留與薪酬」。三種子公司的報告線設計邏輯相同，但管控深度不同。</div>
+<div class="g3">
+<div class="cd" style="border-top:3px solid #1E2761"><div class="cdh">台灣總部（戰略決策層）</div><div class="cdb">集團戰略方向、重大投資決策、技術標準制定（A類）、人事任免框架、風險監控、共享資源統籌。總部做的事，是各子公司自行做不到、做不好，或做了會產生衝突的事。</div></div>
+<div class="cd" style="border-top:3px solid #534AB7"><div class="cdh">三類子公司（執行層）</div><div class="cdb">A類：業務執行者，技術和品牌由母公司輸出<br>B類：業務互補者，有一定自主性<br>C類：財務回報者，高度自主<br>三類子公司的GM報告線均為實線向集團執行長，但管控深度不同。</div></div>
+<div class="cd" style="border-top:3px solid #BA7517"><div class="cdh">區域中台（未來，視業務規模）</div><div class="cdb">當A類海外子公司超過2–3家時才需要設立。定位為總部在區域的延伸協調者，負責跨A類子公司的資源調度，不做戰略決策。</div></div>
+</div>
+<div class="sl">三種報告線說明</div>
+<div class="g3">
+<div class="cd" style="border-top:3px solid #1E2761"><div class="cdh">實線（直接管理線）</div><div class="cdb">此人的績效考核、薪資調整、去留，由實線上方的人決定。每個人只能有一條實線。<br>例：各子公司GM的實線上方是集團執行長。</div></div>
+<div class="cd" style="border-top:3px solid #534AB7"><div class="cdh">虛線（職能管控線）</div><div class="cdb">此職能領域的專業標準，由虛線上方的人制定和監督，但日常工作和薪酬不由他決定。<br>例：派駐財務長的虛線上方是集團財務職能。</div></div>
+<div class="cd" style="border-top:3px solid #0F6E56"><div class="cdh">雙重報告（派駐人員）</div><div class="cdb">同時有實線和虛線，派駐人員最常見的設計。<br>例：派駐財務長，實線→子公司GM（日常配合），虛線→集團財務職能（財務標準合規）。必須在聘用合約中寫清楚。</div></div>
+</div>
+<div class="sl">三種子公司的報告線與派駐差異</div>
+<table class="tb"><thead><tr><th>設計維度</th><th>A類海外子公司</th><th>B類國內異業子公司</th><th>C類投資標的（未來）</th></tr></thead><tbody>
+<tr><td class="rh">GM報告線</td><td>實線→集團執行長（直接管）</td><td>實線→集團執行長（直接管）</td><td>董事席位→股東決議（間接管）</td></tr>
+<tr><td class="rh">財務人員</td><td>建議由總部派駐（財務標準由總部掌控）</td><td>視業務規模和需求，可由總部派駐或在地招募</td><td>子公司自行配置；總部只看財報</td></tr>
+<tr><td class="rh">技術主管</td><td>建議由總部派駐技術長（保護技術標準）</td><td>不需要（各自業務技術）</td><td>不適用</td></tr>
+<tr><td class="rh">工安負責人</td><td>在地招募，虛線向集團工安管理職能報告</td><td>依業務性質，高工安風險業務才需設置</td><td>不適用</td></tr>
+</tbody></table>
+<div class="ax">日本特殊考量：日本建築業有強烈的師徒制文化，外部引進的主管在現場的指揮權往往受到挑戰。建議優先採用「本地GM＋派駐技術長」的組合：本地GM負責文化融入與客戶關係；派駐技術長確保技術標準不走樣。</div>
+</div>
+
+<!-- P7 總部五大職能 -->
+<div class="page" id="pg8">
+<div class="pt">總部五大職能：職責・能力等級標準・連動關係</div>
+<div class="ps">盤點分兩層：① 職能成熟度（這個職能做到什麼程度）② 人員素質（見頁簽8）。三種子公司對各職能的需求深度不同，以下標注差異。</div>
+<div class="cx"><strong style="font-weight:600">能力等級四個程度：</strong><br>
+□ 沒有：沒有人做，也沒有工具或流程<br>
+□ 勉強能做：有人做但不系統，靠個人能力，人員異動後無法延續<br>
+□ 可以做：有明確流程和工具，做得出結果，但效率或深度不足<br>
+□ 做得很好：有系統化流程、工具、文件，品質穩定，新人上手也能維持水準<br><br>
+<strong style="font-weight:600">「已滿足集團要求」的判斷標準：</strong>當這個能力的缺失不再是集團治理的瓶頸。每個能力項目下方列有具體的「達到標準」描述，可直接對照盤點。</div>
+<div class="cap">
+<div class="caphd" onclick="tc('c1')"><div class="capico" style="background:#791F1F">①</div><div class="capnm">戰略管理職能 <span class="ph ph1">高優先・立即啟動</span></div><span id="c1a" style="color:#888;font-size:12px">▼</span></div>
+<div class="capbd" id="c1b">
+<div class="crow"><div class="cchd">能力項目 → 達到集團要求的標準（有/無的判斷依據）→ 重要性 → 連動 → 盤點</div></div>
+<div class="crow"><div class="cc"><div class="cn">集團目標分解與追蹤</div><div class="cs">將集團目標拆解給各子公司，每季追蹤達標情況</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>每年12月前完成目標拆解文件，每季有正式進度追蹤報告，偏差能在2週內提出改善計畫<br><strong>三種子公司差異：</strong>A類設技術標準和工安KPI；B類設業務財務KPI；C類只設財務回報KPI</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">重大投資決策能力</div><div class="cs">決定哪些案子要接、多大的資本支出需要總部核准</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>有明確的審批門檻和標準審批表格，超過門檻的案子有完整的決策流程<br><strong>三種子公司差異：</strong>A類門檻最低；B類中等；C類門檻最高</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">高層人事管理</div><div class="cs">各子公司GM任免、派駐計畫設計</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>GM任免有標準評估流程，派駐計畫至少提前3個月規劃，每位GM有至少1個接班候選人<br><strong>三種子公司差異：</strong>A類最深度介入；B類需總部同意；C類只有董事席位</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+</div></div>
+<div class="cap">
+<div class="caphd" onclick="tc('c2')"><div class="capico" style="background:#0F6E56">②</div><div class="capnm">財務監控職能 <span class="ph ph1">高優先・立即啟動</span></div><span id="c2a" style="color:#888;font-size:12px">▼</span></div>
+<div class="capbd" id="c2b">
+<div class="crow"><div class="cchd">能力項目 → 達到集團要求的標準 → 重要性 → 連動 → 盤點</div></div>
+<div class="crow"><div class="cc"><div class="cn">財務合規監控</div><div class="cs">各子公司財務操作是否符合集團標準，異常及時發現</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>有預警指標清單，觸發時48小時內通報GMO；月報財務區塊有標準格式和審閱流程</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">集團財務合併報表</div><div class="cs">將各子公司財務數據合併，讓總部掌握整體狀況</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>每月能產出集團合併財報，各子公司財務科目統一<br><strong>三種子公司差異：</strong>A類與B類完整納入合併財報；C類依持股比例和會計準則決定</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">內部稽核</div><div class="cs">定期查核各子公司的財務和流程，主動發現問題</div></div><div class="cc"><span class="ph ph2">中・6個月內</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>每年至少一次內部稽核；稽核報告有標準格式（缺失清單、改善計畫、追蹤機制）<br><strong>三種子公司差異：</strong>A類：每年稽核；B類：每年稽核；C類：依持股比例決定</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+</div></div>
+<div class="cap">
+<div class="caphd" onclick="tc('c3')"><div class="capico" style="background:#534AB7">③</div><div class="capnm">人力資源職能 <span class="ph ph1">高優先・部分立即啟動</span></div><span id="c3a" style="color:#888;font-size:12px">▼</span></div>
+<div class="capbd" id="c3b">
+<div class="crow"><div class="cchd">能力項目 → 達到集團要求的標準 → 重要性 → 連動 → 盤點</div></div>
+<div class="crow"><div class="cc"><div class="cn">全球組織設計（HR①）</div><div class="cs">三種子公司的報告線設計、派駐安排、組織層次</div></div><div class="cc"><span class="ph ph1">高・立即</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>有清楚的集團組織架構圖，三種子公司的定位和報告線明確標注；派駐安排有書面規則</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">薪酬與留才機制（HR⑤）</div><div class="cs">三種子公司分開設計薪酬帶寬和留才措施</div></div><div class="cc"><span class="ph ph2">中・D3確認後</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>三種子公司各自有薪酬結構文件和留才方案；A類有派駐加給設計；B類有業務性質對應的薪酬設計<br><strong>三種子公司差異：</strong>薪酬帶寬和留才工具完全不同，不能統一設計</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">跨境勞動法合規（HR⑦）</div><div class="cs">各地勞動法規遵循、工作許可、社保繳納</div></div><div class="cc"><span class="ph ph1">高・立即啟動</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>有各地主要勞動法規清單；工作許可、簽證狀況更新到位；社保繳納符合當地規定<br><strong>三種子公司差異：</strong>A類（海外）最複雜；B類（國內）相對簡單；C類不適用</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+</div></div>
+<div class="cap">
+<div class="caphd" onclick="tc('c4')"><div class="capico" style="background:#BA7517">④</div><div class="capnm">經營協調職能 <span class="ph ph2">中優先・6個月內</span></div><span id="c4a" style="color:#888;font-size:12px">▼</span></div>
+<div class="capbd" id="c4b">
+<div class="crow"><div class="cchd">能力項目 → 達到集團要求的標準 → 重要性 → 連動 → 盤點</div></div>
+<div class="crow"><div class="cc"><div class="cn">技術標準管理與知識庫</div><div class="cs">制定施工標準，將每個完工專案的成功作法文件化</div></div><div class="cc"><span class="ph ph1">高・立即（A類）</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>每個完工專案有標準化工程總結報告，存入集團知識庫；所有A類子公司可查閱<br><strong>三種子公司差異：</strong>A類最重要；B類依業務性質評估；C類不適用</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+<div class="crow"><div class="cc"><div class="cn">工安環保管理</div><div class="cs">各地工安標準落地，工安事故通報機制</div></div><div class="cc"><span class="ph ph1">高・立即（A類）</span></div><div class="cc"><div style="font-size:10px;color:#555"><strong>達到標準：</strong>各地工安手冊完成並發布；工安事故24小時內通報機制建立；每季工安巡查執行<br><strong>三種子公司差異：</strong>A類最重要；B類依業務性質；C類不適用</div></div><div class="cc" style="font-size:10px">□沒有<br>□勉強能做<br>□可以做<br>□做得很好</div></div>
+</div></div>
+<div class="cx">★ 提醒：職能成熟度盤點完成後，請進一步做「人員素質盤點」（頁簽8）——確認負責這個職能的人是否具備「總部思維」，而不只是「業務思維」。</div>
+</div>
+
+<!-- P8 總部人員能力 -->
+<div class="page" id="pg9">
+<div class="pt">總部人員能力需求：總部思維・GMO硬實力軟素質・各職能人員需求</div>
+<div class="ps">職能成熟度說明「做到什麼程度算合格」，本頁說明「具備什麼能力的人才能做到那個程度」。兩者加在一起，才是完整的能力盤點。</div>
+<div class="sl">一、總部思維 vs 業務思維</div>
+<div class="cx"><strong style="font-weight:600">總部角色的根本邏輯：</strong>總部的職責不是擴大版的業務部門，而是讓整個集團比各自單打獨鬥更有價值的機構。以業務思維負責總部職能的人，往往以管理業務的邏輯管理治理——介入過深（越俎代庖）或管不到重點（看不見集團層面的風險）。</div>
+<div class="g2">
+<div class="cd"><div class="cdh" style="color:#791F1F">業務思維（不適合擔任總部職能負責人）</div><div class="cdb" style="color:#791F1F">
+・「這個案子應該這樣做」（關注個案）<br>
+・「每個情況都不一樣，無法標準化」<br>
+・遇到問題：直接給解決方案<br>
+・評估決策：從業務出發<br>
+・關注：個案結果，不關注系統建立</div></div>
+<div class="cd"><div class="cdh" style="color:#085041">總部思維（需要培養和確認）</div><div class="cdb" style="color:#085041">
+・「這類案子應該建立什麼決策流程」（關注系統）<br>
+・「如何將成功的作法標準化，讓其他人也能複製」<br>
+・遇到問題：設計框架，讓框架處理問題<br>
+・評估決策：從整個集團的利益出發<br>
+・關注：系統和制度的建立</div></div>
+</div>
+<div class="sl">二、GMO（集團管理辦公室）統籌人員的能力需求</div>
+<div class="abil">
+<div class="abil-h" style="background:#1E2761">GMO統籌人員（執行長直屬，1–3人）</div>
+<div class="abil-b">
+<div class="abil-section"><h4>硬實力（具體可評估的知識和技能）</h4>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">集團治理知識：了解授權矩陣、三層制度、七大管控機制的設計邏輯，以及三種子公司用不同管控模式的理由</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">必要</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">財務閱讀能力：能看懂財務報表，知道哪些指標代表什麼意義，能發現異常（不需要是會計師，但不能是財務盲）</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">必要</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">流程設計能力：能將「大家現在怎麼做」轉化為「標準化的SOP和審批流程」，並且能寫成文件</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">必要</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">專案管理能力：能同時追蹤多個工作流，設定必做/應做/可後做的優先序，確保按時程推進</div><div class="abil-lvl" style="background:#FAEEDA;color:#633806">重要</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">工程業基礎知識：了解建廠工程業的基本概念（不需要是工程師，但要能理解A類子公司在做什麼）</div><div class="abil-lvl" style="background:#FAEEDA;color:#633806">重要</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#1E2761"></div><div class="abil-txt">外語能力：英文（A類美國子公司溝通）；日文（A類日本子公司溝通，至少能讀文件）</div><div class="abil-lvl" style="background:#FAEEDA;color:#633806">重要</div></div>
+</div>
+<div class="abil-section"><h4>軟素質（不容易在簡歷上看出來，需要在工作中觀察）</h4>
+<div class="abil-row"><div class="abil-dot" style="background:#534AB7"></div><div class="abil-txt"><strong style="font-weight:600">系統性思考（核心）：</strong>看到一個問題，不只是解決這個問題，而是問「這類問題應該建立什麼機制來預防和處理」</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">核心</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#534AB7"></div><div class="abil-txt"><strong style="font-weight:600">影響力推動（核心）：</strong>GMO初期可能沒有直接管人的職位，但要能推動各部門和三種子公司GM配合，靠邏輯說服和關係建立，不是命令</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">核心</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#534AB7"></div><div class="abil-txt"><strong style="font-weight:600">容忍模糊（核心）：</strong>治理建設初期很多事情沒有標準答案，需要能在不完整的資訊下做出判斷，並在執行中調整</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">核心</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#534AB7"></div><div class="abil-txt"><strong style="font-weight:600">誠信與謹慎（核心）：</strong>GMO會接觸到大量敏感的財務、人事、法律資訊，個人操守和保密意識至關重要</div><div class="abil-lvl" style="background:#FCEBEB;color:#791F1F">核心</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#534AB7"></div><div class="abil-txt"><strong style="font-weight:600">跨文化敏感度：</strong>理解日本師徒制文化、美國直接溝通文化，知道如何調整溝通方式</div><div class="abil-lvl" style="background:#FAEEDA;color:#633806">重要</div></div>
+</div>
+<div class="abil-section"><h4>評估時的注意事項</h4>
+<div class="abil-row"><div class="abil-dot" style="background:#791F1F"></div><div class="abil-txt">描述過去工作時，都是「做了什麼案子」，很少提「建立了什麼機制」→可能仍是業務思維</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#791F1F"></div><div class="abil-txt">遇到問題的反應是直接給解決方案，而不是先問「為什麼會有這個問題，如何設計讓它不會再發生」</div></div>
+<div class="abil-row"><div class="abil-dot" style="background:#791F1F"></div><div class="abil-txt">認為「子公司那邊的人太難溝通」而不是「需要建立更好的溝通和管控機制」→可能缺乏推動力和總部思維</div></div>
+</div>
+</div></div>
+</div>
+<!-- P9 制度框架體系 -->
+<div class="page" id="pg10">
+<div class="pt">集團制度框架體系：三層制度，有上下依存關係</div>
+<div class="ps">三層制度有上下依存關係——上層制度是下層制度的依據，下層制度是上層制度的細化。先有原則，再有規則，再有細則。</div>
+<div class="fw" style="background:#E8EBF7;border:1px solid #1E2761">
+<div class="fwh" style="background:#1E2761"><div class="fwn" style="background:white;color:#1E2761">一</div><div style="flex:1;color:white"><div style="font-size:12px;font-weight:600">第一層：集團治理框架文件 <span class="tag" style="background:#CADCFC;color:#1E2761">立即啟動・三種子公司均適用</span></div><div style="font-size:10px;opacity:.85;margin-top:1px">集團的基本原則——說清楚集團是什麼、相信什麼、不能做什麼，以及整個制度體系的架構</div></div></div>
+<div class="fwb" style="color:#3C3489">包含的內容：<ul>
+<li>① 集團治理原則：總部與三種子公司的關係（定位不同，原則相同）、決策機制、各層次的定位和權限</li>
+<li>② 合規底線：三條紅線（法律、財務、道德），以及違反的後果（三種子公司均適用）</li>
+<li>③ 集團文化與行為準則：制度未涵蓋的情況，由文化決定</li>
+<li>④ 制度體系說明：解釋整個制度體系的架構和使用方式</li>
+</ul>
+重要性：這是所有其他制度的依據，所有員工均須了解並簽署確認。</div>
+</div>
+<div class="fw" style="background:#E1F5EE;border:1px solid #0F6E56">
+<div class="fwh" style="background:#0F6E56"><div class="fwn" style="background:white;color:#0F6E56">二</div><div style="flex:1;color:white"><div style="font-size:12px;font-weight:600">第二層：各職能治理規則 <span class="tag" style="background:#C8EFE4;color:#085041">6–12個月</span></div><div style="font-size:10px;opacity:.85;margin-top:1px">說清楚總部的每個職能管什麼、怎麼管、管到哪裡為止；三種子公司的管控深度不同</div></div></div>
+<div class="fwb" style="color:#085041">每個職能的規則都包含三個問題的答案：<ul>
+<li>① 這個職能的總部角色是什麼？（制定標準？監督？提供服務？）</li>
+<li>② 這個職能管哪些事？管到什麼程度？（三種子公司分開定義）</li>
+<li>③ 各子公司這個職能的負責人，與總部的關係是什麼？（實線還是虛線？）</li>
+</ul>
+舉例：HR職能治理規則需要說清楚A類、B類子公司各自的HR管控深度不同，C類不適用集團HR職能管控。<br>
+★ 第二層制度完成，第三層才能制定</div>
+</div>
+<div class="fw" style="background:#FAEEDA;border:1px solid #BA7517">
+<div class="fwh" style="background:#BA7517"><div class="fwn" style="background:white;color:#BA7517">三</div><div style="flex:1;color:white"><div style="font-size:12px;font-weight:600">第三層：各主體的運營制度與規則 <span class="tag" style="background:#EED9B5;color:#633806">6–18個月</span></div><div style="font-size:10px;opacity:.85;margin-top:1px">各子公司執行業務時的具體操作規則；三種子公司的細則內容差異很大</div></div></div>
+<div class="fwb" style="color:#633806">包含兩大類：<ul>
+<li>① 戰略和運營制度：計畫考核辦法、安全生產規範、重大項目管理、採購管理、財務核算準則<br>→ A類與B類適用；C類不適用</li>
+<li>② 治理和風控制度：子公司董事會運作規範、股東決議機制、章程修訂程序<br>→ A類與B類適用；C類依持股比例和實際情況</li>
+</ul>
+★ 三層制度全部完成，ERP才能選型（ERP是把「已定義好的制度」系統化，制度未完成前導入等同空殼）</div>
+</div>
+<div class="cx">三層制度的邏輯：第一層定原則和底線（三種子公司相同）→ 第二層定各職能的管控範圍（三種子公司深度不同）→ 第三層定各主體的具體操作細則（三種子公司內容完全不同）。</div>
+</div>
+<!-- P10 七大管控機制 -->
+<div class="page" id="pg11">
+<div class="pt">集團七大管控機制：形成閉環，附具體場景與各機制輸出物</div>
+<div class="ps">七個機制形成一個閉環——問題被發現後，回到「議事決策」進行處理和改善。三種子公司適用機制的深度不同。</div>
+<div class="nx">三種子公司的機制適用差異：A類（完整適用所有七大機制）・B類（核心五項機制適用）・C類（只需要①議事決策和②指揮反饋）</div>
+<div class="mf">
+<div class="mb" style="background:#1E2761" onclick="tm('m1')"><div class="mbn">①</div><div class="mbt">議事決策</div><div class="mbs">重大事項如何決定</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#534AB7" onclick="tm('m2')"><div class="mbn">②</div><div class="mbt">指揮反饋</div><div class="mbs">決定如何傳達和回饋</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#0F6E56" onclick="tm('m3')"><div class="mbn">③</div><div class="mbt">請示報告</div><div class="mbs">哪些情況需要請示</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#0F6E56" onclick="tm('m4')"><div class="mbn">④</div><div class="mbt">溝通協調</div><div class="mbs">跨單位如何配合</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#BA7517" onclick="tm('m5')"><div class="mbn">⑤</div><div class="mbt">考核評價</div><div class="mbs">結果如何評量</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#BA7517" onclick="tm('m6')"><div class="mbn">⑥</div><div class="mbt">預警干預</div><div class="mbs">問題提前發現</div></div>
+<div class="ma">→</div>
+<div class="mb" style="background:#791F1F" onclick="tm('m7')"><div class="mbn">⑦</div><div class="mbt">監督考察</div><div class="mbs">主動查核</div></div>
+<div style="display:flex;align-items:center;padding:5px 9px;border-radius:6px;background:#f5f3ee;font-size:10px;color:#888;line-height:1.4;white-space:nowrap">↩ 發現問題<br>回到①</div>
+</div>
+<div style="font-size:10px;color:#999;margin-bottom:6px">點擊上方任意機制查看具體場景說明與輸出物</div>
+<div class="md" id="m1"><h4>① 議事決策機制</h4>
+<p><strong>三種子公司的重大事項定義不同：</strong></p><ul>
+<li>A類：超過授權矩陣金額的支出、新市場進入、GM任免、重大訴訟、工安事故處置</li>
+<li>B類：超過授權矩陣金額的支出、重大業務調整、高層人事任免</li>
+<li>C類：超過一定金額的重大投資、董事席位決策</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>重大事項審批記錄（每次決議留書面記錄）</li>
+<li>決議文件（決策依據、決策者、決策日期、後續行動）</li>
+<li>授權矩陣文件（定期更新版）</li>
+</ul></div>
+<div class="md" id="m2"><h4>② 指揮反饋機制</h4><ul>
+<li>每年初：集團目標→拆解成各子公司的年度KPI目標（三種子公司KPI定義不同）→各GM確認</li>
+<li>每季：各子公司提交「季度執行進度報告」（目標 vs 實際 vs 偏差原因 vs 改善計畫）</li>
+<li>每月：月報（A類：四個區塊；B類：財務和業務；C類：財務季報）</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>年度目標分解文件（各子公司KPI確認版）</li>
+<li>季度進度追蹤報告（含偏差分析和改善計畫）</li>
+<li>月報（統一格式）</li>
+</ul></div>
+<div class="md" id="m3"><h4>③ 請示報告機制</h4>
+<p><strong>需要「請示」的場景（事前）：</strong></p><ul>
+<li>要簽超過授權金額的合約</li>
+<li>要調整報價底線（低於集團設定的底線）</li>
+<li>A類：要調整技術標準或工安流程</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>請示申請表（事項說明、金額、建議方案、風險評估）</li>
+<li>月報（事後知會的事項記錄）</li>
+</ul></div>
+<div class="md" id="m4"><h4>④ 溝通協調機制</h4><ul>
+<li>A類之間：客戶同時在美日兩地有建廠需求，如何協調主約商、費用分配→GMO居中協調</li>
+<li>A類知識共享：美國子公司的施工方法解決了難題，日本子公司如何快速學習→知識庫查閱機制</li>
+<li>A類與B類資源調度：是否有人才跨子公司支援的需求→需要集團人才資料庫</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>跨主體協作記錄</li>
+<li>最佳實踐分享會紀錄（每年一次，A類GM出席）</li>
+</ul></div>
+<div class="md" id="m5"><h4>⑤ 考核評價機制</h4>
+<p><strong>三種子公司的考核維度不同：</strong></p><ul>
+<li>A類：財務（40%）、技術標準和工安（30%）、業務（20%）、人才發展（10%）</li>
+<li>B類：財務（50%）、業務（30%）、人才發展（20%）</li>
+<li>C類：財務回報（80%）、業務策略執行（20%）</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>年度績效評估報告（各GM及核心團隊）</li>
+<li>薪酬調整記錄</li>
+<li>接班計畫更新記錄</li>
+</ul></div>
+<div class="md" id="m6"><h4>⑥ 預警干預機制</h4>
+<p><strong>三種子公司的預警指標不同：</strong></p><ul>
+<li>A類：毛利率偏差、任何等級的工安事故（立即通報）、A級客戶合約終止、GM辭職</li>
+<li>B類：毛利率偏差、業務量重大下滑、主要客戶流失、GM辭職</li>
+<li>C類：財務回報未達目標、被投資公司重大負面事件</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>預警指標清單（三種子公司分開設計）</li>
+<li>預警通報記錄</li>
+<li>原因分析＋改善計畫文件</li>
+</ul></div>
+<div class="md" id="m7"><h4>⑦ 監督考察機制</h4><ul>
+<li>A類：每年至少一次內部稽核（財務、流程、工安、技術標準）；每季工安巡查</li>
+<li>B類：每年至少一次內部稽核（財務、流程）；工安依業務性質決定頻率</li>
+<li>C類：依持股比例決定稽核介入深度，通常只要求財務審計</li>
+</ul>
+<p style="margin-top:8px"><strong>★ 輸出物：</strong></p><ul>
+<li>年度稽核報告（缺失清單、改善計畫、追蹤）</li>
+<li>工安巡查記錄（A類）</li>
+</ul></div>
+</div>
+<!-- P11 五大決策 含管控模式比較矩陣 -->
+<div class="page" id="pg12">
+<div class="pt">集團五大關鍵決策：詳細選項分析（D2含管控模式三種比較矩陣）</div>
+<div class="ps">D1–D5有先後順序，前一個決策的選擇影響後一個的選項範圍。D2管控模式新增完整的三種模式比較矩陣，幫助三種子公司各自做選擇。</div>
+<div class="dcards">
+<div class="dcard">
+<div class="dcardh"><div class="dnum">D1</div><div><div class="dt">集團整體定位方向</div><div class="ds">決定整個治理架構的設計哲學；子公司個別的發展終態（如B類IPO）可以獨立設定，不影響集團整體定位</div></div></div>
+<div class="dcardb">
+<div class="dopt" style="background:#E1F5EE;border:2px solid #1D9E75"><strong style="font-weight:600">★ 台灣總部主導全球工程集團（建議）</strong><br>台灣總部持有核心技術與管理能力，各子公司依自身定位執行業務，技術標準由總部統一定義。<br><strong style="font-weight:600;color:#085041">對HR的影響：</strong>台灣總部職等是整個集團的設計基準，A類與B類子公司的職等以此為參照，薪酬帶寬依各地市場另行設定</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">區域在地化聯盟</strong><br>各地逐步發展獨立的在地品牌，母公司轉型為資本控股角色。<br><strong style="font-weight:600;color:#791F1F">問題：</strong>技術尚在輸出階段，現在選此方向會導致品質控制失去，適合5年以上的長期目標。</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">準IPO架構</strong><br>治理架構從一開始符合上市標準。<br><strong style="font-weight:600;color:#633806">注意：</strong>若B類異業子公司有獨立IPO計畫，可以為B類單獨設計對應IPO標準的子公司治理架構，這是子公司層面的目標，不影響集團整體定位的選擇。是否有集團整體上市時程規劃，需要確認。</div>
+</div></div>
+<div class="dcard">
+<div class="dcardh"><div class="dnum">D2</div><div><div class="dt">各子公司管控模式確認（★含三種模式比較矩陣）</div><div class="ds">最核心的決策。三種子公司分別確認，不統一套用一種模式。</div></div></div>
+<div style="padding:10px 13px;background:#fafafa">
+<div style="font-size:11px;font-weight:600;color:#1E2761;margin-bottom:8px">三種管控模式比較矩陣</div>
+<table class="tb" style="margin-bottom:12px">
+<thead><tr><th>比較維度</th><th style="background:#555;color:#fff">財務管控型</th><th style="background:#0F6E56;color:#fff">★ 戰略管控型</th><th style="background:#854F0B;color:#fff">運營管控型（初期過渡）</th></tr></thead>
+<tbody>
+<tr><td class="rh">總部管什麼</td><td>只看財務報告；不介入業務和管理</td><td>財務結果、技術標準（A類）、重大投資、人事任免、風險預警</td><td>介入各職能日常管理；派駐全程把關；大多數事情需要報批</td></tr>
+<tr><td class="rh">子公司自主程度</td><td>高度自主；母公司幾乎不介入業務</td><td>在框架內自主日常決策；超出授權才請示</td><td>自主程度較低；大多數決策需要請示</td></tr>
+<tr><td class="rh">授權矩陣設計</td><td>極寬鬆或不設；只有重大財務決策才需要報批</td><td>中度授權；清楚定義自主和請示的邊界</td><td>授權範圍較窄；邊界設定較嚴格</td></tr>
+<tr><td class="rh">制度設計重心</td><td>財務報告和合規；不需要操作制度</td><td>目標管理、結果監控；不管具體操作方式</td><td>流程管控、派駐介入；管到具體操作細節</td></tr>
+<tr><td class="rh">HR職等設計</td><td>不需要統一；子公司獨立設計</td><td>職等框架一致；薪酬帶寬各異</td><td>職等框架一致；薪酬帶寬各異；需要更多派駐相關設計</td></tr>
+<tr><td class="rh">七大管控機制</td><td>只需要①議事決策和②指揮反饋（財務）</td><td>完整適用七大機制；各機制均有輸出物</td><td>完整適用七大機制；各機制更頻繁</td></tr>
+<tr><td class="rh">適合情境</td><td>業務完全不相關的投資標的（C類子公司）</td><td>業務相關度高、具一定成熟度的子公司（A類達標後、B類）</td><td>新設或尚未穩定的核心業務子公司（A類新設初期）</td></tr>
+</tbody></table>
+<div style="font-size:11px;font-weight:600;color:#1E2761;margin-bottom:6px">三種子公司各自應該用哪種管控模式？</div>
+<div class="g3">
+<div style="background:#E1F5EE;border-radius:6px;padding:8px;font-size:10px;line-height:1.6;border:1px solid #0F6E56">
+<strong style="font-weight:600;color:#085041">A類｜海外子公司</strong><br>
+現在（新設初期）：運營管控型（過渡）<br>
+目標（達到升級條件後）：戰略管控型<br><br>
+升級條件：連續2年達成預算、GM和核心團隊穩定、稽核無重大缺失、總部可即時看到數據
+</div>
+<div style="background:#EEEDFE;border-radius:6px;padding:8px;font-size:10px;line-height:1.6;border:1px solid #534AB7">
+<strong style="font-weight:600;color:#3C3489">B類｜國內異業子公司</strong><br>
+建議：戰略管控型（範圍較窄）<br>
+管控範圍：財務結果、重大投資、高層人事<br>
+不適用的管控維度：技術標準管控、工安合規管控<br>
+原因：B類業務性質不同，母公司沒有對應技術標準可以輸出（見頁簽2說明）<br><br>
+若B類有獨立IPO計畫，可在子公司層面設計對應的治理架構
+</div>
+<div style="background:#F5F5F5;border-radius:6px;padding:8px;font-size:10px;line-height:1.6;border:1px solid #888">
+<strong style="font-weight:600;color:#555">C類｜投資標的（未來）</strong><br>
+建議：財務管控型<br>
+管控範圍：財務報告、重大投資決策、董事席位<br>
+不需要：技術標準、工安、七大機制中的大部分<br><br>
+不納入集團統一職等框架；薪酬由子公司獨立設計
+</div>
+</div>
+</div></div>
+<div class="dcard">
+<div class="dcardh"><div class="dnum">D3</div><div><div class="dt">GM角色定位</div><div class="ds">GM的定位決定授權深度、薪酬結構、總部管控方式。三種子公司可以選擇不同模式。</div></div></div>
+<div class="dcardb">
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">A｜派駐型技術主管（A類初期建議）</strong><br>由台灣派遣信任的人選，技術傳承最直接，方向對齊最容易。<br><strong style="font-weight:600;color:#791F1F">風險：</strong>語言文化障礙、輪調造成管理斷層<br><strong style="font-weight:600">薪酬：</strong>台灣本薪＋海外派駐加給</div>
+<div class="dopt" style="background:#E1F5EE;border:2px solid #1D9E75"><strong style="font-weight:600">★ B｜本地GM＋派駐技術長（日本首選）</strong><br>本地GM負責文化融入、客戶關係；派駐技術長負責技術標準傳承和品質把關。<br><strong style="font-weight:600;color:#085041">適合日本的原因：</strong>師徒制文化下，外部引進的主管在現場指揮權受挑戰。<br><strong style="font-weight:600">注意：</strong>兩人的職責邊界必須非常清楚，否則容易產生內部矛盾。</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">C｜B類子公司的GM定位</strong><br>B類業務性質不同，GM通常是業務型而非技術型，重點在業務策略和財務表現。由母公司派駐或雙方協議擔任。</div>
+</div></div>
+<div class="dcard">
+<div class="dcardh"><div class="dnum">D4</div><div><div class="dt">總部資源投入（GMO設立）</div><div class="ds">治理框架的建立需要有人統籌推進。若無法投入資源，框架停留在文件層面，無法落地。</div></div></div>
+<div class="dcardb">
+<div class="dopt" style="background:#E1F5EE;border:2px solid #1D9E75"><strong style="font-weight:600">★ 輕量型（現在的起點）</strong><br>1人兼任GMO，外部顧問補位<br><strong style="font-weight:600">可以推進的工作：</strong>月報模板、第一層制度、HR①③啟動<br><strong style="font-weight:600;color:#791F1F">前提：</strong>此人必須有執行長的直接授權，否則無法推動各部門配合</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">標準型（6個月內目標）</strong><br>2–3人專職，執行長直屬<br>可以推進的工作：完整七大機制、第二層制度、HR②④⑤</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">強化型（準IPO時才考慮）</strong><br>5–8人完整職能。目前不需要考慮。</div>
+</div></div>
+<div class="dcard">
+<div class="dcardh"><div class="dnum">D5</div><div><div class="dt">啟動優先序</div><div class="ds">決策確認後，必須立即指定每個行動的執行負責人；有決策沒有負責人，等同於沒有決策。</div></div></div>
+<div class="dcardb">
+<div class="dopt" style="background:#FCEBEB;border:2px solid #E24B4A"><strong style="font-weight:600">★ 第一步：確認三種子公司各自的管控模式</strong><br>不需要等待其他決策，現在就可以做。管控模式不同，後面所有制度工具的設計方式都不一樣。</div>
+<div class="dopt" style="background:#E1F5EE;border:2px solid #1D9E75"><strong style="font-weight:600">★ A類海外子公司優先推進</strong><br>因為HR職等設計的主要依據在A類；A類的工安風險最高，需要優先建立合規框架。月報模板先針對A類試跑。</div>
+<div class="dopt" style="background:#fafafa;border:1px solid #eee"><strong style="font-weight:600">B類和C類依資源決定時序</strong><br>B類：A類框架建立後，B類的管控框架可以適度簡化套用<br>C類（未來）：在設立前就先確認好管控模式，避免設立後才補</div>
+</div></div>
+</div>
+</div>
+<!-- P12 HR人才專項（八大） -->
+<div class="page" id="pg13">
+<div class="pt">HR人才專項全盤思路：八大核心專項（必做/應做/可後做・重要性・三種子公司影響）</div>
+<div class="ps">HR八大核心專項有嚴格依賴順序，前一個的輸出是後一個的設計前提。每個專項標注對三種子公司的影響差異，以及「包含內容」、「重要程度」、「一定要做/建議做/預留接口」分類。</div>
+<div class="cx">依賴鏈：①全球組織設計→②全球職等框架→③台灣職等設計→④職務職責定義→⑤薪酬與留才措施→⑥職能建置與人才發展。⑦跨境勞動法合規是獨立的合規義務，立即啟動。⑧雇主品牌在⑤完成後才有意義。</div>
+<div class="spc-hd" style="background:#FCEBEB;color:#791F1F">必做（前提型）——沒有這些，HR設計沒有基礎</div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">①</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">全球組織設計 <span style="color:#F59E0B">★★★★★</span> <span class="tag tg2">立即啟動</span></div>
+<div style="font-size:10px;color:#888">依賴條件：無。這是所有其他HR專項的基礎，也是整個集團治理架構設計的起點。</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>定義總部與三種子公司各自的定位關係、匯報關係（實線/虛線）</li>
+<li>三種子公司的派駐安排原則（A類多派駐；B類少量；C類幾乎無派駐）</li>
+<li>繪製集團組織架構圖（清楚標注三種子公司的定位和報告線型態）</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>沒有清楚的組織設計，每個人都不知道自己向誰報告、誰有權做什麼決定，後面的所有HR設計都失去基礎。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>組織設計需要清楚區分A類、B類、C類的定位，三種子公司的組織深度和報告線不同。
+</div></div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#1D9E75;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">③</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">台灣總部職等設計 <span style="color:#F59E0B">★★★★★</span> <span class="tag tg2">立即啟動（台灣先做）</span> <span class="tag tr2">此次任務的核心輸出</span></div>
+<div style="font-size:10px;color:#888">依賴條件：無（台灣先做，不等全球框架）</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>台灣總部現有職位盤點（先確認有哪些人在做什麼）</li>
+<li>職位分類（總部職能類、技術業務類、行政類）</li>
+<li>職等層次設定（管理職/專業職雙軌制；具體職等數量待討論確認）</li>
+<li>初始版本暫不含薪資數字（等全球職等框架完成後再填入帶寬）</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>台灣總部職等是整個集團的「基準」，沒有它，全球職等框架（HR②）沒有起點，A類與B類子公司的職等無法對應，薪酬設計（HR⑤）沒有基準。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>台灣總部職等是A類與B類的設計基準。C類不需要對應台灣職等，完全獨立設計。
+</div></div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#791F1F;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">⑦</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">跨境勞動法合規 <span style="color:#F59E0B">★★★★★</span> <span class="tag tg2">立即啟動（獨立合規義務）</span></div>
+<div style="font-size:10px;color:#888">依賴條件：無。這是獨立的合規義務，不需要等其他HR專項完成。</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>各地主要勞動法規清單（美國FLSA、OSHA；日本労働基準法）</li>
+<li>工作許可、簽證管理（派駐人員的合法工作授權狀況）</li>
+<li>社保、退休金繳納合規（各地的社會保險繳納要求）</li>
+<li>離職和資遣的法定程序（各地的解僱要求）</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>勞工法違規的罰款和訴訟風險很高，特別是美國（集體訴訟、勞工仲裁）。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>A類（海外）最複雜，涉及美日台跨國勞動法；B類（國內）相對簡單；C類不適用。
+</div></div>
+<div class="spc-hd" style="background:#FAEEDA;color:#633806;margin-top:12px">應做（支撐型）——做了讓HR設計完整，不做留有漏洞</div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#1E2761;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">②</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">全球職等框架 <span style="color:#F59E0B">★★★★</span> <span class="tag tn2">D2確認後啟動</span></div>
+<div style="font-size:10px;color:#888">依賴條件：①完成・D2管控模式確認</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>全集團統一的職等框架（具體職等數量待討論確認）；各職等的職責全集團統一定義（「框架一致」）</li>
+<li>各地薪酬帶寬框架（台灣為基準；A類美日依市場調查；B類依各自業務性質）（「帶寬各異」）</li>
+<li>管理職/專業技術職雙軌制（技術人員可以走技術路徑，不需要轉管理職才能升職）</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>沒有統一的職等框架，薪酬設計（⑤）沒有依據，美日台三地的職位也沒有辦法橫向比較。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>A類與B類都納入統一職等框架，但薪酬帶寬分開設計（「框架一致、帶寬各異」）；C類完全獨立，不納入。
+</div></div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#1E2761;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">④</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">職務層級與職責定義（JD） <span style="color:#F59E0B">★★★★</span> <span class="tag tn2">D2確認後・①②③完成後</span></div>
+<div style="font-size:10px;color:#888">依賴條件：①②③完成・D2管控模式確認</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>每個主要職位的核心職責（3–5項）</li>
+<li>每個職位的決策權限（對應授權矩陣，兩者必須同步設計）</li>
+<li>派駐職位的特殊職責定義（雙重報告下的責任邊界）</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>沒有JD，薪酬設計沒有依據，績效考核沒有標準，授權矩陣也沒有職位層面的具體細節。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>A類的JD包含技術標準與工安職責；B類依業務性質設計；C類不需要集團JD。
+</div></div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#854F0B;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">⑤</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">薪酬與短中長期留才措施 <span style="color:#F59E0B">★★★★★</span> <span class="tag ta2">D3確認後・②④完成後</span></div>
+<div style="font-size:10px;color:#888">依賴條件：②④完成・D3 GM角色定位確認</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong><ul>
+<li>短期薪酬：基本薪資（對應職等帶寬、各地市場調查）、派駐加給（A類）、績效獎金</li>
+<li>中期留才：年度留任獎金、技能加給</li>
+<li>長期留才：股權/影子股權計畫（針對GM和高階主管）、長期激勵計畫</li>
+</ul>
+<strong style="font-weight:600">重要性：</strong>核心人才留不住（特別是GM和技術主管）；沒有競爭力的薪酬，海外子公司招不到人；ERP也無法選型。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>A類有派駐加給；B類依業務性質設計；C類薪酬不由集團管理。三種子公司薪酬帶寬完全不同，不能混合比較。
+</div></div>
+<div class="spc-hd" style="background:#E1F5EE;color:#085041;margin-top:12px">可後做（優化型）——做了更好，不做不影響主流程</div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#534AB7;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">⑥</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">職能建置與人才發展 <span style="color:#F59E0B">★★★</span> <span class="tag tp2">①②③④全部完成後</span></div>
+<div style="font-size:10px;color:#888">依賴條件：①②③④全部完成。確認「需要什麼人、做什麼事」之後，才能設計「如何培育」。</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong>核心職能定義、職能缺口分析、技術/管理/跨文化三類培訓路徑、接班計畫、知識庫建立<br>
+<strong style="font-weight:600">重要性：</strong>這是長期競爭力投資，不是短期業務運作必需。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>A類：技術培訓路徑與跨文化培訓最重要；B類：業務技能培訓；C類：不適用。
+</div></div>
+<div class="hr-item">
+<div class="hr-head">
+<div style="width:28px;height:28px;border-radius:50%;background:#888;color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">⑧</div>
+<div style="flex:1;padding-left:8px">
+<div style="font-size:12px;font-weight:600;color:#1a1a1a">雇主品牌 <span style="color:#F59E0B">★★</span> <span class="tag" style="background:#E1F5EE;color:#085041">⑤完成後評估</span></div>
+<div style="font-size:10px;color:#888">依賴條件：⑤薪酬完成後，才有內容可以對外宣傳</div>
+</div></div>
+<div class="hr-body">
+<strong style="font-weight:600">包含內容：</strong>在地人才吸引策略、集團的員工價值主張（EVP）、招募材料設計<br>
+<strong style="font-weight:600">重要性：</strong>在薪酬制度、職涯發展路徑都還沒定義清楚之前，對外宣傳集團的工作環境可能招來期望不符、留不住的人。<br>
+<strong style="font-weight:600">三種子公司影響：</strong>主要對A類（海外在地招募）有意義；B類依招募難度評估；C類不適用。
+</div></div>
+</div>
+<!-- P13 其他專項連動 -->
+<div class="page" id="pg14">
+<div class="pt">其他配套專項：必做・應做・可後做（三種子公司適用差異）</div>
+<div class="ps">HR八大核心專項之外，還有其他配套工作，依必做/應做/可後做分類，同時標注三種子公司的適用差異。</div>
+<div class="spc-hd" style="background:#FCEBEB;color:#791F1F">必做（缺了會出大問題）</div>
+<table class="tb"><thead><tr><th>專項</th><th>啟動條件</th><th>為什麼必做</th><th>三種子公司差異</th></tr></thead><tbody>
+<tr><td class="rh">月報模板與預警指標</td><td><span class="tag tg2">立即啟動</span></td><td>讓總部能掌握各子公司狀況是一切的基礎。月報模板缺失則總部缺乏即時資訊；預警指標缺失則問題爆發後才能知道</td><td>A類：月報包含財務、業務、工安、人事四個區塊；B類：財務和業務；C類：只需季報（財務）</td></tr>
+<tr><td class="rh">集團治理框架文件（第一層制度）</td><td><span class="tag tg2">立即啟動</span></td><td>這是所有其他制度的依據，也是所有員工必須了解的基本原則</td><td>三種子公司均適用；對C類適用深度較淺（主要是財務底線與道德底線）</td></tr>
+</tbody></table>
+<div class="spc-hd" style="background:#FAEEDA;color:#633806;margin-top:12px">應做（資源允許時推進，建議3–6個月內）</div>
+<table class="tb"><thead><tr><th>專項</th><th>建議時機</th><th>為什麼應做</th><th>三種子公司差異</th></tr></thead><tbody>
+<tr><td class="rh">授權矩陣文件正式化</td><td><span class="tag ta2">D2確認後立即</span></td><td>集團管控最核心的工具，缺失則出現問題時互相推諉；D2已決策但未落到文件，決策形同虛設</td><td>A類：最嚴格（含技術標準和工安相關授權項目）；B類：中度；C類：幾乎不需要</td></tr>
+<tr><td class="rh">各職能治理規則（第二層制度）</td><td><span class="tag ta2">3–6個月</span></td><td>說清楚總部各職能管什麼、怎麼管，避免重工和缺位</td><td>A類：完整適用；B類：部分適用（技術標準管控不適用）；C類：不適用</td></tr>
+<tr><td class="rh">第一次內部稽核</td><td><span class="tag ta2">6個月內</span></td><td>主動發現合規缺失，特別是工安問題</td><td>A類：每年稽核，工安巡查每季；B類：每年稽核；C類：依持股比例決定</td></tr>
+</tbody></table>
+<div class="spc-hd" style="background:#E1F5EE;color:#085041;margin-top:12px">可後做（資源充裕再推進，不做不影響主流程）</div>
+<table class="tb"><thead><tr><th>專項</th><th>為什麼可後做</th><th>做了能提升什麼</th><th>三種子公司差異</th></tr></thead><tbody>
+<tr><td class="rh">技術知識庫建立</td><td>不做不影響業務，只影響技術複製效率</td><td>A類之間技術複製效率大幅提升；集團學習能力建立</td><td>主要對A類有意義；B類與C類不適用</td></tr>
+<tr><td class="rh">集中採購框架合約</td><td>各主體仍能正常採購，只是成本偏高</td><td>採購成本下降；資源綜效開始實現</td><td>主要對A類之間；B類依業務性質；C類不適用</td></tr>
+<tr><td class="rh">ERP系統導入</td><td>制度未完成前導入ERP等同空殼；制度完成後才能評估選型</td><td>管理效率大幅提升；數據自動流動</td><td>A類與B類可使用同一套ERP；C類不需要納入集團ERP</td></tr>
+<tr><td class="rh">轉移定價政策</td><td>需要稅務顧問確認時序；不是立即需要</td><td>集團稅務效率提升；跨主體服務定價合規</td><td>A類與B類之間有業務往來時才需要；C類幾乎不需要</td></tr>
+<tr><td class="rh">ESG合規框架</td><td>目前先把基本合規做好；客戶要求出現時才有壓力</td><td>提前滿足客戶ESG要求；企業永續形象建立</td><td>A類：客戶可能有ESG要求，需關注；B類與C類：依業務性質</td></tr>
+</tbody></table>
+</div>
+<!-- P14 文件產出清單 -->
+<div class="page" id="pg15">
+<div class="pt">各階段文件產出清單：必做/應做/可後做（節點觸發）</div>
+<div class="ps">以節點觸發呈現——某個工作完成後，對應要產出哪些文件。</div>
+<div class="cx">使用方式：把這個清單作為每個節點的「完成確認表」。必須產出的文件全部打勾，才算這個節點真正完成。</div>
+<div class="docg">
+<div class="docc" style="border:2px solid #854F0B">
+<div class="docch" style="background:#854F0B">必做節點 0–3個月</div>
+<div class="doccb">
+<div class="must">必須產出（沒有=這個工作沒做完）</div><ul>
+<li>集團治理框架文件（第一層制度）</li>
+<li>集團行為準則（所有子公司員工簽署）</li>
+<li>月報模板（A類四區塊、B類兩區塊、C類季報格式）</li>
+<li>預警指標清單（三種子公司分開設計）</li>
+<li>HR①：全球組織架構圖＋報告線說明（三種子公司標注）</li>
+<li>HR③：台灣總部職等表（架構版，不含薪資；具體職等數量待討論）</li>
+<li>HR⑦：跨境勞動法合規清單（美日各地）</li>
+</ul>
+<div class="rec">應做產出（有更好）</div><ul>
+<li>GMO工作職責與授權書</li>
+<li>三種子公司定位說明文件（管控模式選擇依據）</li>
+<li>總部人員能力需求文件（依頁簽8的框架盤點）</li>
+</ul>
+</div></div>
+<div class="docc" style="border:2px solid #0F6E56">
+<div class="docch" style="background:#0F6E56">應做節點 3–6個月</div>
+<div class="doccb">
+<div class="must">必須產出</div><ul>
+<li>授權矩陣文件（三種子公司分開設計，各自GM確認簽署）</li>
+<li>各職能治理規則（第二層制度，各職能各一份，標注三種子公司適用差異）</li>
+<li>第一份內部稽核報告（含缺失清單、改善計畫）</li>
+<li>HR②：全球職等框架文件（職責定義、職涯路徑、三種子公司薪酬帶寬框架）</li>
+<li>HR④：全套JD文件（各主要職位、三種子公司分開設計）</li>
+<li>HR⑤：薪酬結構文件＋短中長期留才方案（三種子公司分開）</li>
+</ul>
+<div class="rec">應做產出</div><ul>
+<li>技術知識庫（第一批完工專案工程總結報告，A類≥3份）</li>
+<li>ERP選型需求清單（三個前置條件滿足後才能做）</li>
+</ul>
+</div></div>
+<div class="docc" style="border:2px solid #534AB7">
+<div class="docch" style="background:#534AB7">可後做節點 6–18個月</div>
+<div class="doccb">
+<div class="must">必須產出</div><ul>
+<li>各主體運營制度（第三層制度，A類與B類各一份；C類不需要）</li>
+<li>第一份管控效果評估報告</li>
+<li>HR⑥：職能框架文件＋培訓路徑地圖（A類與B類分開設計）</li>
+<li>接班計畫文件（A類與B類的GM級和技術主管級）</li>
+</ul>
+<div class="rec">應做產出</div><ul>
+<li>ERP系統上線文件</li>
+<li>授權矩陣更新版（動態校準後）</li>
+<li>組織健康監控報告（員工滿意度調查）</li>
+<li>次年治理計畫書</li>
+</ul>
+<div class="opt">預留接口（設計時留好空間，暫不啟動）</div><ul>
+<li>ESG合規框架文件（A類客戶開始要求時啟動）</li>
+<li>轉移定價政策文件（A類與B類之間有大量業務往來時）</li>
+<li>C類投資標的的管控框架（在設立前設計好）</li>
+</ul>
+</div></div>
+</div>
+<div class="sl">各機制對應輸出物一覽</div>
+<table class="tb"><thead><tr><th>機制</th><th>必須產出的輸出物</th><th>頻率</th></tr></thead><tbody>
+<tr><td class="rh">①議事決策</td><td>重大事項審批記錄、決議文件、授權矩陣更新版</td><td>每次觸發、每年更新</td></tr>
+<tr><td class="rh">②指揮反饋</td><td>年度目標分解文件（三種子公司KPI各自確認版）、季度進度追蹤報告、月報</td><td>年、季、月</td></tr>
+<tr><td class="rh">③請示報告</td><td>請示申請表、月報（事後知會的事項記錄）、重大事項即時通報記錄</td><td>每次觸發、每月</td></tr>
+<tr><td class="rh">④溝通協調</td><td>跨主體協作記錄、最佳實踐分享會紀錄（A類之間）</td><td>每次觸發、每年一次分享會</td></tr>
+<tr><td class="rh">⑤考核評價</td><td>年度績效評估報告、薪酬調整記錄、接班計畫更新記錄</td><td>每年</td></tr>
+<tr><td class="rh">⑥預警干預</td><td>預警指標清單（三種子公司分開）、預警通報記錄、原因分析＋改善計畫</td><td>持續更新、每次觸發</td></tr>
+<tr><td class="rh">⑦監督考察</td><td>年度稽核報告、缺失清單、整改追蹤記錄、工安巡查記錄（A類）</td><td>每年稽核、A類每季工安巡查</td></tr>
+</tbody></table>
+</div>
+<!-- P15 回歸與循環 -->
+<div class="page" id="pg16">
+<div class="pt">各階段完成後如何回歸緩解痛點・持續優化循環</div>
+<div class="ps">治理建設是持續優化的循環，不是一次性的工作。各階段完成後，可以追蹤對應哪些痛點的緩解程度。</div>
+<table class="tb"><thead><tr><th>痛點</th><th>必做節點完成後（0–3月）</th><th>應做節點完成後（3–6月）</th><th>可後做節點完成後（6–18月）</th></tr></thead><tbody>
+<tr><td class="rh">①合規風險<br><span class="tag tr2">極高</span></td><td>行為準則發布、HR⑦勞動法清單→合規底線明確，員工知道邊界</td><td>第一次內部稽核完成→主動發現和修正合規缺失</td><td>第三層制度完成→三種子公司各有自己的合規操作手冊</td></tr>
+<tr><td class="rh">②資訊不透明<br><span class="tag tr2">高</span></td><td>月報模板＋預警指標→總部每月固定收到三種子公司狀況</td><td>財務系統整合完成→總部可即時看到各子公司財務</td><td>ERP導入→數據自動流動，資訊透明度最高</td></tr>
+<tr><td class="rh">③戰略斷層<br><span class="tag tr2">高</span></td><td>集團治理框架文件→三種子公司知道集團方向和底線；HR③台灣職等→HR設計有基準</td><td>HR②全球職等框架＋HR④JD→職等定義清楚，各主體方向一致</td><td>七大機制完整運作→戰略意志持續傳達到三種子公司</td></tr>
+<tr><td class="rh">⑤學習失能<br><span class="tag ta2">中</span></td><td>此階段尚無明顯緩解</td><td>技術知識庫第一批上線（A類）→成功案例開始跨主體共享</td><td>HR⑥培訓路徑＋知識庫完整→系統化學習機制建立（A類之間）</td></tr>
+<tr><td class="rh">⑥決策效率<br><span class="tag ta2">中</span></td><td>月報模板建立→為授權矩陣設計建立基礎</td><td>授權矩陣完成→三種子公司在各自範圍內自主決策</td><td>授權矩陣動態校準→持續優化三種子公司各自的授權邊界</td></tr>
+<tr><td class="rh">⑦資源碎片化<br><span class="tag ta2">中</span></td><td>此階段尚無明顯緩解</td><td>集中採購框架（A類）→採購成本開始下降</td><td>ERP導入後，A類與B類資源統籌更系統化</td></tr>
+</tbody></table>
+<div class="sl">持續優化循環</div>
+<div style="display:flex;flex-wrap:wrap;align-items:center;gap:3px;margin:8px 0">
+<span style="padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;background:#1E2761;color:#fff">① 執行<br><span style="font-size:9px;opacity:.8">七大機制日常運作<br>月報、稽核、考核</span></span><span style="color:#aaa;font-size:15px">→</span>
+<span style="padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;background:#0F6E56;color:#fff">② 監測<br><span style="font-size:9px;opacity:.8">預警指標觸發<br>管控效果評估</span></span><span style="color:#aaa;font-size:15px">→</span>
+<span style="padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;background:#791F1F;color:#fff">③ 發現問題<br><span style="font-size:9px;opacity:.8">缺失、偏差、風險<br>各機制輸出物記錄</span></span><span style="color:#aaa;font-size:15px">→</span>
+<span style="padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;background:#BA7517;color:#fff">④ 決策處置<br><span style="font-size:9px;opacity:.8">議事決策機制啟動<br>制度、授權更新</span></span><span style="color:#aaa;font-size:15px">→</span>
+<span style="font-size:12px;color:#534AB7;font-weight:600">↩ 回到①</span>
+</div>
+<div class="nx">三種子公司各自依照自己的管控模式進行循環——A類循環最頻繁（月報、每季稽核、工安巡查），B類次之，C類循環最少（季報、年度稽核）。隨著循環次數增加：合規風險下降、資訊透明度提升、戰略對齊度提升，七大痛點逐步緩解。</div>
+</div>
+
+<!-- P16 18月路線圖 -->
+<div class="page" id="pg17">
+<div class="pt">18個月推進路線圖（依必做/應做/可後做排列）</div>
+<div class="ps">路線圖依必做/應做/可後做重新排列，而非均勻的三個6個月。必做集中在前3個月，應做在3–6個月，可後做在6個月之後視資源決定。</div>
+<div class="phases">
+<div class="phc">
+<div class="phhd" style="background:#791F1F;color:#fff"><div class="pht">必做節點</div><div class="phs">0–3個月｜現在啟動</div></div>
+<div class="phbd">
+<div style="font-size:9px;font-weight:600;color:#791F1F;margin-bottom:4px">治理基礎決策</div>
+<div class="phi"><div class="phd" style="background:#791F1F"></div>D1確認集團整體定位方向</div>
+<div class="phi"><div class="phd" style="background:#791F1F"></div>D2確認三種子公司各自的管控模式</div>
+<div class="phi"><div class="phd" style="background:#791F1F"></div>GMO負責人指定（兼任起點）</div>
+<div class="phi"><div class="phd" style="background:#791F1F"></div>制定集團治理框架文件（第一層制度）</div>
+<div class="phi"><div class="phd" style="background:#791F1F"></div>建立月報模板（三種子公司格式）＋預警指標</div>
+<div style="border-top:1px dashed #eee;margin:5px 0;padding-top:4px;font-size:9px;font-weight:600;color:#534AB7">HR必做專項</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR①：</strong>全球組織設計（三種子公司報告線）</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR③：</strong>台灣總部職等設計（此次任務的核心輸出）</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR⑦：</strong>跨境勞動法合規清單（美日）</div>
+<div style="font-size:9px;color:#791F1F;margin-top:6px;padding:5px;background:#FCEBEB;border-radius:4px">完成以上→集團基本管控框架能運作；HR職等設計有基礎</div>
+</div></div>
+<div class="phc">
+<div class="phhd" style="background:#633806;color:#fff"><div class="pht">應做節點</div><div class="phs">3–6個月</div></div>
+<div class="phbd">
+<div style="font-size:9px;font-weight:600;color:#633806;margin-bottom:4px">制度與管控完整化</div>
+<div class="phi"><div class="phd" style="background:#633806"></div>授權矩陣文件正式化（三種子公司分開）</div>
+<div class="phi"><div class="phd" style="background:#633806"></div>各職能治理規則（第二層制度）</div>
+<div class="phi"><div class="phd" style="background:#633806"></div>第一輪內部稽核（A類與B類）</div>
+<div class="phi"><div class="phd" style="background:#633806"></div>GMO升級為2–3人專職（視需求）</div>
+<div class="phi"><div class="phd" style="background:#633806"></div>D3 GM角色定位確認（各類子公司）</div>
+<div style="border-top:1px dashed #eee;margin:5px 0;padding-top:4px;font-size:9px;font-weight:600;color:#534AB7">HR應做專項</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR②：</strong>全球職等框架（三種子公司對應）</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR④：</strong>職務層級與職責定義</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR⑤：</strong>薪酬結構＋留才方案（三種子公司分開）</div>
+<div style="font-size:9px;color:#633806;margin-top:6px;padding:5px;background:#FAEEDA;border-radius:4px">完成以上→框架穩定運作；HR職等薪酬設計完整</div>
+</div></div>
+<div class="phc">
+<div class="phhd" style="background:#085041;color:#fff"><div class="pht">可後做節點</div><div class="phs">6個月後，視資源決定</div></div>
+<div class="phbd">
+<div style="font-size:9px;font-weight:600;color:#085041;margin-bottom:4px">優化與效率提升</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>各主體運營制度（第三層制度）</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>技術知識庫（A類完工專案文件化）</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>ERP系統評估選型（必做節點完成後）</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>集中採購框架合約（A類之間）</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>管控效果評估（是否達成治理目標）</div>
+<div class="phi"><div class="phd" style="background:#085041"></div>評估區域中台設立時機（A類超過2–3家時）</div>
+<div style="border-top:1px dashed #eee;margin:5px 0;padding-top:4px;font-size:9px;font-weight:600;color:#534AB7">HR可後做專項</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div><strong>HR⑥：</strong>職能建置與人才發展</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div>接班計畫建立（A類與B類GM級）</div>
+<div class="phi"><div class="phd" style="background:#534AB7"></div>跨文化管理培訓系統化（A類）</div>
+<div style="font-size:9px;color:#085041;margin-top:6px;padding:5px;background:#E1F5EE;border-radius:4px">完成以上→集團管控進入成熟期；三種子公司各有完整的管控框架</div>
+</div></div>
+</div>
+<div class="nx" style="margin-top:10px"><strong style="font-weight:600">最小可行版本（若只有3個月）：</strong>完成「必做節點」全部，再加上「應做節點」中的「授權矩陣＋HR②」這兩個最關鍵的項目。完成後：集團基本管控框架能運作、三種子公司定位清楚、台灣總部職等設計有完整依據。</div>
+</div>
+
+<script>
+function sp(i){
+  var pages=document.querySelectorAll('.page');
+  var tabs=document.querySelectorAll('button.t');
+  for(var j=0;j<pages.length;j++){pages[j].classList.remove('on')}
+  for(var j=0;j<tabs.length;j++){tabs[j].classList.remove('on')}
+  document.getElementById('pg'+i).classList.add('on');
+  tabs[i].classList.add('on');
+  window.scrollTo(0,0);
+}
+function tc(id){
+  var b=document.getElementById(id+'b');
+  var a=document.getElementById(id+'a');
+  if(!b)return;
+  b.classList.toggle('on');
+  if(a)a.textContent=b.classList.contains('on')?'▲':'▼';
+}
+function tm(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var all=document.querySelectorAll('.md');
+  for(var i=0;i<all.length;i++){if(all[i].id!==id)all[i].classList.remove('on')}
+  el.classList.toggle('on');
+}
+</script>
+</body>
+</html>
